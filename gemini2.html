@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document two</title>
+    <link rel="stylesheet" href="gemini2.css">
+    <!-- <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=edit_square" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo">EduPortal</div>
+
+            <div class="teacher-profile">
+                <div class="profile-avatar">MX</div>
+                <div id="edit-name-details">
+                    <div>
+                        <h2 class="teacher-name" id="teacher-name">xxxxxxxxxxxx</h2>
+                    </div>
+                    <i class="fa-solid fa-pen-to-square" id="profile-edit-icon"></i>
+                </div>
+                <p class="teacher-role" id="teacher-role">xxxxxxxx</p>
+            </div>
+            <!-- edit popup -->
+            <form id="edit-popup" class=" state-hide">
+                <div id="main-edit-container">
+                    <i class="fa-solid fa-xmark" id="cross-btn"></i>
+                    <br>
+
+                    <div class="field-container">
+                        <label for="edit-name">Name</label>
+                        <input type="text" id="edit-name">
+                    </div>
+                    <div class="field-container">
+                        <label for="edit-designation">Designation</label>
+                        <input type="text" id="edit-designation">
+                    </div>
+                    <div class="field-container">
+                        <label for="edit-email">E-mail</label>
+                        <input type="email" id="edit-email">
+                    </div>
+                    <div class="field-container">
+                        <label for="edit-ph-no">Mobile No.</label>
+                        <input type="text" id="edit-ph-no">
+                    </div>
+                    <div class="field-container">
+                        <label>Department</label>
+                        <div class="radio-options">
+                            <input type="radio" name="edit-dept" id="dept-bca" required>
+                            <label for="dept-bca">BCA</label>
+
+                            <input type="radio" name="edit-dept" id="dept-bba">
+                            <label for="dept-bba">BBA</label>
+
+                            <input type="radio" name="edit-dept" id="dept-bhm">
+                            <label for="dept-bhm">BHM</label>
+
+                            <input type="radio" name="edit-dept" value="BMLT" id="dept-bmlt" required>
+                            <label for="dept-bmlt">BMLT</label>
+                        </div>
+                    </div>
+                    <input type="submit" id="edit-save">
+                </div>
+            </form>
+
+            <div class="teacher-details">
+                <div class="detail-item">
+                    <label>Email</label>
+                    <p id="teacher-email">xxxxxxxxxxxxxxxxxx</p>
+                </div>
+                <div class="detail-item">
+                    <label>Phone</label>
+                    <p id="teacher-phone">xxxxxxxxxxxxxxxxxx</p>
+                </div>
+                <div class="detail-item">
+                    <label>Department </label>
+                    <p id="teacher-dept">xxxxxxxxxxxxxxxxxx</p>
+                </div>
+                <div class="detail-item">
+                    <label>Employee ID</label>
+                    <p>xxxxxxxxxxxxxxxxxx</p>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <a href="teachersignup.html" class="add-dept-btn">+ Add More Department</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header>
+                <h1>Welcome back, <span id="right-head-name">X</span></h1>
+                <hr>
+                <p class="subtitle">Select a department to manage tasks...</p>
+            </header>
+
+            <section class="card-grid">
+                <div class="course-card">BCA</div>
+                <div class="course-card">BBA</div>
+                <div class="course-card">BHM</div>
+                <div class="course-card">BMLT</div>
+            </section>
+        </main>
+    </div>
+    <script src="gemini.js"></script>
+</body>
+
+</html>

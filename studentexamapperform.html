@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="hgf.css">
+</head>
+
+<body>
+    <div class="main">
+        <h1 class="heading">Application to Appear in Upcoming Semester Exam</h1>
+
+        <form>
+            <label for="fullName">Student Name</label><br>
+            <input type="text" id="fullName" name="fullName" placeholder="Eg. Antonio Fedrick" required><br>
+
+            <label>Select Department:</label><br>
+            <div class="dept-name">
+                <input type="radio" id="bca" name="department" value="BCA">
+                <label for="bca">BCA</label>
+
+                <input type="radio" id="bba" name="department" value="BBA">
+                <label for="bba">BBA</label>
+
+                <input type="radio" id="bhm" name="department" value="BHM">
+                <label for="bhm">BHM</label>
+
+                <input type="radio" id="bmlt" name="department" value="BMLT">
+                <label for="bmlt">BMLT</label><br>
+            </div><br>
+
+            <label for="semester">Semester:</label><br>
+            <select id="semester" name="semester">
+                <option value="">-- Select Semester --</option>
+                <option value="1">1st Semester</option>
+                <option value="2">2nd Semester</option>
+                <option value="3">3rd Semester</option>
+                <option value="4">4th Semester</option>
+                <option value="5">5th Semester</option>
+                <option value="6">6th Semester</option>
+                <option value="7">7th Semester</option>
+                <option value="8">8th Semester</option>
+            </select><br>   
+
+
+            <label for="clgRoll">College Roll</label><br>
+            <input type="number" id="clgRoll" name="clgRoll" placeholder="01" min="1" max="60" required><br>
+
+            <label for="uniRoll">University Roll</label><br>
+            <input type="text" id="uniRoll" name="uniRoll" placeholder="Eg. 32642724011" required><br>
+
+            <label for="mobileNumber">Mobile Number</label><br>
+            <input type="tel" id="mobileNumber" name="mobileNumber" placeholder="xxxxxxxxxx" required><br>
+
+            <label for="imgUpload">Upload Payment Receipt</label>
+            <input type="file" id="imgUpload" name="imgUpload" accept="image/*" required><br>
+
+            <input type="submit" value="Submit Application">
+        </form>
+
+    </div>
+</body>
+
+</html>
