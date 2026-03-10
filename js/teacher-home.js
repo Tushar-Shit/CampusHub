@@ -23,7 +23,7 @@ depts.forEach(item => {
     item.addEventListener("click", function () {
         const key = this.innerText;
         localStorage.setItem("stream", key);
-        window.location.href = "Teacher-page-1.html";
+        window.location.href = "teacher-dept-page.html";
         console.dir(depts);
     })
 });

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/teacher-dept-page.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  </head>
+
+  <body>
+    <div class="main">
+      <div class="main-left">
+        <h1 id="heading">xxx</h1>
+        <hr />
+        <div id="sem-container">
+          <button class="sem-btn pre-bgcolor forhover" value="I">
+            1st Semester
+          </button>
+          <button class="sem-btn pre-bgcolor forhover" value="II">
+            2nd Semester
+          </button>
+          <button class="sem-btn pre-bgcolor forhover" value="III">
+            3rd Semester
+          </button>
+          <button class="sem-btn pre-bgcolor forhover" value="IV">
+            4th Semester
+          </button>
+          <button class="sem-btn pre-bgcolor forhover" value="V">
+            5th Semester
+          </button>
+          <button class="sem-btn pre-bgcolor forhover" value="VI">
+            6th Semester
+          </button>
+          <button class="sem-btn pre-bgcolor forhover" value="VII">
+            7th Semester
+          </button>
+          <button class="sem-btn pre-bgcolor forhover" value="VIII">
+            8th Semester
+          </button>
+        </div>
+        <div id="add-fea">
+          <a href="teacher-home.html">&lt;--back to previous page</a>
+        </div>
+      </div>
+
+      <div id="right-side">
+        <h1 id="right-heading"></h1>
+        <hr />
+        <div id="right-top">
+          <button class="right-side-buttons before-clicked forhover">
+            Student List
+          </button>
+          <button class="right-side-buttons before-clicked forhover">
+            Pending Approval
+          </button>
+          <button class="right-side-buttons before-clicked forhover">
+            Download Approval List
+          </button>
+        </div>
+        <hr />
+        <!-- data comes here from database  -->
+        <div id="right-bottom"></div>
+
+        <!-- it will be show when user doesn't select any specific requirement button  -->
+        <div id="alternative-right-bottom">
+          <div class="inner">please select what are you looking for</div>
+        </div>
+      </div>
+
+      <!-- it will be show when user doesn't select any semester  -->
+      <div id="alternative-right-side">
+        <div class="inner">please select a semester to see more details</div>
+      </div>
+    </div>
+    <!-- <script type="module" src="/js/teacher-dept-page.js"></script> -->
+    <script type="module" src="/js/teacher-dept-page.js"></script>
+  </body>
+</html>
