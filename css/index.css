@@ -1,0 +1,464 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: white;
+}
+
+button {
+    font-family: "Bricolage Grotesque", sans-serif;
+    cursor: pointer;
+}
+
+#backgroundImage {
+    width: 100%;
+    height: 100dvh;
+    position: fixed;
+    z-index: -1;
+    object-fit: cover;
+}
+
+#todayDate {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 130px 0px 0px 20px;
+    color: white;
+    font-size: 14px;
+    font-family: "Playwrite NZ Basic";
+}
+
+#homePage {
+    display: flex;
+    flex-direction: column;
+}
+
+#navBar {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 80px;
+    box-shadow: 0vw 0.9vw 5vw rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5);
+    font-family: "Bricolage Grotesque", sans-serif;
+}
+
+#navLeft {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#collegeLogo {
+    height: 40px;
+    border-radius: 50px;
+}
+
+
+#navMiddle {
+    display: flex;
+    gap: 60px;
+    font-size: 20px;
+}
+
+#navMiddle a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    position: relative;
+    transition: 0.3s;
+}
+
+#navMiddle a:hover {
+    color: #FACC15;
+}
+
+#navRight {
+    display: flex;
+    gap: 15px;
+}
+
+#menuButton {
+    display: none;
+    cursor: pointer;
+}
+
+#teacherButton {
+    background: #2563EB;
+    color: white;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#teacherButton:hover {
+    background: #1D4ED8;
+    transform: scale(1.05);
+}
+
+#studentButton {
+    background: #16A34A;
+    color: white;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#studentButton:hover {
+    background: #15803D;
+    transform: scale(1.05);
+}
+
+
+#heroSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    gap: 20px;
+    padding: 0px 40px;
+    text-align: center;
+}
+
+#WelcomeText {
+    font-size: 70px;
+    font-family: "Playwrite AT";
+}
+
+#secondWelcomeMessage {
+    font-size: 30px;
+    font-family: "SN Pro";
+}
+
+#loginContainer,
+#signupContainer,
+#otpVerifyContainer {
+    position: absolute;
+    display: none;
+    top: 0;
+    left: 0;
+    background-color: #0000009a;
+    height: 100dvh;
+    width: 100vw;
+    justify-content: center;
+    color: black;
+    align-items: center;
+}
+
+#loginForm,
+#signupForm,
+#otpForm {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height: max-content;
+    font-family: "Bricolage Grotesque", sans-serif;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    padding: 30px 35px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    gap: 15px;
+    color: white;
+    position: relative;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#otpForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* gap: 10px; */
+}
+
+hr {
+    width: 100%;
+}
+
+#closeButton,
+#signupCloseButton {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 20px;
+    cursor: pointer;
+}
+
+#loginHeading,
+#signupHeading {
+    padding: 1px 20px 10px 20px;
+    align-self: center;
+}
+
+.input-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#loginEmail,
+#loginPassword,
+input[type="text"],
+#email,
+#mobile,
+#password,
+#confirmPassword,
+select {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+}
+
+.department {
+    display: flex;
+    gap: 10px;
+}
+
+#loginForm button,
+#signupForm button,
+#verifyOTP {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+
+    background: linear-gradient(45deg, #ff7b00, #ff0058);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#forgotPass {
+    align-self: center;
+}
+
+#signupTextOnLogin {
+    align-self: center;
+}
+
+#forgotPass,
+#signupButton {
+    color: #ff9f43;
+    cursor: pointer;
+}
+
+#pageLoader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid white;
+    border-top: 6px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+
+#slipVerify {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(6px);
+    display: none;
+    justify-content: center;
+}
+
+#verifyContent {
+    position: relative;
+    display: flex;
+    padding: 30px;
+    height: max-content;
+    flex-direction: column;
+    margin-top: 10vh;
+    width: 30vw;
+    align-items: center;
+
+    background: linear-gradient(145deg,
+            rgba(95, 30, 150, 0.65),
+            rgba(40, 10, 70, 0.85));
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+    color: white;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    animation: popup 0.3s ease;
+}
+
+@keyframes popup {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+#verifyHeading {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 1px;
+    margin-top: 15px;
+}
+
+#slipverifyButton {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#slipverifyButton:hover {
+    transform: scale(1.2);
+}
+
+#imageInput {
+    margin-bottom: 15px;
+}
+
+#preview {
+    max-width: 100%;
+    border-radius: 15px;
+    max-height: 250px;
+    margin: 10px auto;
+    display: block;
+}
+
+#preview,
+#progressBar,
+#progressText,
+#result {
+    display: flex;
+    align-self: center;
+}
+
+#progressText {
+    margin-bottom: 5px;
+}
+
+#progressText,
+#result {
+    display: none;
+    font-size: 20px;
+}
+
+#continue2Signup {
+    display: none;
+    align-self: center;
+    margin-top: 10px;
+    padding: 10px 25px;
+    border-radius: 30px;
+    border: none;
+    background: linear-gradient(135deg, #ff7b00, #ff3d00);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#continue2Signup:hover {
+    transform: scale(1.1);
+}
+
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+@media (max-width: 1100px) {
+    #todayDate {
+        margin: 150px 0px 0px 20px;
+    }
+
+    #navBar {
+        justify-content: space-around;
+        box-shadow: none;
+    }
+
+    #navLeft {
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    #navMiddle {
+        all: unset;
+        position: absolute;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 40px;
+        background: rgba(0, 0, 0, 0.65);
+        margin-top: 80px;
+    }
+
+    #teacherButton {
+        position: absolute;
+        top: 68%;
+        left: 50%;
+        translate: -50% -50%;
+        width: max-content;
+    }
+
+    #studentButton {
+        position: absolute;
+        top: 76%;
+        left: 50%;
+        translate: -50% -50%;
+        width: max-content;
+    }
+
+    #menuButton {
+        display: block;
+    }
+
+
+    #WelcomeText {
+        font-size: 40px;
+    }
+
+    #secondWelcomeMessage {
+        font-size: 20px;
+    }
+
+    #verifyContent {
+        width: 75vw;
+    }
+
+}

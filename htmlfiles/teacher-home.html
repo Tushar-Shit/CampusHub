@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document two</title>
     <link rel="stylesheet" href="/css/teacher-home.css" />
-    <!-- <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=edit_square" /> -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=edit_square"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -25,17 +27,19 @@
           <div class="profile-avatar">MX</div>
           <div id="edit-name-details">
             <div>
-              <h2 class="teacher-name" id="teacher-name">xxxxxxxxxxxx</h2>
+              <h2 class="teacher-name" id="teacher-name"></h2>
             </div>
             <i class="fa-solid fa-pen-to-square" id="profile-edit-icon"></i>
           </div>
-          <p class="teacher-role" id="teacher-role">xxxxxxxx</p>
+          <p class="teacher-role" id="teacher-role"></p>
         </div>
         <!-- profile edit popup -->
         <form id="edit-popup" class="state-hide">
           <div id="main-edit-container">
-            <i class="fa-solid fa-xmark" id="cross-btn"></i>
-            <br />
+            <div id="heading-part">
+              <h2 id="form-heading"></h2>
+              <i class="fa-solid fa-xmark" id="cross-btn"></i>
+            </div>
 
             <div class="field-container">
               <label for="edit-name">Name</label>
@@ -50,25 +54,45 @@
               <input type="email" id="edit-email" />
             </div>
             <div class="field-container">
+              <label for="edit-password">Password</label>
+              <input type="password" id="edit-password" />
+            </div>
+            <div class="field-container">
               <label for="edit-ph-no">Mobile No.</label>
               <input type="text" id="edit-ph-no" />
             </div>
             <div class="field-container">
               <label>Department</label>
               <div class="radio-options">
-                <input type="radio" name="edit-dept" id="dept-bca" required />
+                <input
+                  type="radio"
+                  name="edit-dept"
+                  id="dept-bca"
+                  value="Bachelor Of Computer Application (BCA)"
+                  required
+                />
                 <label for="dept-bca">BCA</label>
 
-                <input type="radio" name="edit-dept" id="dept-bba" />
+                <input
+                  type="radio"
+                  name="edit-dept"
+                  id="dept-bba"
+                  value="Bachelor Of Business Administration(BBA)"
+                />
                 <label for="dept-bba">BBA</label>
 
-                <input type="radio" name="edit-dept" id="dept-bhm" />
+                <input
+                  type="radio"
+                  name="edit-dept"
+                  id="dept-bhm"
+                  value="Bachelor Of Hospital Management(BHM)"
+                />
                 <label for="dept-bhm">BHM</label>
 
                 <input
                   type="radio"
                   name="edit-dept"
-                  value="BMLT"
+                  value="Bachelor Of Medical Laboratory Technology(BMLT)"
                   id="dept-bmlt"
                   required
                 />
@@ -82,116 +106,45 @@
         <div class="teacher-details">
           <div class="detail-item">
             <label>Email</label>
-            <p id="teacher-email">xxxxxxxxxxxxxxxxxx</p>
+            <p id="teacher-email"></p>
           </div>
           <div class="detail-item">
             <label>Phone</label>
-            <p id="teacher-phone">xxxxxxxxxxxxxxxxxx</p>
+            <p id="teacher-phone"></p>
           </div>
           <div class="detail-item">
             <label>Department </label>
-            <p id="teacher-dept">xxxxxxxxxxxxxxxxxx</p>
+            <p id="teacher-dept"></p>
           </div>
           <div class="detail-item">
             <label>Employee ID</label>
-            <p>xxxxxxxxxxxxxxxxxx</p>
+            <p></p>
           </div>
         </div>
 
-        <div class="sidebar-footer">
-          <a href="create-teacher-acct.html" class="add-dept-btn"
-            >+ Add More Teacher</a
-          >
+        <div class="sidebar-footer" id="ure-ja">
+          <button class="add-dept-btn" id="add-teacher">
+            + Add More Teacher
+          </button>
+          <button class="add-dept-btn" id="logout">Logout</button>
         </div>
-
-        <!-- create teacher popup  -->
-        <form id="edit-popup" class="state-hide">
-          <div id="main-edit-container">
-            <i class="fa-solid fa-xmark" id="cross-btn"></i>
-            <h1 id="form-heading">Create Teacher Account</h1>
-            <!-- <br /> -->
-
-            <div class="field-container same-style">
-              <label for="edit-name">Name</label>
-              <input type="text" id="edit-name" required />
-            </div>
-            <div class="field-container same-style">
-              <label for="edit-designation">Designation</label>
-              <input type="text" id="edit-designation" required />
-            </div>
-            <div class="same-style login">
-              <label for="edit-email">E-mail</label>
-              <input type="email" id="edit-email" required />
-            </div>
-            <div class="same-style login">
-              <label for="edit-email">Password</label>
-              <input type="password" id="edit-password" required />
-            </div>
-            <div class="field-container same-style">
-              <label for="edit-ph-no">Mobile No.</label>
-              <input type="text" id="edit-ph-no" />
-            </div>
-            <div class="field-container same-style">
-              <label>Department</label>
-              <div class="radio-options">
-                <input
-                  type="radio"
-                  name="edit-dept"
-                  value="Bachelor Of Computer Application (BCA)"
-                  id="dept-bca"
-                  required
-                />
-                <label for="dept-bca" class="radio-label">BCA</label>
-
-                <input
-                  type="radio"
-                  name="edit-dept"
-                  value="Bachelor Of Business Administration(BBA)"
-                  id="dept-bba"
-                />
-                <label for="dept-bba" class="radio-label">BBA</label>
-
-                <input
-                  type="radio"
-                  name="edit-dept"
-                  value=" Bachelor Of Hospital Management(BHM)"
-                  id="dept-bhm"
-                />
-                <label for="dept-bhm" class="radio-label">BHM</label>
-
-                <input
-                  type="radio"
-                  name="edit-dept"
-                  value=" Bachelor Of Medical Laboratory Technology(BMLT)"
-                  id="dept-bmlt"
-                  required
-                />
-                <label for="dept-bmlt" class="radio-label">BMLT</label>
-              </div>
-            </div>
-            <button id="edit-save">Create</button>
-            <p id="below-text"><span id="change-state"></span></p>
-          </div>
-          <a href="index.html">previous</a>
-          <a href="teacher-home.html">next</a>
-        </form>
       </aside>
 
       <main class="main-content">
         <header>
-          <h1>Welcome back, <span id="right-head-name">X</span></h1>
+          <h1>Welcome back, <span id="right-head-name"></span></h1>
           <hr />
           <p class="subtitle">Select a department to manage tasks...</p>
         </header>
 
         <section class="card-grid">
-          <div class="course-card">BCA</div>
+          <div class="course-card" href="">BCA</div>
           <div class="course-card">BBA</div>
           <div class="course-card">BHM</div>
           <div class="course-card">BMLT</div>
         </section>
       </main>
     </div>
-    <script src="/js/teacher-home.js"></script>
+    <script type="module" src="/js/teacher-home.js"></script>
   </body>
 </html>
