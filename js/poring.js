@@ -240,17 +240,17 @@ loginForm.addEventListener("submit", async e => {
 
         const data = userDoc.data();
 
-        if (data.role !== loginType) {
-            alert("Invalid email or password");
-            await signOut(auth);
-            pageLoader.style.display = "none";
-            return;
-        }
+        // if (data.role !== loginType) {
+        //     alert("Invalid email or password");
+        //     await signOut(auth);
+        //     pageLoader.style.display = "none";
+        //     return;
+        // }
 
-        pageLoader.style.display = "none";
+        // pageLoader.style.display = "none";
 
-        if (loginType === "teacher")
-            window.location.href = "htmlfiles/teacher-home.html";
+        if (data.role === "teacher" || data.role === "admin")
+            window.location.href = "/htmlfiles/teacher-home.html";
         else
             window.location.href = "./student/studentappearpage.html";
 

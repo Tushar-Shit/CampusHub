@@ -96,6 +96,7 @@ input.addEventListener("change", async function () {
 
 teacherButton.onclick = () => {
     loginType = "teacher";
+    // loginType = "admin";
     loginHeading.innerText = "Teacher Login";
     loginContainer.style.display = "flex";
     signupTextOnLogin.style.display = "none";

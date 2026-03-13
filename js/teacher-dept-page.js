@@ -19,7 +19,7 @@ import {
 import { db } from "./firebase.js";
 
 
-// 🔴 GLOBAL UNSUBSCRIBE VARIABLE
+// GLOBAL UNSUBSCRIBE VARIABLE
 let unsubscribe = null;
 
 
@@ -47,10 +47,13 @@ container.addEventListener("click", function (e) {
     if (e.target.nodeName !== "BUTTON") return;
 
     if (currentClick == null) {
+        console.log("hello");
+        // console.dir(e);
 
         check(e.target);
 
     } else if (currentClick == e.target) {
+        // console.dir(e);
 
         e.target.classList.remove("clicked-bgcolor");
         e.target.classList.add("pre-bgcolor", "forhover");
@@ -61,6 +64,7 @@ container.addEventListener("click", function (e) {
         currentClick = null;
 
     } else {
+        // console.dir(e);
 
         currentClick.classList.remove("clicked-bgcolor");
         currentClick.classList.add("pre-bgcolor", "forhover");
@@ -109,22 +113,23 @@ spBtnContainer.addEventListener("click", function (e) {
     sem = currentClick;
 
     if (whichBtn === null) {
-
+        console.dir(e);
         func(e.target, sem);
         currentSem = sem;
-
+        
     } else if (whichBtn === e.target) {
-
+        
         e.target.classList.remove("after-clicked");
         e.target.classList.add("forhover", "before-clicked");
-
+        
         rightBottom.style.display = "none";
         altRightBottom.style.display = "block";
-
+        
         whichBtn = null;
-
+        
     } else {
-
+        
+        console.dir(e);
         whichBtn.classList.remove("after-clicked");
         whichBtn.classList.add("before-clicked", "forhover");
 
@@ -271,11 +276,14 @@ function studentList(q) {
             newData.classList.add("student-list-appear");
 
             newData.innerHTML = `
-                <span>${data.name}</span>
-                <span>${data.collegeRoll}</span>
-                <span>${data.universityRoll}</span>
-                <span>+91 ${data.mobile}</span>
+                <span class="cursive">${data.name}</span>
+                <span class="cursive">${data.collegeRoll}</span>
+                <span class="cursive">${data.universityRoll}</span>
+                <span class="cursive">+91 ${data.mobile}</span>
             `;
+            // console.log("hello");
+            // const spans = document.querySelectorAll(".student-list-appear span");
+            // console.log(spans);
 
             container2.appendChild(newData);
         });
@@ -289,7 +297,7 @@ const container2 = document.getElementById("right-bottom");
 function pendingApproval(q) {
 
 
-    // 🔴 remove previous listener
+
     if (unsubscribe) unsubscribe();
 
     unsubscribe = onSnapshot(q, (snapshot) => {
@@ -319,8 +327,9 @@ function pendingApproval(q) {
                 </div>
 
                 <div id="buttons_con">
-                    <button onclick="approve('${doc.id}',${container2})" id="approve-btn">Approve</button>
+                    <button onclick="approve('${doc.id}')" id="approve-btn">Approve</button>
                     <button onclick="reject('${doc.id}')" id="reject-btn">Reject</button>
+                    <button onclick="pending('${doc.id}')" id="pending-btn">pending</button>
                 </div>
             `;
 
@@ -332,7 +341,7 @@ function pendingApproval(q) {
 
 
 // approve
-window.approve = async (id, btn) => {
+window.approve = async (id) => {
     await updateDoc(doc(db, "examApplications", id), {
         status: "approved"
     });
@@ -344,10 +353,6 @@ window.reject = async (id) => {
     await updateDoc(doc(db, "examApplications", id), {
         status: "rejected"
     });
-    // console.dir(btn);
-    // btn.classList.add("change-bg-to-red");
-    console.dir(container2);
-    // container2.style.backgroundColor="#fe8282";
 }
 
 
