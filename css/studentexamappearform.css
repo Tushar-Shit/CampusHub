@@ -1,0 +1,165 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* page background */
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #eef2f7, #dfe7f3);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* form container */
+#examForm {
+    width: 420px;
+    max-width: 92%;
+    background: #fff;
+    padding: 26px 26px;
+    border-radius: 10px;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+}
+
+
+/* heading (smaller now) */
+#examForm h1 {
+    text-align: center;
+    margin-bottom: 14px;
+    font-size: 1.5rem;
+    color: #222;
+}
+
+
+/* labels */
+#examForm label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+}
+
+
+/* all text inputs */
+.input {
+    width: 100%;
+    padding: 10px 12px;
+    margin: 6px 0 14px 0;
+    border: 1px solid #cfcfcf;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    transition: .2s;
+}
+
+
+/* focus effect */
+.input:focus {
+    border-color: #ff0048;
+    box-shadow: 0 0 0 2px rgba(255, 0, 72, .2);
+}
+
+#container-radio {
+    width:100%; 
+    margin-top:1vh;
+    margin-bottom:1vh;
+    display: flex;
+    justify-content: space-around;
+}
+
+/* select box */
+#semester {
+    width: 100%;
+    padding: 10px 12px;
+    margin: 8px 0 16px 0;
+    border: 1px solid #cfcfcf;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    background: #fff;
+}
+
+#semester:focus {
+    border-color: #ff0048;
+    box-shadow: 0 0 0 2px rgba(255, 0, 72, .2);
+}
+
+
+/* radio group fix (same line) */
+input[type="radio"] {
+    /* margin: 10px 5px 10px 12px; */
+    cursor: pointer;
+    accent-color: #ff003c;
+    /* transform: scale(1.05); */
+}
+
+/* radio labels */
+.r-label {
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    /* display: inline-block; */
+}
+
+
+/* file input */
+#fileInput {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 18px;
+}
+
+
+/* submit button */
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: #28a745;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .25s;
+}
+
+button[type="submit"]:hover {
+    background: #006417;
+}
+
+
+/* remove br spacing */
+#examForm br {
+    display: none;
+}
+
+#statusBox{
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
+    height: 100vh;
+    width: 15%;
+    min-width: 200px;
+}
+
+
+/* mobile */
+@media(max-width:850px) {
+    #examForm {
+        padding: 20px 16px;
+    }
+
+    #examForm h1 {
+        font-size: 18px;
+    }
+    #statusBox{
+        display: none;
+    }
+}

@@ -33,9 +33,9 @@ onAuthStateChanged(auth, async user => {
     const role = snap.data().role;
 
     if (role === "teacher" || role === "admin")
-        window.location.href = "htmlfiles/teacher-home.html";
+        window.location.href = "./teacher/teacher-home.html";
     else
-        return;
+        window.location.href = "./student/studentappearpage.html";
 });
 
 
@@ -58,7 +58,7 @@ signupForm.addEventListener("submit", async e => {
     const gender = document.getElementById("gender").value;
     const dept = document.querySelector('input[name="dept"]:checked')?.value;
     const semester = document.getElementById("semester").value;
-    const clgRoll = document.getElementById("clgRoll").value;
+    const collRoll = document.getElementById("clgRoll").value;
     const universityRoll = document.getElementById("universityRoll").value;
     const admissionYear = document.getElementById("admissionYear").value;
     const mobile = document.getElementById("mobile").value;
@@ -67,6 +67,11 @@ signupForm.addEventListener("submit", async e => {
     const confirmPassword = document.getElementById("confirmPassword").value;
     const otpEmail = document.getElementById("otp-email");
 
+    let deptCode = dept.substring(0, 2).toUpperCase();
+    let yearCode = admissionYear.slice(-2);
+    let rollCode = collRoll.padStart(2, '0');
+
+    let clgRoll = `${deptCode}/${yearCode}/${rollCode}`;
 
     if (!dept) {
         alert("Select department");
@@ -119,7 +124,6 @@ signupForm.addEventListener("submit", async e => {
         attempts: 0
     });
 
-
     await fetch(
         "https://script.google.com/macros/s/AKfycby7AZ3l70fJswb3cSjGvSBT__hZ5qVmxYlYBVxOP_ndVLo1go-ZnRl0EcOx5weq-Sbz/exec",
         {
@@ -129,18 +133,23 @@ signupForm.addEventListener("submit", async e => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
+                name: name,
+                websiteName: websiteName,
                 email: email,
                 otp: otp
             })
         }
     );
+
+    otpEmail.innerHTML = email;
     otpVerifyContainer.style.display = "flex";
     signupContainer.style.display = "none";
     pageLoader.style.display = "none";
-    otpEmail.innerHTML = email;
 });
 
 window.verifyOTP = async function () {
+    pageLoader.style.display = "flex";
+
     const signupData = JSON.parse(sessionStorage.getItem("signupData"));
 
     const {
@@ -159,9 +168,6 @@ window.verifyOTP = async function () {
     const inputOTP = document.getElementById("otpInput").value;
     const ref = doc(db, "otp", email);
     const snap = await getDoc(ref);
-
-    pageLoader.style.display = "flex";
-
     if (!snap.exists()) {
         alert("OTP not found");
         pageLoader.style.display = "none";
@@ -176,8 +182,19 @@ window.verifyOTP = async function () {
         return;
     }
 
+    if (data.attempts >= 3) {
+        alert("You have exceeded the OTP limit. Please sign up again.");
+
+        await deleteDoc(ref);
+
+        pageLoader.style.display = "none";
+        otpVerifyContainer.style.display = "none";
+        signupContainer.style.display = "flex";
+        return;
+    }
+
+
     if (Number(inputOTP) === data.otp) {
-        alert("OTP Verify Successfull");
         await deleteDoc(ref);
 
         try {
@@ -197,13 +214,20 @@ window.verifyOTP = async function () {
                 createdAt: new Date()
             });
 
-            pageLoader.style.display = "none";
+            alert("OTP Verify Successfull");
+            sessionStorage.removeItem("slipVerified");
+            signupContainer.style.display = "none";
+
             setTimeout(() => {
                 window.location.href = "./student/studentappearpage.html";
             }, 4500);
         } catch (err) {
-            alert(err.message);
+            alert("An account with this email already exists. Please login.");
+            document.getElementById("loginEmail").value = email;
             pageLoader.style.display = "none";
+            sessionStorage.removeItem("slipVerified");
+            otpVerifyContainer.style.display = "none";
+            studentLoginPopup();
         }
     }
     else {
@@ -240,20 +264,17 @@ loginForm.addEventListener("submit", async e => {
 
         const data = userDoc.data();
 
-        // if (data.role !== loginType) {
-        //     alert("Invalid email or password");
-        //     await signOut(auth);
-        //     pageLoader.style.display = "none";
-        //     return;
-        // }
-
-        // pageLoader.style.display = "none";
+        if (!loginType.includes(data.role)) {
+            await signOut(auth);
+            alert("Access denied");
+            window.location.href = "../index.html";
+            return;
+        }
 
         if (data.role === "teacher" || data.role === "admin")
-            window.location.href = "/htmlfiles/teacher-home.html";
+            window.location.href = "./teacher/teacher-home.html";
         else
             window.location.href = "./student/studentappearpage.html";
-
     } catch {
         alert("Invalid email or password");
         pageLoader.style.display = "none";

@@ -1,0 +1,236 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "SN Pro";
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#main {
+    display: none;
+    height: 97%;
+    width: 98.5%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0vw 0.9vw 5vw rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.16);
+    animation: fadeIn 1s ease-in-out;
+    gap: 20px;
+}
+
+#left {
+    display: flex;
+    flex-direction: column;
+    height: 95%;
+    align-items: center;
+    width: 400px;
+    justify-content: space-evenly;
+    box-shadow: 0vw 0.9vw 5vw rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 20px;
+}
+
+#userLogo {
+    border: 1px solid white;
+    padding: 40px;
+    color: white;
+    border-radius: 100%;
+    font-size: 35px;
+}
+
+
+#userDetails {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    color: white;
+    gap: 10px;
+}
+
+.logout-btn {
+    background: linear-gradient(135deg, #ff7b00, #ff3d00);
+    color: white;
+    border: none;
+    padding: 15px 50px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 80, 0, 0.4);
+}
+
+.logout-btn:hover {
+    transform: scale(1.1);
+}
+
+
+#right {
+    display: flex;
+    height: 100%;
+    width: 70%;
+    justify-content: center;
+}
+
+#rightTop {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 40%;
+    gap: 40px;
+    align-items: center;
+}
+
+#heading {
+    font-size: 50px;
+    margin-top: 3%;
+    color: white;
+}
+
+#buttons {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    gap: 20px;
+}
+
+#feeStructureButton,
+#applyForSemesterButton {
+    background: linear-gradient(135deg, #6a11cb, #ff6a00);
+    color: white;
+    border: none;
+    padding: 20px 35px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    transition: 0.3s ease;
+}
+
+#feeStructureButton:hover,
+#applyForSemesterButton:hover {
+    transform: scale(1.05);
+}
+
+
+.editData,
+.cancelIcon,
+.saveIcon {
+    display: none;
+    cursor: pointer;
+}
+
+.editData {
+    padding: 8px 15px;
+    border-radius: 10px;
+    border: none;
+    cursor: text;
+}
+
+.editIcon {
+    cursor: pointer;
+}
+
+.editable {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#pageLoader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid white;
+    border-top: 6px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 920px) {
+    #main {
+        box-shadow: none;
+        background: transparent;
+    }
+
+    #left {
+        box-shadow: none;
+        background: transparent;
+        position: absolute;
+        top: 30px;
+        justify-content: flex-start;
+        gap: 20px;
+    }
+
+    #userDetails {
+        font-size: 15px;
+        gap: 10px;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0vw 0.9vw 5vw rgb(0, 0, 0);
+        background: rgba(0, 0, 0, 0.16);
+        width: 90vw;
+    }
+
+    #heading {
+        display: none;
+    }
+
+    #buttons {
+        position: absolute;
+        bottom: 22vh;
+    }
+
+    #feeStructureButton,
+    #applyForSemesterButton {
+        font-size: 15px;
+        background: linear-gradient(135deg, #6e6e6e,#6a11cb);
+        padding: 20px;
+    }
+
+    .logout-btn {
+        position: absolute;
+        background: linear-gradient(135deg, #6e6e6e,#6a11cb);
+        bottom: 10vh;
+    }
+}

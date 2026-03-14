@@ -1,5 +1,5 @@
-let loginType = "student";
-
+const websiteName = "faaaaaaaaaaaaaaa!";
+let loginType = ["student"];
 const loginHeading = document.getElementById("loginHeading");
 const teacherButton = document.getElementById("teacherButton");
 const studentButton = document.getElementById("studentButton");
@@ -45,12 +45,12 @@ input.addEventListener("change", async function () {
 
         const {
             data: { text } }
-             = await Tesseract.recognize(file, "eng", {
+            = await Tesseract.recognize(file, "eng", {
                 logger: m => {
                     if (m.status === "recognizing text") {
                         let percent = Math.floor(m.progress * 100);
                         progressBar.value = percent;
-                         progressText.innerText = `Processing ${percent}%`;
+                        progressText.innerText = `Processing ${percent}%`;
                     }
                 }
             });
@@ -95,18 +95,21 @@ input.addEventListener("change", async function () {
 
 
 teacherButton.onclick = () => {
-    loginType = "teacher";
-    // loginType = "admin";
+    loginType = ["teacher", "admin"];
     loginHeading.innerText = "Teacher Login";
     loginContainer.style.display = "flex";
     signupTextOnLogin.style.display = "none";
 };
 
-studentButton.onclick = () => {
-    loginType = "student";
+function studentLoginPopup() {
+    loginType = ["student"];
     loginHeading.innerText = "Student Login";
     loginContainer.style.display = "flex";
     signupTextOnLogin.style.display = "block";
+}
+
+studentButton.onclick = () => {
+    studentLoginPopup();
 };
 
 closeButton.onclick = () => {

@@ -105,13 +105,17 @@
                 <option value="VII">7th Semester</option>
                 <option value="VIII">8th Semester</option>
             </select>
-            <input type="text" id="clgRoll" placeholder="College Roll" autocomplete="off" required>
-            <input type="text" id="universityRoll" placeholder="University Roll" autocomplete="off">
-            <input type="text" id="admissionYear" placeholder="Admission Year" autocomplete="off" required>
+            <input type="text" id="clgRoll" placeholder="College Roll... Eg. 01" autocomplete="off" maxlength="2"
+                minlength="2" required>
+            <input type="text" id="universityRoll" placeholder="University Roll" maxlength="11" minlength="11"
+                autocomplete="off">
+            <input type="text" id="admissionYear" placeholder="Admission Year" autocomplete="off" minlength="2"
+                maxlength="4" required>
 
             <input type="email" id="email" placeholder="Email" autocomplete="off" required>
 
-            <input type="tel" id="mobile" pattern="^[0-9]{10}$" placeholder="Mobile Number" autocomplete="off" required>
+            <input type="tel" id="mobile" pattern="^[0-9]{10}$" placeholder="Mobile Number" autocomplete="off"
+                minlength="10" maxlength="10" required>
 
             <input type="password" id="password" minlength="6" placeholder="Password" required>
             <input type="password" id="confirmPassword" placeholder="Confirm Password" required>

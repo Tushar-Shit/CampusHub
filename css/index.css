@@ -237,6 +237,13 @@ select {
     color: white;
     font-weight: bold;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#loginForm button:hover,
+#signupForm button:hover,
+#verifyOTP:hover {
+    scale: 1.05;
 }
 
 #forgotPass {
@@ -277,6 +284,24 @@ select {
     animation: spin 1s linear infinite;
 }
 
+@keyframes popup {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 
 #slipVerify {
     position: fixed;
@@ -311,17 +336,6 @@ select {
     animation: popup 0.3s ease;
 }
 
-@keyframes popup {
-    from {
-        transform: scale(0.9);
-        opacity: 0;
-    }
-
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
 
 #verifyHeading {
     text-align: center;
@@ -389,13 +403,6 @@ select {
 
 #continue2Signup:hover {
     transform: scale(1.1);
-}
-
-
-@keyframes spin {
-    100% {
-        transform: rotate(360deg);
-    }
 }
 
 

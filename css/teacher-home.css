@@ -144,9 +144,11 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+
 #form-heading {
   font-size: 1.7rem;
 }
+
 #cross-btn {
   color: #666;
   font-size: 1.8rem;
@@ -270,14 +272,16 @@ body {
   transition: all 0.3s ease;
   cursor: pointer;
 }
+
 #add-teacher {
   position: absolute;
   top: 6vh;
   right: 3.2vw;
   /* width: 90%; */
 }
-#logout{
-    width: 90%;
+
+#logout {
+  width: 90%;
 }
 
 .add-dept-btn:hover {
@@ -417,4 +421,49 @@ header h1 span {
 #below-text span {
   color: red;
   cursor: pointer;
+}
+
+
+
+
+#pageLoader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 9999;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid white;
+  border-top: 6px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes popup {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
 }
