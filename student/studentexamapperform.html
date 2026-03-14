@@ -3,6 +3,8 @@
 
 <head>
     <title>Exam Form</title>
+    <link rel="icon" type="image/png" href="../image/websiteLogo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/studentexamappearform.css">
 </head>
 
@@ -55,17 +57,15 @@
         <label for="mobileNumber">Mobile Number</label>
         <br>
         <input type="text" id="mobileNumber" class="input" required>
-
-        <br>
-        <input type="file" id="fileInput" accept="image/*,application/pdf" required>
         <button type="submit">Submit Application</button>
     </form>
 
 
     <div id="statusBox">
-        <h2 style="justify-self: center; text-decoration:underline;">Status</h2>
+        <h2 style="justify-self: center;">Status</h2>
     </div>
 
+    <button type="button" id="statusBtn">Check Status</button>
 
     <script type="module" src="../js/studentexamform.js"></script>
 </body>

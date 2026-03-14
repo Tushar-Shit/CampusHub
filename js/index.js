@@ -1,4 +1,4 @@
-const websiteName = "faaaaaaaaaaaaaaa!";
+const websiteName = "campusHub";
 let loginType = ["student"];
 const loginHeading = document.getElementById("loginHeading");
 const teacherButton = document.getElementById("teacherButton");

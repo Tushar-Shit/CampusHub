@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 .main {
@@ -9,41 +10,40 @@
   display: flex;
 }
 
-.main .main-left {
-  height: 100vh;
+/* LEFT SIDE */
+
+.main-left {
   width: 25vw;
+  height: 100vh;
   border-right: 2.5px solid rgb(137, 137, 137);
 }
 
-.main-left #heading {
+#heading {
   height: 9%;
-  width: 100%;
-  justify-self: center;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #fff;
-  background-color: #2d6a4f;
+  background: #2d6a4f;
 }
 
-.main-left #sem-container {
+#sem-container {
   height: 80%;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
 }
 
-#sem-container .sem-btn {
+.sem-btn {
+  width: 80%;
   padding: 2vh 2vw;
   font-size: 1.3rem;
-  width: 80%;
-  border-radius: 5px;
   border: none;
+  border-radius: 5px;
 }
 
-#sem-container .sem-btn:hover {
+.sem-btn:hover {
   cursor: pointer;
   transform: scale(1.05);
   transition: 0.3s;
@@ -51,58 +51,60 @@
 }
 
 .forhover:hover {
-  color: whitesmoke;
-  background-color: #2d6a4f;
+  color: #fff;
+  background: #2d6a4f;
 }
 
 .pre-bgcolor {
+  background: #c2f9c5;
   color: #1b4332;
-  background-color: #c2f9c5;
 }
 
 .clicked-bgcolor {
-  background-color: #fb0058;
-  color: white;
+  background: #fb0058;
+  color: #fff;
 }
 
-.main .main-left #add-fea {
+#add-fea {
   height: 10%;
   text-align: center;
   align-content: center;
 }
 
-.main .main-left #add-fea a {
+#add-fea a {
   text-decoration: none;
   font-size: 1.3rem;
 }
 
-.main .main-left #add-fea a:hover {
+#add-fea a:hover {
   color: red;
   transition: 0.2s;
 }
 
-.main #right-side {
+/* RIGHT SIDE */
+
+#right-side {
   width: 75%;
   display: flex;
   flex-direction: column;
 }
 
-.main #right-side #right-heading {
+#right-heading {
   padding-top: 1%;
   text-align: center;
   font-size: 2.5rem;
-  background-color: #c2f9c5;
+  background: #c2f9c5;
   color: #1b4332;
 }
 
-.main #right-side #right-top {
+#right-top {
   height: 10%;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
-#right-top .right-side-buttons {
+.right-side-buttons {
   height: 8vh;
   width: 15vw;
   border: none;
@@ -110,43 +112,42 @@
   font-size: larger;
 }
 
-#right-top .right-side-buttons:hover {
+.right-side-buttons:hover {
   transform: scale(1.05);
   transition: 0.3s;
   cursor: pointer;
 }
 
 .before-clicked {
-  background-color: #15c676;
-  color: white;
+  background: #15c676;
+  color: #fff;
 }
-
 .after-clicked {
-  background-color: #fb0058;
-  color: white;
+  background: #fb0058;
+  color: #fff;
 }
 
-.main #right-bottom {
+/* RIGHT BOTTOM */
+
+#right-bottom {
   height: 80%;
   font-size: xx-large;
   text-align: center;
   align-content: center;
-  background-color: #eeeeee;
-  /* background: linear-gradient(160deg, #f0ffe6 10%, #ffe4e5 90%); */
+  background: #eee;
   overflow-y: scroll;
 }
 
 .change-bg-to-green {
-  background-color: #9eeda9;
-  /* background-color: #5add51; */
+  background: #9eeda9;
 }
-
 .change-bg-to-red {
-  /* background-color: #fe8282; */
-  background-color: #ff6666;
+  background: #ff6666;
 }
 
-.main #right-side #alternative-right-bottom {
+/* ALTERNATIVE SECTION */
+
+#alternative-right-bottom {
   height: 80%;
   justify-items: center;
   align-content: center;
@@ -157,44 +158,39 @@
   width: 40vw;
   text-align: center;
   align-content: center;
-  color: #4a5568;
   font-size: xx-large;
-  font-weight: bolder;
+  font-weight: bold;
+  color: #4a5568;
 }
 
-.main #alternative-right-side {
+#alternative-right-side {
   height: 100vh;
   width: 75%;
   justify-items: center;
   align-content: center;
 }
 
-/* styling for js elements */
-/* styling for js elements */
-/* styling for js elements */
+/* STUDENT LIST */
+
 .student-list-appear {
   width: 95%;
   margin-bottom: 1.2rem;
   padding: 0.8rem;
   display: flex;
   justify-content: space-evenly;
-  background-color: whitesmoke;
-  color: #000000;
+  background: #fff;
   border-radius: 12px;
   border-left: 8px solid #2d6a4f;
-  box-shadow: 2px 0px 5px #4a5568;
-
+  box-shadow: 2px 0 5px #4a5568;
   font-family: "Story Script", sans-serif;
-  font-weight: 400;
-  font-style: normal;
 }
 
 .student-list-appear:hover {
   border-left: 8px solid #fb0058;
-  transition: transform 0.2s ease;
   transform: translateX(0.3rem);
-  background-color: #dde5ff;
-  box-shadow: 2px 0px 10px #4a5568;
+  transition: 0.2s;
+  background: #dde5ff;
+  box-shadow: 2px 0 10px #4a5568;
 }
 
 .student-list-appear span {
@@ -202,21 +198,17 @@
   font-style: cursive;
 }
 
+/* PENDING APPROVAL */
+
 .pending-approval-list {
-  /* background-color: #fff; */
   width: 95%;
-  padding: 3vh 0vh;
-  margin-top: 1vh;
-  margin-bottom: 7vh;
-  justify-self: center;
-  border-radius: 10px;
+  padding: 3vh 0;
+  margin: 1vh auto 7vh;
   display: flex;
   justify-content: space-around;
-  box-shadow: 4px 2px 10px#4a5568;
-
+  border-radius: 10px;
+  box-shadow: 4px 2px 10px #4a5568;
   font-family: "Story Script", sans-serif;
-  font-weight: 400;
-  font-style: normal;
 }
 
 #details_con {
@@ -236,26 +228,184 @@
 #buttons_con button {
   padding: 0.7rem;
   width: 40%;
+  border: none;
   border-radius: 5px;
   font-size: 1.1rem;
-  border: none;
-  box-shadow: 3px 2px 10px#4a5568;
+  box-shadow: 3px 2px 10px #4a5568;
   cursor: pointer;
 }
 
 #approve-btn {
-  background-color: #00ff00;
+  background: #00ff00;
 }
-
 #reject-btn {
-  /* background-color: #fff; */
-  background-color: #ff0000;
-  color: white;
+  background: #ff0000;
+  color: #fff;
 }
 
 .cursive {
   font-family: "Merienda", cursive;
-  font-optical-sizing: auto;
-  /* font-weight: <weight>; */
-  font-style: normal;
+}
+
+/* mobile responsivness  */
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .main-left {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 2px solid #898989;
+  }
+
+  #heading {
+    height: auto;
+    padding: 12px;
+    font-size: 1.2rem;
+  }
+
+  #sem-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 10px 15px;
+  }
+
+  #sem-container::-webkit-scrollbar {
+    height: 5px;
+  }
+
+  #sem-container::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  #sem-container::-webkit-scrollbar-thumb {
+    background: red;
+    border-radius: 10px;
+  }
+  .sem-btn {
+    min-width: 110px;
+    padding: 10px 10px;
+    font-size: 1rem;
+  }
+
+  .sem-btn:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .forhover:hover {
+    background: inherit;
+    color: inherit;
+  }
+
+  .right-side-buttons:hover {
+    transform: none;
+  }
+
+  .student-list-appear:hover {
+    transform: none;
+    box-shadow: 2px 0px 5px #4a5568;
+    border-left: 8px solid #2d6a4f;
+    background-color: whitesmoke;
+  }
+
+  #right-side {
+    width: 100%;
+  }
+
+  #right-heading {
+    font-size: 1.6rem;
+    padding: 10px;
+  }
+
+  #right-top {
+    padding: 10px;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .right-side-buttons {
+    width: 45%;
+    height: 45px;
+    font-size: 0.9rem;
+  }
+
+  #right-bottom {
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .student-list-appear {
+    width: 95%;
+    font-size: 0.9rem;
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .pending-approval-list {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 12px;
+    margin-bottom: 15px;
+    gap: 10px;
+  }
+
+  #details_con {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 0.95rem;
+  }
+
+  #details_con span {
+    width: auto;
+  }
+
+  #buttons_con {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  #buttons_con button {
+    width: 70px;
+    padding: 6px 8px;
+    font-size: 0.8rem;
+  }
+
+  #alternative-right-side {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .inner {
+    width: 90%;
+    max-width: 350px;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+  #add-fea {
+    display: none;
+  }
 }

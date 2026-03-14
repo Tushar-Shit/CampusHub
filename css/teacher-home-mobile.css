@@ -1,0 +1,108 @@
+@media (max-width: 768px) {
+  body {
+    overflow: auto;
+  }
+
+  .dashboard-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .sidebar {
+    width: 100vw;
+    padding: 0;
+    border-right: none;
+    border-bottom: 2px solid #9aa99b;
+  }
+
+  .logo {
+    width: 100%;
+    height: 60px;
+    left: 0;
+    margin: 0;
+    font-size: 1.3rem;
+  }
+
+  .teacher-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .profile-avatar {
+    width: 65px;
+    height: 65px;
+    margin: 0;
+  }
+
+  #edit-name-details {
+    display: flex;
+    align-items: center;
+    border: none;
+    margin: 10px;
+  }
+  #xfvdg {
+    margin-right: 2vw;
+  }
+  .teacher-name {
+    margin: 0;
+    font-size: 1.6rem;
+  }
+
+  .teacher-role {
+    justify-self: left;
+    /* display: none; */
+  }
+  .teacher-details {
+    display: none;
+  }
+  #main-edit-container {
+    width: 80vw;
+  }
+  .sidebar-footer {
+    display: flex;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .add-dept-btn,
+  #logout,
+  #add-teacher {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.95rem;
+    position: static;
+  }
+
+  .main-content {
+    width: 100%;
+    padding: 1.5rem 1rem;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+  }
+  .subtitle {
+    font-size: 0.95rem;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .course-card {
+    height: 120px;
+    font-size: 1.2rem;
+  }
+  #profile-edit-icon {
+    font-size: 1rem;
+    position: relative;
+    top: 0;
+    right: 0;
+  }
+  .faah {
+    display: none;
+  }
+}

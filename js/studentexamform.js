@@ -14,6 +14,8 @@ import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
 
+let userSemester = "";
+
 document.querySelector("body").style.display = "none";
 
 
@@ -42,6 +44,7 @@ onAuthStateChanged(auth, async (user) => {
         return;
     }
 
+    userSemester = userDoc.data().semester;
     const role = userDoc.data().role;
 
     if (role !== "student") {
@@ -58,20 +61,37 @@ onAuthStateChanged(auth, async (user) => {
         const snapshot = await getDocs(q);
 
         snapshot.forEach((doc) => {
+
             const data = doc.data();
             const div = document.createElement("div");
 
             div.style.border = "1px solid black";
+            div.style.borderRadius = "10px";
             div.style.padding = "10px";
             div.style.margin = "10px";
 
             div.innerHTML = `
-                    Semester: ${data.semester} <br>
-                    <b>Status: ${data.status}</b>
-                `;
+                    Name: ${data.fullName}<br>
+                    Department: ${data.department}<br>
+                    Semester: ${data.semester}<br>
+                    Status: <span class="checkStatus">${data.status}</span>
+                     `;
+
+            const checkStatus = div.querySelector(".checkStatus");
+
+            if (data.status === "Approved") {
+                checkStatus.style.color = "#90ee90";
+            }
+            else if (data.status === "Rejected") {
+                checkStatus.style.color = "#f50000";
+            }
+            else {
+                checkStatus.style.color = "black";
+            }
 
             box.appendChild(div);
         });
+
     } catch (error) {
         console.error("Error fetching data:", error);
     }
@@ -97,19 +117,9 @@ form.addEventListener("submit", async (e) => {
         alert("Select Semester")
         return;
     }
-    const file = document.getElementById("fileInput").files[0];
-    if (!file) {
-        alert("Select a file");
-        return;
-    }
-
-    if (file.size > 1 * 1024 * 1024) {
-        alert("File must be less than 1MB");
-        return;
-    }
-
 
     const user = auth.currentUser;
+
     if (!user) {
         alert("User not logged in");
         return;
@@ -119,35 +129,37 @@ form.addEventListener("submit", async (e) => {
 
     const snapshot = await getDocs(q);
 
-    let alreadyApplied = false;
+    if (userSemester !== semester) {
+        alert(`Current semester is ${userSemester}.\nYou cannot apply for semester ${semester}.`);
+        return;
+    }
 
     for (const docSnap of snapshot.docs) {
         const data = docSnap.data();
-        if (data.semester == semester) {
-            if (data.status === "Approved" || data.status === "Pending") {
-                alert(`Status: ${data.status}`);
-                alreadyApplied = true;
-                break;
-            }
+
+        if (data.semester === semester &&
+            (data.status === "Approved" || data.status === "Pending")) {
+
+            alert(`Application already exists. Status: ${data.status}`);
+            return;
         }
     }
 
-    if (!alreadyApplied) {
-        await addDoc(collection(db, "examApplications"), {
-            uid: user.uid,
-            fullName,
-            department,
-            semester,
-            clgRoll,
-            uniRoll,
-            mobile,
-            status: "Pending",
-            createdAt: new Date()
-        });
+    await addDoc(collection(db, "examApplications"), {
+        uid: user.uid,
+        fullName,
+        department,
+        semester,
+        clgRoll,
+        uniRoll,
+        mobile,
+        status: "Pending",
+        createdAt: new Date()
+    });
 
-        alert("Application Submitted!");
-        form.reset();
-    }
+    alert("Application Submitted!");
+    form.reset();
+
 });
 
 
@@ -169,3 +181,22 @@ formSemester.value = agcvbh.semester;
 if (formRadio) {
     formRadio.checked = true;
 }
+
+
+const statusBtn = document.getElementById("statusBtn");
+const statusBox = document.getElementById("statusBox");
+const examForm = document.getElementById("examForm");
+
+statusBtn.addEventListener("click", () => {
+
+    if (statusBox.style.display === "none") {
+        statusBox.style.display = "flex";
+        statusBtn.textContent = "Hide Status";
+        examForm.style.display = "none";
+    } else {
+        statusBox.style.display = "none";
+        examForm.style.display = "block";
+        statusBtn.textContent = "Check Status";
+    }
+
+});

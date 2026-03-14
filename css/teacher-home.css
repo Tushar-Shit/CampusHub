@@ -4,14 +4,15 @@
   box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-
 body {
-  background-color: #f8faf9;
+  background: #f8faf9;
   color: #1b4332;
   overflow: hidden;
 }
+#nav-mobile {
+  display: none;
+}
 
-/* Main Layout Container */
 .dashboard-container {
   display: flex;
   height: 100vh;
@@ -23,7 +24,7 @@ body {
   border-right: 2px solid #9aa99b;
   display: flex;
   flex-direction: column;
-  padding: 0rem 1rem 1rem 1rem;
+  padding: 0 1rem 1rem;
   flex-shrink: 0;
 }
 
@@ -31,11 +32,10 @@ body {
   height: 10vh;
   width: 21.5vw;
   position: relative;
-  top: 0;
   left: -1.7vw;
   font-size: 1.5rem;
   font-weight: 800;
-  background-color: #2d6a4f;
+  background: #2d6a4f;
   color: #fff;
   margin-bottom: 1rem;
   text-align: center;
@@ -43,15 +43,14 @@ body {
   letter-spacing: 1.5px;
 }
 
-/* Profile Section */
 .teacher-profile {
   text-align: center;
+  position: relative;
 }
 
 .profile-avatar {
   width: 7vw;
   height: 7vw;
-  background-image: url("");
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -59,7 +58,7 @@ body {
   font-size: 1.8rem;
   font-weight: bold;
   margin: 0 auto 1vh;
-  border: 4px solid #ffffff;
+  border: 4px solid #fff;
   box-shadow: 0 3px 13px #ff0066;
 }
 
@@ -68,9 +67,12 @@ body {
   color: #31b338;
   font-size: 1.5rem;
   margin-bottom: 0.2rem;
+  margin-right: 1vw;
 }
-
-#edit-name-details {
+/* #xfvdg{
+  position: relative;
+} */
+/* #edit-name-details {
   justify-self: center;
   min-width: 80px;
   max-width: fit-content;
@@ -88,18 +90,17 @@ body {
 #edit-name-details i {
   margin-left: 5%;
   align-self: center;
-}
+} */
 
 #profile-edit-icon,
 #cross-btn {
   font-size: 1.3rem;
 }
-
 #profile-edit-icon:hover,
 #cross-btn:hover {
   cursor: pointer;
   transform: scale(1.1);
-  transition: all 0.5s ease;
+  transition: 0.5s;
 }
 
 .teacher-role {
@@ -111,7 +112,11 @@ body {
   margin-bottom: 1vh;
 }
 
-/* Edit Popup */
+#profile-edit-icon {
+  position: absolute;
+  top: 5.6vw;
+  right: 5.6vw;
+}
 
 #edit-popup {
   display: block;
@@ -120,7 +125,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.521);
+  background: rgba(0, 0, 0, 0.52);
   align-content: center;
   z-index: 10;
 }
@@ -132,36 +137,29 @@ body {
 #main-edit-container {
   width: 25vw;
   justify-self: center;
-  background-color: #fff;
+  background: #fff;
   padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 #heading-part {
-  /* border: 1px solid black; */
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 #form-heading {
   font-size: 1.7rem;
+  margin: 0.7rem 0 0.6rem;
+  justify-self: center;
 }
 
 #cross-btn {
   color: #666;
   font-size: 1.8rem;
 }
-
 #cross-btn:hover {
   color: #ff4d4d;
-}
-
-#form-heading {
-  margin-top: 0.7rem;
-  margin-bottom: 0.6rem;
-  justify-self: center;
 }
 
 .field-container {
@@ -174,7 +172,6 @@ body {
   font-size: 1rem;
   font-weight: bold;
   margin-bottom: 5px;
-  /* cursor: pointer; */
 }
 
 .field-container input {
@@ -193,11 +190,8 @@ body {
 .field-container input[type="radio"] {
   margin-right: 6px;
   cursor: pointer;
-  box-shadow: none;
   accent-color: #ff0400;
 }
-
-/* Detail Items */
 
 .teacher-details {
   flex-grow: 1;
@@ -208,30 +202,28 @@ body {
 ::-webkit-scrollbar {
   width: 8px;
 }
-
 ::-webkit-scrollbar-track {
   border-radius: 5px;
   background: #b9b9b9;
 }
-
 ::-webkit-scrollbar-thumb {
   border-radius: 5px;
-  cursor: pointer;
   background: #fb0058;
+  cursor: pointer;
 }
 
 .detail-item {
   margin-bottom: 1.2rem;
   padding: 0.8rem;
-  background-color: #deffe7;
+  background: #deffe7;
   border-radius: 12px;
   border-left: 4px solid #2d6a4f;
 }
 
 .detail-item:hover {
   border-left: 4px solid #fb0058;
-  transition: transform 0.2s ease;
   transform: translateX(0.35rem);
+  transition: 0.2s;
 }
 
 .detail-item label {
@@ -249,10 +241,7 @@ body {
   font-weight: 600;
 }
 
-/* Sidebar Footer */
-
 .sidebar-footer {
-  /* border: 1px solid black; */
   padding-top: 1.5rem;
   margin-top: 1rem;
   display: flex;
@@ -261,36 +250,31 @@ body {
 
 .add-dept-btn {
   width: 8%;
-  background-color: #fb0058;
-  color: white;
+  background: #fb0058;
+  color: #fff;
   padding: 1vw;
   border: none;
-  justify-self: center;
   border-radius: 10px;
   font-weight: bold;
   font-size: 0.95rem;
-  transition: all 0.3s ease;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 #add-teacher {
   position: absolute;
   top: 6vh;
   right: 3.2vw;
-  /* width: 90%; */
 }
-
 #logout {
   width: 90%;
 }
 
 .add-dept-btn:hover {
-  background-color: #1b4332;
+  background: #1b4332;
   transform: translateY(-2px);
-  box-shadow: 0 3px 15px rgba(251, 0, 88, 0.575);
+  box-shadow: 0 3px 15px rgba(251, 0, 88, 0.57);
 }
-
-/* Main Content Area */
 
 .main-content {
   flex-grow: 1;
@@ -307,7 +291,7 @@ header h1 {
   font-size: 2.5rem;
   color: #1b4332;
   font-weight: 800;
-  margin: 0px;
+  margin: 0;
 }
 
 hr {
@@ -336,10 +320,10 @@ header h1 span {
 
 .course-card {
   height: 170px;
-  background-color: #ffffff;
-  border: 1px solid rgba(255, 69, 69, 0.886);
+  background: #fff;
+  border: 1px solid rgba(255, 69, 69, 0.88);
   border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(248, 87, 87, 0.434);
+  box-shadow: 0 4px 10px rgba(248, 87, 87, 0.43);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -347,19 +331,17 @@ header h1 span {
   font-weight: 800;
   color: #2d6a4f;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .course-card:hover {
-  background-color: #ebe9ff;
+  background: #ebe9ff;
   color: #046d3e;
   font-size: 2.2rem;
   border: none;
   transform: translateY(-4px);
-  box-shadow: 0 12px 20px rgba(34, 81, 60, 0.452);
+  box-shadow: 0 12px 20px rgba(34, 81, 60, 0.45);
 }
-
-/* Create teacher popup extras */
 
 .same-style {
   display: flex;
@@ -370,7 +352,6 @@ header h1 span {
 .same-style label {
   margin-bottom: 0.4vh;
   font-weight: 500;
-  cursor: pointer;
   font-size: 1.1rem;
 }
 
@@ -388,8 +369,8 @@ header h1 span {
 }
 
 .same-style input[type="radio"] {
-  cursor: pointer;
   accent-color: #ff0400;
+  cursor: pointer;
 }
 
 .radio-label {
@@ -399,32 +380,28 @@ header h1 span {
 #edit-save {
   width: 100%;
   padding: 12px;
-  background-color: #28a745;
-  color: white;
+  background: #28a745;
+  color: #fff;
   border: none;
   border-radius: 4px;
   font-size: 1rem;
   cursor: pointer;
   margin-top: 10px;
-  transition: background-color 0.2s;
+  transition: 0.2s;
 }
 
 #edit-save:hover {
-  background-color: #006417;
+  background: #006417;
 }
 
 #below-text {
   font-size: 1.2rem;
   justify-self: center;
 }
-
 #below-text span {
   color: red;
   cursor: pointer;
 }
-
-
-
 
 #pageLoader {
   position: fixed;
@@ -437,29 +414,16 @@ header h1 span {
   display: none;
   justify-content: center;
   align-items: center;
-
   z-index: 9999;
 }
 
 .spinner {
   width: 60px;
   height: 60px;
-  border: 6px solid white;
+  border: 6px solid #fff;
   border-top: 6px solid transparent;
   border-radius: 50%;
   animation: spin 1s linear infinite;
-}
-
-@keyframes popup {
-  from {
-    transform: scale(0.9);
-    opacity: 0;
-  }
-
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
 }
 
 @keyframes spin {

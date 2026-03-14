@@ -125,7 +125,7 @@ signupForm.addEventListener("submit", async e => {
     });
 
     await fetch(
-        "https://script.google.com/macros/s/AKfycby7AZ3l70fJswb3cSjGvSBT__hZ5qVmxYlYBVxOP_ndVLo1go-ZnRl0EcOx5weq-Sbz/exec",
+        "https://script.google.com/macros/s/AKfycbxNEPnp2T93gUH72zEVXXgNeNHnClZfLL1fUFU6ZryP59rKqzPiavFC9a4L1-NGSYk/exec",
         {
             method: "POST",
             mode: "no-cors",
