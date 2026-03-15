@@ -16,8 +16,15 @@ import {
     doc,
     updateDoc,
     getDoc,
-    setDoc
+    setDoc,
+    collection,
+    query,
+    where,
+    getDocs
 } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+
+
+
 
 const pageLoader = document.getElementById("pageLoader");
 pageLoader.style.display = "flex";
@@ -195,10 +202,8 @@ editSaveBtn.addEventListener("click", async function (e) {
 
         try {
             const userCred = await createUserWithEmailAndPassword(secondaryAuth, editEmail.value, editPassword.value);
-
             await setDoc(doc(db, "users", userCred.user.uid), editDetails);
-        }
-        catch (error) { console.log("fail to add teacher", error); }
+        } catch (error) { console.log("fail to add teacher", error); }
     }
 });
 
@@ -206,8 +211,7 @@ logoutBtn.addEventListener("click", async () => {
     try {
         await signOut(auth);
         window.location.href = "../index.html";
-    }
-    catch (e) {
+    } catch (e) {
         alert("Failed to Logout");
     }
 })
@@ -238,30 +242,148 @@ depts.forEach(item => {
 async function changeEmail(newEmail) {
 
     const password = prompt("Enter your password to update your Email");
-
     const user = auth.currentUser;
-
     try {
-
         const credential = EmailAuthProvider.credential(
             user.email,
             password
         );
-
         await reauthenticateWithCredential(user, credential);
-
         await updateEmail(user, newEmail);
-
         await updateDoc(doc(db, "users", user.uid), {
             email: newEmail
         });
-
         alert("Email updated successfully");
-
     } catch (error) {
-
         alert("Must Have to Enter Your Password");
-
     }
 
 };
+
+const featureBtn = document.querySelectorAll(".ex-fea-btn");
+const back = document.querySelector("#back");
+const featureCrossButton = document.querySelectorAll("#fea-cross-btn");
+const proceedBtn = document.querySelector("#notice-confirm");
+const okayBtn = document.querySelector("#notice-confirm1");
+const firstHeading = document.querySelector("#refgs");
+const firstParagraph = document.querySelector("#notice-txt");
+const secondInterface = document.querySelector("#fore1");
+const thirdInterface = document.querySelector("#lst_con");
+const semShow = document.querySelector("#tsgsvfd");
+const yesBtn = document.querySelector("#yes");
+const message_succ = document.querySelector("#suc-mess");
+const checkboxes = document.querySelectorAll(".checkbox-block input");
+let checkedValues = [];
+let showCase = [];
+
+const semesterMap = {
+    "I": "II",
+    "II": "III",
+    "III": "IV",
+    "IV": "V",
+    "V": "VI",
+    "VI": "VII",
+    "VII": "VIII"
+};
+
+// show / hide
+const toggle = (el, show) => {
+    el.classList.toggle("state-show", show);
+    el.classList.toggle("state-hide", !show);
+};
+
+// get checked checkboxes
+const getChecked = () => [...checkboxes].filter(cb => cb.checked);
+
+// reset popup
+const resetUI = () => {
+    toggle(back, false);
+    toggle(firstHeading, true);
+    toggle(firstParagraph, true);
+    toggle(secondInterface, false);
+    toggle(thirdInterface, false);
+    toggle(okayBtn, false);
+    toggle(proceedBtn, true);
+    toggle(message_succ, false);
+
+    checkboxes.forEach(cb => cb.checked = false);
+};
+
+//checkbox logic
+checkboxes.forEach(cb => {
+    cb.addEventListener("change", () => {
+        toggle(okayBtn, getChecked().length > 0);
+    });
+});
+
+
+featureBtn.forEach(btn => {
+    btn.addEventListener("click", e => {
+        if (e.target.id === "sem-up") {
+            toggle(back, true);
+        }
+    });
+});
+
+//close button logic
+featureCrossButton.forEach(btn => {
+    btn.addEventListener("click", resetUI);
+});
+
+//proceed button
+proceedBtn.addEventListener("click", () => {
+    toggle(firstHeading, false);
+    toggle(firstParagraph, false);
+    toggle(secondInterface, true);
+    toggle(proceedBtn, false);
+});
+
+//okay button
+okayBtn.addEventListener("click", () => {
+    const selected = getChecked();
+    checkedValues = selected.map(cb => cb.value);
+    showCase = selected.map(cb => cb.parentElement.innerText);
+    semShow.innerHTML = showCase.map(t => `<b>${t}</b>`).join(", ");
+    toggle(thirdInterface, true);
+    toggle(secondInterface, false);
+    toggle(okayBtn, false);
+});
+
+//yes button main action
+yesBtn.addEventListener("click", async () => {
+
+    toggle(message_succ, true);
+    toggle(thirdInterface, false);
+
+    await semesterUpgrade(checkedValues);
+
+    setTimeout(resetUI, 7000);
+});
+
+//update semester in DB
+async function semesterUpgrade(checkedValues) {
+    const q = query(
+        collection(db, "users"),
+        where("semester", "in", checkedValues)
+    );
+
+    const snap = await getDocs(q);
+    for (const user of snap.docs) {
+        const semester = user.data().semester;
+        if (semester === "VIII") {
+            await updateDoc(doc(db, "users", user.id), {
+                semester: null,
+                status: "Graduated"
+            });
+        } else {
+            await updateDoc(doc(db, "users", user.id), {
+                semester: semesterMap[semester]
+            });
+
+        }
+    }
+}
+
+document.addEventListener("contextmenu", (e) => {
+    e.preventDefault();
+})

@@ -26,12 +26,14 @@
         <div class="logo">CampusHub</div>
 
         <div class="teacher-profile">
-          <div class="profile-avatar" id="name-short">
-          </div>
+          <div class="profile-avatar" id="name-short"></div>
           <div id="edit-name-details">
             <div id="xfvdg">
               <h2 class="teacher-name" id="teacher-name"></h2>
-              <i class="fa-solid fa-pen-to-square faah" id="profile-edit-icon"></i>
+              <i
+                class="fa-solid fa-pen-to-square faah"
+                id="profile-edit-icon"
+              ></i>
               <p class="teacher-role" id="teacher-role"></p>
             </div>
           </div>
@@ -144,13 +146,109 @@
           <div class="course-card">BHM</div>
           <div class="course-card">BMLT</div>
         </section>
+        <hr id="secondhr" />
+        <section id="extra-fea-con">
+          <div class="sub-con">
+            <div class="ex-fea-btn">
+              <!-- <i class="fa-solid fa-bullhorn"></i> -->
+              <!-- <i class="fa-solid fa-address-book"></i> -->
+              <i class="fa-solid fa-arrow-trend-up" id="sem-up"></i>
+            </div>
+            <p class="ex-fea-btn-txt">Semester upgradation</p>
+          </div>
+          <div class="sub-con">
+            <div class="ex-fea-btn">
+              <i class="fa-solid fa-triangle-exclamation" id="rvm-dp"></i>
+            </div>
+            <p class="ex-fea-btn-txt">Remove Duplicates</p>
+          </div>
+        </section>
       </main>
+
+      <!-- after clicking Semester upgradation button  -->
+      <div id="back" class="state-hide">
+        <i class="fa-solid fa-xmark tyui" id="fea-cross-btn"></i>
+
+        <div id="fore" class="interface">
+          <!-- first interface  -->
+          <div id="refgs">
+            <span>Notice: Semester upgradation</span>
+          </div>
+          <p id="notice-txt">
+            Before clicking <b>Proceed</b>, please note that this action will
+            upgrade a <b>specific semester of all departments by one</b>. For
+            example,
+            <b
+              >Semester 1 will become Semester 2, Semester 2 will become
+              Semester 3</b
+            >, and so on. Please confirm only if you want to proceed with
+            upgrading all department's semesters.
+          </p>  
+
+          <!-- second interface  -->
+            <div id="fore1" class="state-hide">
+            <h2 id="thavags" class="tdgdh">Select the Semesters</h2>
+            <div class="checkbox-block">
+              <label>
+                <input type="checkbox" name="semester" value="I" />Semester 1</label
+              >
+              <label>
+                <input type="checkbox" name="semester" value="V" />Semester 5</label
+              >
+            </div>
+            <div class="checkbox-block">
+              <label>
+                <input type="checkbox" name="semester" value="II" /> Semester 2</label
+              >
+              <label>
+                <input type="checkbox" name="semester" value="VI" /> Semester 6</label
+              >
+            </div>
+            <div class="checkbox-block">
+              <label>
+                <input type="checkbox" name="semester" value="III" /> Semester 3</label
+              >
+              <label>
+                <input type="checkbox" name="semester" value="VII" /> Semester 7</label
+              >
+            </div>
+            <div class="checkbox-block last">
+              <label>
+                <input type="checkbox" name="semester" value="IV" /> Semester 4</label
+              >
+              <label>
+                <input type="checkbox" name="semester" value="VIII" /> Semester 8</label
+              >
+            </div>
+          </div>  
+          
+          <!-- third interface  -->
+          <div id="lst_con" class="state-hide">
+            <h2 id="thavags" class="tdgdh">Last Time Confirmation</h2>
+            <p id="last-message" class="ojbsjnxs">Your selected semester :-<br> <br>
+              <span id="tsgsvfd"></span>
+              <p class="ojbsjnxs">To upgrade click <B>'Yes'</b> otherwise <b>'No'</b>.</p>
+            </p>
+            <div class="y-n-c">
+              <button id="fea-cross-btn" class="last-confirm-btn ">No</button>
+              <button id="yes" class="last-confirm-btn ">Yes</button>
+            </div>
+          </div> 
+          <button id="notice-confirm" class="tehewwhb">Proceed</button>
+          <button id="notice-confirm1" class="tehewwhb state-hide">Okay</button>
+       
+          <!-- fourth interface after upgradation message -->
+           <p id="suc-mess" class="tdgsbdh state-hide">Upgradation process completed !<br>
+          you can check it on department's semester section. Just click the Department option 
+          then select specified semester.</p>
+        
+        </div>
+      </div>
     </div>
 
     <div id="pageLoader">
       <div class="spinner"></div>
     </div>
-
     <script type="module" src="../js/teacher-home.js"></script>
   </body>
 </html>
