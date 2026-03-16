@@ -9,7 +9,9 @@
   width: 100vw;
   display: flex;
 }
-
+.state-hide {
+  display: none !important;
+}
 /* LEFT SIDE */
 
 .main-left {
@@ -173,31 +175,47 @@
 /* STUDENT LIST */
 
 .student-list-appear {
-  width: 95%;
+  width: 99%;
   margin-bottom: 1.2rem;
   padding: 0.8rem;
   display: flex;
   justify-content: space-evenly;
   background: #fff;
   border-radius: 12px;
+  border-top: 2px solid #2d6a4f;
+  border-bottom: 2px solid #2d6a4f;
   border-left: 8px solid #2d6a4f;
+  border-right: 8px solid #2d6a4f;
   box-shadow: 2px 0 5px #4a5568;
   font-family: "Story Script", sans-serif;
 }
 
 .student-list-appear:hover {
   border-left: 8px solid #fb0058;
-  transform: translateX(0.3rem);
+  border-right: 8px solid #fb0058;
+  /* transform: translateX(0.3rem); */
   transition: 0.2s;
   background: #dde5ff;
-  box-shadow: 2px 0 10px #4a5568;
+  box-shadow: 2px 0 10px #8494b0;
 }
 
 .student-list-appear span {
   color: #1b4332;
   font-style: cursive;
 }
-
+.std-edit-by-tea {
+  height: auto;
+  padding: 0 1vw;
+  font-size: 1rem;
+  border: none;
+  box-shadow: -3px 0 5px rgba(50, 50, 50, 0.701);
+  background-color: pink;
+  cursor: pointer;
+}
+/* .std-edit-by-tea{
+  background-color: rgb(222, 39, 70);
+  transform: scale(1.1);
+} */
 /* PENDING APPROVAL */
 
 .pending-approval-list {
@@ -246,7 +264,131 @@
 .cursive {
   font-family: "Merienda", cursive;
 }
+/* uyfyuehbjdhbjdwdwqibudqwbhqwbjhiqdwiuqdwubidqwbhiwqd */
+/* uyfyuehbjdhbjdwdwqibudqwbhqwbjhiqdwiuqdwubidqwbhiwqd */
+/* uyfyuehbjdhbjdwdwqibudqwbhqwbjhiqdwiuqdwubidqwbhiwqd */
+/* uyfyuehbjdhbjdwdwqibudqwbhqwbjhiqdwiuqdwubidqwbhiwqd */
+/* uyfyuehbjdhbjdwdwqibudqwbhqwbjhiqdwiuqdwubidqwbhiwqd */
+/* uyfyuehbjdhbjdwdwqibudqwbhqwbjhiqdwiuqdwubidqwbhiwqd */
+/* uyfyuehbjdhbjdwdwqibudqwbhqwbjhiqdwiuqdwubidqwbhiwqd */
+/* uyfyuehbjdhbjdwdwqibudqwbhqwbjhiqdwiuqdwubidqwbhiwqd */
 
+#std-edit-con {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#std-edit-subcon {
+  background: #ffffff;
+  height: 62%;
+  width: 90%;
+  max-width: 25rem;
+  padding: 1rem 2.2rem 0rem 2.2rem;
+  border-radius: 0.8rem;
+}
+.refd{
+  display: flex;
+  justify-content: space-between;
+}
+.refd h2{
+  color: rgb(255, 61, 122) !important;
+}
+.tyui {
+  font-size:1.8rem;
+  cursor: pointer;
+  color: #7c7c7c;
+}
+.tyui:hover {
+  color: #fb0058;
+}
+#std-edit-subcon h2 {
+  font-size: 1.5rem;
+  color: #1b4332;
+}
+
+#std-edit-subcon label {
+  font-size: 1rem;
+  color: #4a4a4a;
+  cursor: pointer;
+}
+
+#std-edit-subcon input,
+#std-edit-subcon select {
+  width: 100%;
+  padding: 0.6rem 0.7rem;
+  margin: 0.3rem 0 0.5rem 0;
+  border-radius: 0.35rem;
+  border: 0.08rem solid #ccc;
+  outline: none;
+}
+
+#std-edit-subcon input:focus,
+#std-edit-subcon select:focus {
+  border-color: #ff0088;
+}
+.radio-options {
+  display: flex;
+  align-items: center;
+  padding-top: 1vh;
+}
+
+.radio-options input {
+  cursor: pointer;
+}
+
+.radio-options label {
+  margin-left: 0.2rem;
+  margin-right: 1.7rem;
+}
+
+#jhifg {
+  display: block;
+  width: 80%;
+  margin: 1rem auto 0 auto;
+  background: #2d6a4f;
+  color: #fff;
+  border-radius: 5px;
+  padding: 1vh 0;
+  font-size: 1.1rem;
+  border: none;
+  transition: 0.2s;
+  cursor: pointer;
+}
+#jhifg:hover {
+  transform: translateY(-2px);
+  background: #1b4332;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 40rem) {
+  #std-edit-subcon {
+    width: 95%;
+    padding: 1.6rem;
+  }
+
+  .radio-options {
+    gap: 0.6rem;
+  }
+}
+
+/* uyfyuehbjdhbjdwdwqibudqwbhqwbjhiqdwiuqdwubidqwbhiwqd */
+/* uyfyuehbjdhbjdwdwqibudqwbhqwbjhiqdwiuqdwubidqwbhiwqd */
+/* uyfyuehbjdhbjdwdwqibudqwbhqwbjhiqdwiuqdwubidqwbhiwqd */
+/* uyfyuehbjdhbjdwdwqibudqwbhqwbjhiqdwiuqdwubidqwbhiwqd */
+/* uyfyuehbjdhbjdwdwqibudqwbhqwbjhiqdwiuqdwubidqwbhiwqd */
+/* uyfyuehbjdhbjdwdwqibudqwbhqwbjhiqdwiuqdwubidqwbhiwqd */
+/* uyfyuehbjdhbjdwdwqibudqwbhqwbjhiqdwiuqdwubidqwbhiwqd */
+/* uyfyuehbjdhbjdwdwqibudqwbhqwbjhiqdwiuqdwubidqwbhiwqd */
+/* uyfyuehbjdhbjdwdwqibudqwbhqwbjhiqdwiuqdwubidqwbhiwqd */
+/* uyfyuehbjdhbjdwdwqibudqwbhqwbjhiqdwiuqdwubidqwbhiwqd */
+/* uyfyuehbjdhbjdwdwqibudqwbhqwbjhiqdwiuqdwubidqwbhiwqd */
 /* mobile responsivness  */
 @media (max-width: 768px) {
   .main {

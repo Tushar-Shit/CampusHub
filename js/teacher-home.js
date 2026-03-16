@@ -266,6 +266,7 @@ const featureCrossButton = document.querySelectorAll("#fea-cross-btn");
 const proceedBtn = document.querySelector("#notice-confirm");
 const okayBtn = document.querySelector("#notice-confirm1");
 const firstHeading = document.querySelector("#refgs");
+const headBar = document.querySelector("#headBar");
 const firstParagraph = document.querySelector("#notice-txt");
 const secondInterface = document.querySelector("#fore1");
 const thirdInterface = document.querySelector("#lst_con");
@@ -305,6 +306,7 @@ const resetUI = () => {
     toggle(okayBtn, false);
     toggle(proceedBtn, true);
     toggle(message_succ, false);
+    headBar.innerText = "Alert: Semester upgradation";
 
     checkboxes.forEach(cb => cb.checked = false);
 };
@@ -332,10 +334,11 @@ featureCrossButton.forEach(btn => {
 
 //proceed button
 proceedBtn.addEventListener("click", () => {
-    toggle(firstHeading, false);
+    // toggle(firstHeading, false);
     toggle(firstParagraph, false);
     toggle(secondInterface, true);
     toggle(proceedBtn, false);
+    headBar.innerText = "Select the Semesters";
 });
 
 //okay button
@@ -347,17 +350,17 @@ okayBtn.addEventListener("click", () => {
     toggle(thirdInterface, true);
     toggle(secondInterface, false);
     toggle(okayBtn, false);
+    headBar.innerText = "Last Time Confirmation";
 });
 
 //yes button main action
 yesBtn.addEventListener("click", async () => {
+    headBar.innerText = "";
 
     toggle(message_succ, true);
     toggle(thirdInterface, false);
 
     await semesterUpgrade(checkedValues);
-
-    setTimeout(resetUI, 7000);
 });
 
 //update semester in DB

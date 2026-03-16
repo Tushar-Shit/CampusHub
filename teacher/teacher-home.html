@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Teacher Appear</title>
+    <link rel="icon" type="image/png" href="./image/websiteLogo.png" />
     <link rel="stylesheet" href="../css/teacher-home.css" />
     <link rel="stylesheet" href="../css/teacher-home-mobile.css" />
     <link
@@ -167,12 +168,12 @@
 
       <!-- after clicking Semester upgradation button  -->
       <div id="back" class="state-hide">
-        <i class="fa-solid fa-xmark tyui" id="fea-cross-btn"></i>
-
+        
         <div id="fore" class="interface">
           <!-- first interface  -->
           <div id="refgs">
-            <span>Notice: Semester upgradation</span>
+            <span id="headBar">Alert: Semester upgradation</span>
+            <i class="fa-solid fa-xmark tyui" id="fea-cross-btn"></i>
           </div>
           <p id="notice-txt">
             Before clicking <b>Proceed</b>, please note that this action will
@@ -187,7 +188,7 @@
 
           <!-- second interface  -->
             <div id="fore1" class="state-hide">
-            <h2 id="thavags" class="tdgdh">Select the Semesters</h2>
+            <!-- <h2 id="thavags" class="tdgdh"></h2> -->
             <div class="checkbox-block">
               <label>
                 <input type="checkbox" name="semester" value="I" />Semester 1</label
@@ -224,7 +225,7 @@
           
           <!-- third interface  -->
           <div id="lst_con" class="state-hide">
-            <h2 id="thavags" class="tdgdh">Last Time Confirmation</h2>
+            <!-- <h2 id="thavags" class="tdgdh">Last Time Confirmation</h2> -->
             <p id="last-message" class="ojbsjnxs">Your selected semester :-<br> <br>
               <span id="tsgsvfd"></span>
               <p class="ojbsjnxs">To upgrade click <B>'Yes'</b> otherwise <b>'No'</b>.</p>
@@ -240,7 +241,7 @@
           <!-- fourth interface after upgradation message -->
            <p id="suc-mess" class="tdgsbdh state-hide">Upgradation process completed !<br>
           you can check it on department's semester section. Just click the Department option 
-          then select specified semester.</p>
+          then select specified semester. Click the cross icon to proceed.</p>
         
         </div>
       </div>

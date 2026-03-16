@@ -2,6 +2,14 @@ const mainHeading = document.querySelector("#heading");
 const stream = localStorage.getItem("stream");
 mainHeading.innerText = `${stream} SEMESTERS`;
 
+//stream object
+const departmentOfStudent = {
+    "BCA": "BC",
+    "BBA": "BB",
+    "BHM": "BHM",
+    "BMLT": "BMLT"
+}
+
 import {
     collection,
     onSnapshot,
@@ -23,7 +31,7 @@ const rightHeading = document.querySelector("#right-heading");
 const spBtnContainer = document.querySelector("#right-top");
 const rightBottom = document.querySelector("#right-bottom");
 const altRightBottom = document.querySelector("#alternative-right-bottom");
-
+const featureCrossButton = document.querySelector("#fea-cross-btn");
 let currentClick = null;
 let whichBtn = null;
 
@@ -128,17 +136,15 @@ async function extractData(department, semester, button) {
     generatePDF(querySnapshot.docs.map(d => d.data()), semester);
 }
 
-function studentList(q) {
+async function studentList(q) {
     if (unsubscribe) unsubscribe();
 
     unsubscribe = onSnapshot(q, (snapshot) => {
 
         rightBottom.innerHTML = "";
-
         snapshot.forEach((docSnap) => {
 
             const data = docSnap.data();
-
             const row = document.createElement("div");
             row.className = "student-list-appear";
 
@@ -147,12 +153,90 @@ function studentList(q) {
                 <span>${data.collegeRoll}</span>
                 <span>${data.universityRoll}</span>
                 <span>+91 ${data.mobile}</span>
+                <button id="std-edit-by-tea" class="std-edit-by-tea">Edit</button>
             `;
 
             rightBottom.appendChild(row);
+            const passData = [row, data.collegeRoll, data.universityRoll, data.admissionYear,
+                docSnap.id, data.admissionYear, data.semester, data.department];
+            editStudentDetails(passData);
         });
     });
 }
+
+async function editStudentDetails(passData) {
+    const [row, clgdata, unidata, admissiondata, userId, admyear, semester, department] = passData;
+    const editBtn = row.querySelector("#std-edit-by-tea");
+    const stdEditpopup = document.querySelector("#std-edit-con");
+
+    editBtn.addEventListener("click", (e) => {
+        stdEditpopup.classList.remove("state-hide");
+
+
+
+        const admissionField = stdEditpopup.querySelector("#adm_year");
+        const collegeRoll = stdEditpopup.querySelector("#clg_roll");
+        const uniRoll = stdEditpopup.querySelector("#uni_roll");
+        const semesterField = document.querySelector("#semester");
+        const departmentField = document.querySelectorAll("input[name='edit-dept']");
+        const submitBtn = stdEditpopup.querySelector("#jhifg");
+        const [a, b, c] = clgdata.split('/');
+        uniRoll.oninput = () => uniRoll.value = uniRoll.value.replace(/\D/g, "").slice(0, 11);
+
+        let changedDept = department;
+
+        admissionField.value = admyear;
+        collegeRoll.value = c;
+        uniRoll.value = unidata;
+        semesterField.value = semester;
+        departmentField.forEach((radio) => {
+            if (radio.value.trim() === department) {
+                radio.checked = true;
+            }
+
+            radio.addEventListener("change", () => {
+                if (radio.checked) {
+                    changedDept = radio.value;
+                }
+            });
+        });
+        const selectedDept = document.querySelector("input[name='edit-dept']:checked").value;
+
+        submitBtn.onclick = async (e) => {
+            e.preventDefault();
+            if (collegeRoll.value < 1 || collegeRoll.value > 60 || collegeRoll.value.length > 2) {
+                alert("Invalid college Roll, try again");
+                return;
+            }
+
+            if (uniRoll.value.length !== 11) {
+                alert("University roll must contain exactly 11 digits");
+                return;
+            }
+            stdEditpopup.classList.toggle("state-hide");
+            const newroll = `${departmentOfStudent[changedDept]}/${admissionField.value.slice(2)}/${collegeRoll.value}`;
+
+            await updateDoc(doc(db, "users", userId), {
+                collegeRoll: newroll,
+                universityRoll: uniRoll.value,
+                admissionYear: admissionField.value,
+                semester: semesterField.value,
+                department: changedDept
+            });
+
+        };
+        //close button logic
+        featureCrossButton.addEventListener("click", () => {
+            stdEditpopup.classList.add("state-hide");
+
+        });
+    });
+
+}
+
+
+
+
 
 function pendingApproval(q) {
 

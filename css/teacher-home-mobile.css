@@ -52,7 +52,6 @@
 
   .teacher-role {
     justify-self: left;
-    /* display: none; */
   }
   .teacher-details {
     display: none;
@@ -104,5 +103,52 @@
   }
   .faah {
     display: none;
+  }
+
+  #extra-fea-con {
+    justify-content: space-around;
+  }
+  .ex-fea-btn-txt {
+    margin-top: 1vh;
+    font-size: 1rem;
+  }
+
+  #back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.544);
+  }
+
+  .interface {
+    position: absolute;
+    top: 34%;
+    left: 5%;
+    width: 90%;
+    height: auto;
+    padding: 3.5vh 5vw;
+  }
+  .tyui {
+    top: -2vh;
+    right: -0.5rem;
+    font-size: 1.9rem;
+  }
+
+  #tsgsvfd {
+    display: inline;
+  }
+  .y-n-c {
+    width: 90%;
+    margin-top: 3vh;
+  }
+  .last-confirm-btn {
+    width: 35%;
+  }
+  .tdgsbdh {
+    margin-top: 0vh;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #0f7638;
+    font-weight: bold;
   }
 }

@@ -1,124 +1,177 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="../image/websiteLogo.png" />
+    <title>CampusHub</title>
+    <link rel="stylesheet" href="../css/teacher-dept-page.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gelasio:wght@400..700&family=Story+Script&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="../image/websiteLogo.png">
-  <title>CampusHub</title>
+  <body>
+    <div class="main">
+      <!-- LEFT SIDE -->
+      <div class="main-left">
+        <h1 id="heading"></h1>
+        <hr />
 
-  <link rel="stylesheet" href="../css/teacher-dept-page.css">
+        <div id="sem-container">
+          <button class="sem-btn pre-bgcolor forhover" value="I">
+            1st Semester
+          </button>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+          <button class="sem-btn pre-bgcolor forhover" value="II">
+            2nd Semester
+          </button>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <button class="sem-btn pre-bgcolor forhover" value="III">
+            3rd Semester
+          </button>
 
-  <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@400..700&family=Story+Script&display=swap"
-    rel="stylesheet">
-</head>
+          <button class="sem-btn pre-bgcolor forhover" value="IV">
+            4th Semester
+          </button>
 
-<body>
+          <button class="sem-btn pre-bgcolor forhover" value="V">
+            5th Semester
+          </button>
 
-  <div class="main">
+          <button class="sem-btn pre-bgcolor forhover" value="VI">
+            6th Semester
+          </button>
 
-    <!-- LEFT SIDE -->
-    <div class="main-left">
+          <button class="sem-btn pre-bgcolor forhover" value="VII">
+            7th Semester
+          </button>
 
-      <h1 id="heading"></h1>
-      <hr>
+          <button class="sem-btn pre-bgcolor forhover" value="VIII">
+            8th Semester
+          </button>
+        </div>
 
-      <div id="sem-container">
-
-        <button class="sem-btn pre-bgcolor forhover" value="I">
-          1st Semester
-        </button>
-
-        <button class="sem-btn pre-bgcolor forhover" value="II">
-          2nd Semester
-        </button>
-
-        <button class="sem-btn pre-bgcolor forhover" value="III">
-          3rd Semester
-        </button>
-
-        <button class="sem-btn pre-bgcolor forhover" value="IV">
-          4th Semester
-        </button>
-
-        <button class="sem-btn pre-bgcolor forhover" value="V">
-          5th Semester
-        </button>
-
-        <button class="sem-btn pre-bgcolor forhover" value="VI">
-          6th Semester
-        </button>
-
-        <button class="sem-btn pre-bgcolor forhover" value="VII">
-          7th Semester
-        </button>
-
-        <button class="sem-btn pre-bgcolor forhover" value="VIII">
-          8th Semester
-        </button>
-
-      </div>
-
-      <div id="add-fea">
-        <a href="teacher-home.html">&lt;--back to previous page</a>
-      </div>
-
-    </div>
-
-
-    <!-- RIGHT SIDE -->
-    <div id="right-side">
-
-      <h1 id="right-heading"></h1>
-      <hr>
-
-      <div id="right-top">
-
-        <button class="right-side-buttons before-clicked forhover">
-          Student List
-        </button>
-
-        <button class="right-side-buttons before-clicked forhover">
-          Pending Approval
-        </button>
-
-        <button class="right-side-buttons before-clicked forhover">
-          Download Approval List
-        </button>
-
-      </div>
-
-      <hr>
-
-      <!-- Data comes here from database -->
-      <div id="right-bottom"></div>
-
-      <!-- Show when user doesn't select any option -->
-      <div id="alternative-right-bottom">
-        <div class="inner">
-          please select what are you looking for
+        <div id="add-fea">
+          <a href="teacher-home.html">&lt;--back to previous page</a>
         </div>
       </div>
 
-    </div>
+      <!-- RIGHT SIDE -->
+      <div id="right-side">
+        <h1 id="right-heading"></h1>
+        <hr />
 
+        <div id="right-top">
+          <button class="right-side-buttons before-clicked forhover">
+            Student List
+          </button>
 
-    <!-- Show when semester not selected -->
-    <div id="alternative-right-side">
-      <div class="inner">
-        please select a semester to see more details
+          <button class="right-side-buttons before-clicked forhover">
+            Pending Approval
+          </button>
+
+          <button class="right-side-buttons before-clicked forhover">
+            Download Approval List
+          </button>
+        </div>
+
+        <hr />
+
+        <!-- Data comes here from database -->
+        <div id="right-bottom"></div>
+
+        <!-- Show when user doesn't select any option -->
+        <div id="alternative-right-bottom">
+          <div class="inner">please select what are you looking for</div>
+        </div>
+      </div>
+
+      <!-- Show when semester not selected -->
+      <div id="alternative-right-side">
+        <div class="inner">please select a semester to see more details</div>
       </div>
     </div>
 
-  </div>
+    <!-- student details edit popup  -->
+    <div class="state-hide tyrufh" id="std-edit-con">
+      <form id="std-edit-subcon">
+        <div class="refd">
+          <h2></h2>
+          <i class="fa-solid fa-xmark tyui" id="fea-cross-btn"></i>
+        </div>
+        <label for="adm_year">Addmission Year</label><br />
+        <input type="number" id="adm_year" min="2000" max="2100" />
+        <label for="uni_roll">University Roll</label><br />
+        <input type="text" id="uni_roll" pattern="[0-9]{11}" /><br />
+        <label for="clg_roll">College Roll</label><br />
+        <input type="number" min="1" max="60" id="clg_roll" /><br />
 
-  <script type="module" src="../js/teacher-department-page.js"></script>
+        <div class="select-section">
+          <label for="semester">Select Semester:</label>
 
-</body>
+          <select id="semester" name="semester">
+            <option value="">-- Select Semester --</option>
+            <option value="I">Semester 1</option>
+            <option value="II">Semester 2</option>
+            <option value="III">Semester 3</option>
+            <option value="IV">Semester 4</option>
+            <option value="V">Semester 5</option>
+            <option value="VI">Semester 6</option>
+            <option value="VII">Semester 7</option>
+            <option value="VIII">Semester 8</option>
+          </select>
+        </div>
+        <div class="field-container">
+          <label>Department</label>
+          <div class="radio-options">
+            <input
+              type="radio"
+              name="edit-dept"
+              id="dept-bca"
+              value="BCA"
+            />
+            <label for="dept-bca">BCA</label>
 
+            <input
+              type="radio"
+              name="edit-dept"
+              id="dept-bba"
+              value="BBA"
+            />
+            <label for="dept-bba">BBA</label>
+
+            <input
+              type="radio"
+              name="edit-dept"
+              id="dept-bhm"
+              value="BHM"
+            />
+            <label for="dept-bhm">BHM</label>
+
+            <input
+              type="radio"
+              name="edit-dept"
+              value="BMLT"
+              id="dept-bmlt"
+            />
+            <label for="dept-bmlt">BMLT</label>
+          </div>
+        </div>
+        <button id="jhifg">Submmit</button>
+      </form>
+    </div>
+    <script type="module" src="../js/teacher-department-page.js"></script>
+  </body>
 </html>
