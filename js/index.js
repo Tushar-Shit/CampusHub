@@ -133,3 +133,11 @@ signupButton.onclick = () => {
     loginContainer.style.display = "none";
     slipVerify.style.display = "flex";
 };
+
+const menuBtn = document.querySelector("#menuButton");
+const abtBtn = document.querySelector("#about");
+const cntctBtn = document.querySelector("#contact");
+menuBtn.addEventListener("click", () => {
+    abtBtn.classList.toggle("state-hide");
+    cntctBtn.classList.toggle("state-hide");
+})

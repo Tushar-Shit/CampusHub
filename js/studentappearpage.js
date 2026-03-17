@@ -45,7 +45,6 @@ document.addEventListener("click", function (e) {
 
         input.value = "";
     }
-
 });
 
-createFeesStructure.addEventListener("click",()=>alert("Wait dude, we're working here."));
+createFeesStructure.addEventListener("click", () => alert("Wait dude, we're working here."));

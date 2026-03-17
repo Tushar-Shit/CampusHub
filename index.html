@@ -1,172 +1,179 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>CampusHub</title>
-    <link rel="stylesheet" href="./css/index.css">
-    <link rel="icon" type="image/png" href="./image/websiteLogo.png">
-    <script defer src="https://unpkg.com/tesseract.js@v5.0.0/dist/tesseract.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>CampusHub</title>
+  <link rel="stylesheet" href="./css/index.css" />
+  <link rel="icon" type="image/png" href="./image/websiteLogo.png" />
+  <script defer src="https://unpkg.com/tesseract.js@v5.0.0/dist/tesseract.min.js"></script>
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Betania+Patmos+In&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Playwrite+AT:ital,wght@0,100..400;1,100..400&family=Playwrite+NZ+Basic:wght@100..400&family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap');
-    </style>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Betania+Patmos+In&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Playwrite+AT:ital,wght@0,100..400;1,100..400&family=Playwrite+NZ+Basic:wght@100..400&family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap");
+  </style>
 </head>
 
 <body>
-    <span id="todayDate"></span>
-    <img src="./image/bgimage.png" alt="" id="backgroundImage">
-    <div id="homePage">
-        <div id="navBar">
-            <div id="navLeft">
-                <img src="./image/websiteLogo.png" alt="College Logo" id="collegeLogo">
-                <span id="collegeName">CampusHub</span>
-            </div>
-            <div id="navMiddle">
-                <a href="./about.html" id="about">About</a>
-                <a href="contact.html" id="contact">Contact</a>
-            </div>
-            <div id="navRight">
-                <svg width="25" height="30" viewBox="0 0 24 24" fill="white" id="menuButton">
-                    <rect y="4" width="24" height="2"></rect>
-                    <rect y="11" width="24" height="2"></rect>
-                    <rect y="18" width="24" height="2"></rect>
-                </svg>
-                <button id="teacherButton">Teacher Login</button>
-                <button id="studentButton">Student Login</button>
-            </div>
+  <span id="todayDate"></span>
+  <img src="./image/bgimage.png" alt="" id="backgroundImage" />
+  <div id="homePage">
+    <div id="navBar">
+      <div id="navLeft">
+        <img src="./image/websiteLogo.png" alt="College Logo" id="collegeLogo" />
+        <span id="collegeName">CampusHub</span>
+      </div>
+      <div id="navRight">
+        <a href="./about.html" id="about" class="state-hide">About</a>
+        <a href="contact.html" id="contact" class="state-hide">Contact</a>
+        <svg width="25" height="30" viewBox="0 0 24 24" fill="white" id="menuButton">
+          <rect y="4" width="24" height="2"></rect>
+          <rect y="11" width="24" height="2"></rect>
+          <rect y="18" width="24" height="2"></rect>
+        </svg>
+      </div>
+    </div>
+    <button id="teacherButton" class="enterButtons">Teacher Login</button>
+    <button id="studentButton" class="enterButtons">Student Login</button>
+
+    <div id="heroSection">
+      <h1 id="WelcomeText">Welcome to CampusHub</h1>
+      <h2 id="secondWelcomeMessage">Manage Academics with Digital touch</h2>
+    </div>
+  </div>
+
+  <div id="loginContainer">
+    <form id="loginForm">
+      <svg width="25" height="25" viewBox="0 0 24 24" id="closeButton">
+        <line x1="4" y1="4" x2="20" y2="20" stroke="white" stroke-width="2" />
+        <line x1="20" y1="4" x2="4" y2="20" stroke="white" stroke-width="2" />
+      </svg>
+      <h1 id="loginHeading"></h1>
+      <div class="input-fields">
+        <input type="email" id="loginEmail" placeholder="Email" autocomplete="email" required />
+        <input type="password" id="loginPassword" placeholder="Password" minlength="6" autocomplete="current-password"
+          required />
+        <div class="showpass">
+          <input type="checkbox" id="ShowPassword" style="cursor: pointer" />
+          <label for="ShowPassword" style="cursor: pointer">Show Password</label>
         </div>
+        <button type="submit">Login</button>
+      </div>
+      <span id="forgotPass">Forgot your Password?</span>
+      <div id="signupTextOnLogin">
+        <span>New to this site?</span>
+        <span id="signupButton">Sign up</span>
+      </div>
+    </form>
+  </div>
 
-        <div id="heroSection">
-            <h1 id="WelcomeText">Welcome to Our Website</h1>
-            <h2 id="secondWelcomeMessage">Manage Your Academics with Ease</h2>
-        </div>
+  <div id="signupContainer">
+    <form id="signupForm" autocomplete="off">
+      <svg width="25" height="25" viewBox="0 0 24 24" id="signupCloseButton">
+        <line x1="4" y1="4" x2="20" y2="20" stroke="white" stroke-width="2" />
+        <line x1="20" y1="4" x2="4" y2="20" stroke="white" stroke-width="2" />
+      </svg>
+      <h1 id="signupHeading">Signup</h1>
+
+      <input type="text" id="name" placeholder="Full Name" autocomplete="off" required />
+
+      <label for="gender">Gender:</label>
+      <select id="gender" required>
+        <option value="">-- Select Gender --</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+
+      <div class="department">
+        <label>Department:</label>
+        <label><input type="radio" name="dept" value="BCA" id="deptBCA" required />
+          BCA</label>
+        <label><input type="radio" name="dept" value="BBA" id="deptBBA" />
+          BBA</label>
+        <label><input type="radio" name="dept" value="BHM" id="deptBHM" />
+          BHM</label>
+        <label><input type="radio" name="dept" value="BMLT" id="deptBMLT" />
+          BMLT</label>
+      </div>
+      <select id="semester" required>
+        <option value="">-- Select Semester --</option>
+        <option value="I">1st Semester</option>
+        <option value="II">2nd Semester</option>
+        <option value="III">3rd Semester</option>
+        <option value="IV">4th Semester</option>
+        <option value="V">5th Semester</option>
+        <option value="VI">6th Semester</option>
+        <option value="VII">7th Semester</option>
+        <option value="VIII">8th Semester</option>
+      </select>
+      <input type="tel" id="clgRoll" placeholder="College Roll... Eg. 01" autocomplete="off" maxlength="2" minlength="2"
+        required />
+
+      <input type="tel" id="universityRoll" placeholder="University Roll" maxlength="11" minlength="11"
+        autocomplete="off" />
+
+      <input type="tel" id="admissionYear" placeholder="Admission Year" autocomplete="off" minlength="2" maxlength="4"
+        required />
+
+      <input type="email" id="email" placeholder="Email" autocomplete="email" required />
+
+      <input type="tel" id="mobile" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" placeholder="Mobile Number"
+        required />
+
+      <input type="password" id="password" minlength="6" placeholder="Password" autocomplete="new-password" required />
+      <input type="password" id="confirmPassword" placeholder="Confirm Password" autocomplete="new-password" required />
+
+      <button type="submit" id="createAccount">Create Account</button>
+    </form>
+  </div>
+
+  <div id="otpVerifyContainer">
+    <div id="otpForm">
+      <h2>Enter the OTP Code</h2>
+      <span>OTP send to</span>
+      <span id="otp-email"></span>
+      <hr />
+      <span>Enter the 6-digit</span>
+      <input type="tel" id="otpInput" maxlength="6" pattern="[0-9]{6}" inputmode="numeric" placeholder="Enter OTP"
+        autofocus required />
+      <button onclick="verifyOTP()" id="verifyOTP">Verify OTP</button>
+
+      <hr />
+      <p id="timer">Resend OTP in 30s</p>
+      <button id="resendBtn" disabled>Resend OTP</button>
     </div>
+  </div>
 
-    <div id="loginContainer">
-        <form id="loginForm">
-            <svg width="25" height="25" viewBox="0 0 24 24" id="closeButton">
-                <line x1="4" y1="4" x2="20" y2="20" stroke="white" stroke-width="2" />
-                <line x1="20" y1="4" x2="4" y2="20" stroke="white" stroke-width="2" />
-            </svg>
-            <h1 id="loginHeading"></h1>
-            <div class="input-fields">
-                <input type="email" id="loginEmail" placeholder="Email" autocomplete="email" required>
-                <input type="password" id="loginPassword" placeholder="Password" minlength="6" autocomplete="current-password" required>
-                <div class="showpass">
-                    <input type="checkbox" id="ShowPassword" style="cursor: pointer;">
-                    <label for="ShowPassword" style="cursor: pointer;">Show Password</label>
-                </div>
-                <button type="submit">Login</button>
-            </div>
-            <span id="forgotPass">Forgot your Password?</span>
-            <div id="signupTextOnLogin">
-                <span>New to this site?</span>
-                <span id="signupButton">Sign up</span>
-            </div>
-        </form>
+  <div id="slipVerify">
+    <div id="verifyContent">
+      <svg width="25" height="25" viewBox="0 0 24 24" id="slipverifyButton">
+        <line x1="4" y1="4" x2="20" y2="20" stroke="red" stroke-width="2" />
+        <line x1="20" y1="4" x2="4" y2="20" stroke="red" stroke-width="2" />
+      </svg>
+
+      <h1 id="verifyHeading">Upload Payment Receipt</h1>
+
+      <input type="file" id="imageInput" accept="image/*" />
+
+      <img id="preview" width="300px" />
+
+      <progress id="progressBar" value="0" max="100" style="width: 250px"></progress>
+
+      <p id="progressText"></p>
+      <p id="result"></p>
+
+      <button id="continue2Signup">Continue to Signup</button>
     </div>
+  </div>
 
-    <div id="signupContainer">
-        <form id="signupForm" autocomplete="off">
-            <svg width="25" height="25" viewBox="0 0 24 24" id="signupCloseButton">
-                <line x1="4" y1="4" x2="20" y2="20" stroke="white" stroke-width="2" />
-                <line x1="20" y1="4" x2="4" y2="20" stroke="white" stroke-width="2" />
-            </svg>
-            <h1 id="signupHeading">Signup</h1>
+  <div id="pageLoader">
+    <div class="spinner"></div>
+  </div>
 
-            <input type="text" id="name" placeholder="Full Name" autocomplete="off" required>
-
-            <label for="gender">Gender:</label>
-            <select id="gender" required>
-                <option value="">-- Select Gender --</option>
-                <option>Male</option>
-                <option>Female</option>
-                <option>Other</option>
-            </select>
-
-            <div class="department">
-                <label>Department:</label>
-                <label><input type="radio" name="dept" value="BCA" id="deptBCA" required> BCA</label>
-                <label><input type="radio" name="dept" value="BBA" id="deptBBA"> BBA</label>
-                <label><input type="radio" name="dept" value="BHM" id="deptBHM"> BHM</label>
-                <label><input type="radio" name="dept" value="BMLT" id="deptBMLT"> BMLT</label>
-            </div>
-            <select id="semester" required>
-                <option value="">-- Select Semester --</option>
-                <option value="I">1st Semester</option>
-                <option value="II">2nd Semester</option>
-                <option value="III">3rd Semester</option>
-                <option value="IV">4th Semester</option>
-                <option value="V">5th Semester</option>
-                <option value="VI">6th Semester</option>
-                <option value="VII">7th Semester</option>
-                <option value="VIII">8th Semester</option>
-            </select>
-            <input type="tel" id="clgRoll" placeholder="College Roll... Eg. 01" autocomplete="off" maxlength="2" minlength="2" required>
-
-            <input type="tel" id="universityRoll" placeholder="University Roll" maxlength="11" minlength="11" autocomplete="off">
-
-            <input type="tel" id="admissionYear" placeholder="Admission Year" autocomplete="off" minlength="2" maxlength="4" required>
-
-            <input type="email" id="email" placeholder="Email" autocomplete="email" required>
-
-            <input type="tel" id="mobile" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" placeholder="Mobile Number" required>
-
-            <input type="password" id="password" minlength="6" placeholder="Password" autocomplete="new-password" required>
-            <input type="password" id="confirmPassword" placeholder="Confirm Password" autocomplete="new-password" required>
-
-            <button type="submit" id="createAccount">Create Account</button>
-        </form>
-    </div>
-
-    <div id="otpVerifyContainer">
-        <div id="otpForm">
-            <h2>Enter the OTP Code</h2>
-            <span>OTP send to</span>
-            <span id="otp-email"></span>
-            <hr>
-            <span>Enter the 6-digit</span>
-            <input type="tel" id="otpInput" maxlength="6" pattern="[0-9]{6}" inputmode="numeric" placeholder="Enter OTP"
-                autofocus required>
-            <button onclick="verifyOTP()" id="verifyOTP">Verify OTP</button>
-
-            <hr>
-            <p id="timer">Resend OTP in 30s</p>
-            <button id="resendBtn" disabled>Resend OTP</button>
-        </div>
-    </div>
-
-    <div id="slipVerify">
-        <div id="verifyContent">
-            <svg width="25" height="25" viewBox="0 0 24 24" id="slipverifyButton">
-                <line x1="4" y1="4" x2="20" y2="20" stroke="red" stroke-width="2" />
-                <line x1="20" y1="4" x2="4" y2="20" stroke="red" stroke-width="2" />
-            </svg>
-
-            <h1 id="verifyHeading">Upload Payment Receipt</h1>
-
-            <input type="file" id="imageInput" accept="image/*">
-
-            <img id="preview" width="300px">
-
-            <progress id="progressBar" value="0" max="100" style="width:250px;"></progress>
-
-            <p id="progressText"></p>
-            <p id="result"></p>
-
-            <button id="continue2Signup">Continue to Signup</button>
-        </div>
-    </div>
-
-    <div id="pageLoader">
-        <div class="spinner"></div>
-    </div>
-
-    <script src="./js/index.js"></script>
-    <script type="module" src="./js/poring.js"></script>
+  <script src="./js/index.js"></script>
+  <script type="module" src="./js/poring.js"></script>
 </body>
 
 </html>

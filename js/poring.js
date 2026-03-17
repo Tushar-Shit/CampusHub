@@ -97,11 +97,11 @@ signupForm.addEventListener("submit", async e => {
 
 
     sendOTP(name, email);
-    startTimer();
 
     otpEmail.innerHTML = email;
     signupContainer.style.display = "none";
     otpVerifyContainer.style.display = "flex";
+    startTimer();
 });
 
 window.verifyOTP = async function () {
@@ -182,7 +182,7 @@ window.verifyOTP = async function () {
         }
         catch (err) {
             alert("An account with this email already exists. Please login.");
-            document.getElementById("loginEmail").value = email;
+            emailInput.value = email;
             pageLoader.style.display = "none";
             sessionStorage.removeItem("slipVerified");
             otpVerifyContainer.style.display = "none";
@@ -229,9 +229,18 @@ loginForm.addEventListener("submit", async e => {
                 window.location.href = "./student/studentappearpage.html";
             }
         }
-    } catch {
-        alert("Invalid Credentials");
+    } catch (error) {
         pageLoader.style.display = "none";
+
+        if (error.code === "auth/wrong-password") {
+            alert("Wrong Password");
+        }
+        else if (error.code === "auth/user-not-found" || error.code === "auth/invalid-email") {
+            alert("User not found");
+        }
+        else {
+            alert("Login Failed");
+        }
     }
 });
 
@@ -257,7 +266,6 @@ showPassword.addEventListener("change", () => {
 });
 
 function startTimer() {
-
     clearInterval(countdown);
 
     timeLeft = 30;

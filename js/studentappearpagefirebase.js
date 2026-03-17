@@ -102,19 +102,15 @@ document.addEventListener("click", async function (e) {
 
     pageLoader.style.display = "flex";
 
-    const container = icon.closest("div");
-    const span = container.querySelector("span");
-    const input = container.querySelector("input");
-    const edit = container.querySelector(".editIcon");
-    const cancel = container.querySelector(".cancelIcon");
-    const save = container.querySelector(".saveIcon");
+    const { span, input, edit: editBtn, cancel, save } = getElements(icon);
+
 
     const fieldName = span.id;
     const newValue = input.value.trim();
 
     function editBoxClose() {
         span.style.display = "flex";
-        edit.style.display = "flex";
+        editBtn.style.display = "flex";
         input.style.display = "none";
         cancel.style.display = "none";
         save.style.display = "none";
@@ -236,7 +232,6 @@ function userDataShow(userData) {
         }
 
         userName.innerHTML = `<span class="addColor">Name:</span> ${userData.name}`;
-        // userName.innerText = `Name: ${userData.name}`;
         heading.innerHTML = `Welcome ${userData.name}`;
         email.innerHTML = `<span class="addColor">Email:</span> ${userData.email}`;
         mobile.innerHTML = `<span class="addColor">Mobile No:</span> ${userData.mobile}`;
@@ -247,7 +242,7 @@ function userDataShow(userData) {
         session.innerHTML = `<span class="addColor">Session:</span> ${userData.admissionYear} - ${parseInt(userData.admissionYear) + 4}`;
 
         if (userData.universityRoll === "") {
-            universityRollUpdatePossiable.innerHTML = `<span id="universityRoll" class="addColor" >University Roll:</span> ${userData.universityRoll}</span>
+            universityRollUpdatePossiable.innerHTML = `<span id="universityRoll" class="addColor">University Roll:</span>${userData.universityRoll}</span>
 
                     <input type="tel" placeholder="Enter University Roll..." class="editData" maxlength="11">
 
@@ -268,7 +263,10 @@ function userDataShow(userData) {
                         <polyline points="20 6 9 17 4 12" />
                     </svg>`
         } else {
-            universityRollUpdatePossiable.innerHTML = `<span id="universityRoll" class="addColor">University Roll:</span> ${userData.universityRoll}</span>`;
+            universityRollUpdatePossiable.innerHTML = `<span id="universityRoll">
+                                                            <span class="addColor">University Roll:</span>
+                                                            <span>${userData.universityRoll}</span>
+                                                        </span>`;
         }
 
         pageLoader.style.display = "none";

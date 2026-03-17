@@ -80,7 +80,8 @@ body {
 }
 .addColor{
     font-size: 1.1rem;
-    color: rgb(60, 0, 255);
+    /* color: #cbd5e1; */
+    color: #a5b4fc;
 }
 .logout-btn {
     background: linear-gradient(135deg, #ff7b00, #ff3d00);

@@ -36,10 +36,14 @@ button {
 }
 
 #navBar {
+    width: 50%;
+    justify-self: center;
+    margin: auto;
+    padding: 0 25%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    height: 80px;
+    height: 10vh;
     box-shadow: 0vw 0.9vw 5vw rgb(0, 0, 0);
     background: rgba(0, 0, 0, 0.5);
     font-family: "Bricolage Grotesque", sans-serif;
@@ -56,31 +60,27 @@ button {
     height: 40px;
     border-radius: 50px;
 }
-#collegeName{
+
+#collegeName {
     font-size: larger;
 }
 
-#navMiddle {
-    display: flex;
-    gap: 60px;
-    font-size: 20px;
-}
-
-#navMiddle a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    position: relative;
-    transition: 0.3s;
-}
-
-#navMiddle a:hover {
-    color: #FACC15;
-}
 
 #navRight {
+    width: 25%;
+    margin-right: 45%;
     display: flex;
-    gap: 15px;
+    justify-content: space-evenly;
+}
+
+#navRight a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.4rem;
+}
+
+#navRight a:hover {
+    color: yellow;
 }
 
 #menuButton {
@@ -88,14 +88,20 @@ button {
     cursor: pointer;
 }
 
-#teacherButton {
-    background: #2563EB;
+.enterButtons {
     color: white;
     padding: 12px 28px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: 0.3s;
+}
+
+#teacherButton {
+    background: #2563EB;
+    position: absolute;
+    top: 2.5vh;
+    right: 35vw;
 }
 
 #teacherButton:hover {
@@ -105,12 +111,9 @@ button {
 
 #studentButton {
     background: #16A34A;
-    color: white;
-    padding: 12px 28px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
+    position: absolute;
+    top: 2.5vh;
+    right: 25vw;
 }
 
 #studentButton:hover {
@@ -429,48 +432,54 @@ select {
     cursor: not-allowed;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 768px) {
     #todayDate {
         margin: 150px 0px 0px 20px;
     }
 
     #navBar {
-        justify-content: space-around;
-        box-shadow: none;
+        width: 80%;
+        padding: 0 10%;
+        height: 8vh;
     }
 
     #navLeft {
         flex-direction: row;
-        gap: 10px;
+        gap: 3vw;
     }
 
-    #navMiddle {
+
+    #navRight {
         all: unset;
+    }
+
+    .state-hide {
+        display: none;
+    }
+
+    #about {
         position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 40px;
-        background: rgba(0, 0, 0, 0.65);
-        margin-top: 80px;
-        gap: 10vw;
+        top: 8vh;
+        right: 3vh;
+    }
+    #contact {
+        position: absolute;
+        top: 12vh;
+        right: 2vh;
     }
 
     #teacherButton {
         position: absolute;
-        top: 68%;
-        left: 50%;
+        top: 55%;
+        left: 33%;
         translate: -50% -50%;
         width: max-content;
     }
 
     #studentButton {
         position: absolute;
-        top: 76%;
-        left: 50%;
+        top: 55%;
+        right: 0;
         translate: -50% -50%;
         width: max-content;
     }
@@ -481,10 +490,14 @@ select {
 
 
     #WelcomeText {
+        position: relative;
+        top: -8vh;
         font-size: 40px;
     }
 
     #secondWelcomeMessage {
+        position: relative;
+        top: -8vh;
         font-size: 20px;
     }
 

@@ -2,17 +2,25 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebas
 import { db, auth } from "./firebase.js";
 import {
     createUserWithEmailAndPassword,
-    onAuthStateChanged, signOut,
-    getAuth, updateEmail,
+    onAuthStateChanged,
+    signOut,
+    getAuth,
+    updateEmail,
     EmailAuthProvider,
     reauthenticateWithCredential,
 
 } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
 
 import {
-    onSnapshot, doc, updateDoc,
-    getDoc, setDoc, collection,
-    query, where, getDocs
+    onSnapshot,
+    doc,
+    updateDoc,
+    getDoc,
+    setDoc,
+    collection,
+    query,
+    where,
+    getDocs
 } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
 
@@ -46,7 +54,7 @@ let currentUser, person, currentData = {}, editDetails = {};
 
 
 onAuthStateChanged(auth, async user => {
-    // if (!user) {window.location.href = "../index.html"; return;}
+    if (!user) { window.location.href = "../index.html"; return; }
     const userDoc = await getDoc(doc(db, "users", user.uid));
     if (!userDoc.exists()) {
         window.location.href = "../index.html";
@@ -239,9 +247,6 @@ async function changeEmail(newEmail) {
 
 };
 
-
-
-
 const profile = document.querySelector("#name-short");
 const detailsContainer = document.querySelector("#detailsContainer")
 const media = window.matchMedia("(max-width:768px)");
@@ -256,30 +261,6 @@ function handleScreen(e) {
 
 handleScreen(media);
 media.addEventListener("change", handleScreen);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 const featureBtn = document.querySelectorAll(".ex-fea-btn");
 const back = document.querySelector("#back");
@@ -411,3 +392,10 @@ async function semesterUpgrade(checkedValues) {
 // document.addEventListener("contextmenu", (e) => {
 //     e.preventDefault();
 // })
+
+
+
+const removeDuplicate = document.querySelector("#rvm-dp");
+removeDuplicate.addEventListener("click", () => {
+    alert("Work in progress");
+})

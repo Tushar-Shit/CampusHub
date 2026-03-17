@@ -1,3 +1,36 @@
+import { auth, db } from "./firebase.js";
+
+import {
+    collection,
+    onSnapshot,
+    doc,
+    updateDoc,
+    query,
+    where,
+    getDocs,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+
+import {
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
+
+onAuthStateChanged(auth, async (user) => {
+    if (!user) { window.location.href = "../index.html"; return; }
+    const userDoc = await getDoc(doc(db, "users", user.uid));
+    if (!userDoc.exists()) {
+        window.location.href = "../index.html";
+        return;
+    }
+    const role = userDoc.data().role;
+    if (role !== "teacher" && role !== "admin") {
+        await signOut(auth);
+        window.location.href = "../index.html";
+    }
+});
+
+
 const mainHeading = document.querySelector("#heading");
 const stream = localStorage.getItem("stream");
 mainHeading.innerText = `${stream} SEMESTERS`;
@@ -9,18 +42,6 @@ const departmentOfStudent = {
     "BHM": "BHM",
     "BMLT": "BMLT"
 }
-
-import {
-    collection,
-    onSnapshot,
-    doc,
-    updateDoc,
-    query,
-    where,
-    getDocs
-} from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
-
-import { db } from "./firebase.js";
 
 let unsubscribe = null;
 
@@ -167,33 +188,33 @@ async function studentList(q) {
             rightBottom.appendChild(row);
 
             const passData = [row, data.collegeRoll, data.universityRoll,
-                docSnap.id, data.admissionYear, data.semester, data.department];
+                docSnap.id, data.admissionYear, data.semester, data.department, data.name];
             editStudentDetails(passData);
         });
     });
 }
 
 async function editStudentDetails(passData) {
-    const [row, clgdata, unidata, userId, admyear, semester, department] = passData;
+    const [row, clgdata, unidata, userId, admyear, semester, department, name] = passData;
     const editBtn = row.querySelector("#std-edit-by-tea");
     const stdEditpopup = document.querySelector("#std-edit-con");
 
     editBtn.addEventListener("click", (e) => {
         stdEditpopup.classList.remove("state-hide");
 
-
-
+        const studentName = stdEditpopup.querySelector("h1");
         const admissionField = stdEditpopup.querySelector("#adm_year");
         const collegeRoll = stdEditpopup.querySelector("#clg_roll");
         const uniRoll = stdEditpopup.querySelector("#uni_roll");
-        const semesterField = document.querySelector("#semester");
+        const semesterField = stdEditpopup.querySelector("#semester");
         const departmentField = document.querySelectorAll("input[name='edit-dept']");
         const submitBtn = stdEditpopup.querySelector("#jhifg");
         const [a, b, c] = clgdata.split('/');
         uniRoll.oninput = () => uniRoll.value = uniRoll.value.replace(/\D/g, "").slice(0, 11);
 
         let changedDept = department;
-
+        const nameHeading = `${name.split(" ")[0]}'s Data`;
+        studentName.innerText = nameHeading;
         admissionField.value = admyear;
         collegeRoll.value = c;
         uniRoll.value = unidata;
@@ -209,7 +230,7 @@ async function editStudentDetails(passData) {
                 }
             });
         });
-        const selectedDept = document.querySelector("input[name='edit-dept']:checked").value;
+
 
         submitBtn.onclick = async (e) => {
             e.preventDefault();
