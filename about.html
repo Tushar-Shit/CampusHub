@@ -1,273 +1,299 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
-    <link rel="icon" type="image/png" href="./image/websiteLogo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Know More About Us</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family:
-          Segoe UI,
-          sans-serif;
-      }
 
-      body {
-        background: #f5f7fa;
-        color: #333;
-        line-height: 1.6;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="icon" type="image/png" href="./image/websiteLogo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Know More About Us</title>
+  <style>
+    :root {
+      --green1: #006417;
+      --green2: #28a745;
+      --green3: #046d3e;
+      --green4: #31b338;
+      --dark: #1b4332;
+      --gray: #9aa99b;
 
+      --red1: #ff4d4d;
+      --red2: #fb0058;
+      --red3: #ff0066;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family:
+        Segoe UI,
+        sans-serif;
+    }
+
+    body {
+      background: #f4f7f6;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--green2), var(--red2));
+      color: white;
+      text-align: center;
+      padding: 10vh 20vw;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 2vh;
+    }
+
+    .hero p {
+      max-width: 55vw;
+      margin: auto;
+      font-size: 1.2rem;
+      opacity: 0.95;
+    }
+
+    /* SECTION */
+    .section {
+      padding: 6vh 1vw;
+      max-width: 80vw;
+      margin: auto;
+      text-align: center;
+    }
+
+    .section h2 {
+      color: var(--red2);
+      font-size: 2rem;
+      margin-bottom: 2vh;
+    }
+
+    .section p {
+      max-width: 65%;
+      margin: auto;
+      font-size: large;
+      color: #555;
+    }
+
+    .light {
+      background: #ffffff;
+      border-radius: 10px;
+    }
+
+    /* FEATURES GRID */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 4vh;
+    }
+
+    /* CARD */
+    .card {
+      background: white;
+      padding: 2vh 1vw;
+      border-radius: 12px;
+      border-top: 5px solid var(--green2);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      transition: 0.3s;
+    }
+
+    .card:nth-child(even) {
+      border-top: 5px solid var(--red2);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    .card h3 {
+      color: var(--dark);
+      margin-bottom: 1.5vh;
+    }
+
+    /* LIST */
+    .list {
+      list-style: none;
+      max-width: 50%;
+      margin: auto;
+    }
+
+    .list li {
+      padding: 1.2vh 0;
+      border-bottom: 1px solid #ddd;
+      color: #444;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2vh;
+      background: var(--dark);
+      color: white;
+      margin-top: 2vh;
+    }
+
+    /* HOME BUTTON (MATCH CONTACT PAGE STYLE) */
+    .home-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: var(--green2);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 22px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+      transition: 0.3s;
+      z-index: 1000;
+    }
+
+    .home-btn:hover {
+      background: var(--red2);
+      transform: scale(1.1);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
       .hero {
-        background: linear-gradient(135deg, #1b4332, #2d6a4f);
-        color: white;
-        text-align: center;
-        padding: 10vh 20vw;
+        padding: 6vh 6vw;
       }
 
       .hero h1 {
-        font-size: 3rem;
-        margin-bottom: 3vh;
+        font-size: 2rem;
       }
 
       .hero p {
-        max-width: 50vw;
-        margin: auto;
-        font-size: 1.2rem;
+        max-width: 100%;
+        font-size: 1rem;
       }
 
       .section {
-        padding: 5vh 1vw;
-        max-width: 80vw;
-        margin: auto;
-        text-align: center;
+        padding: 3vh 5vw;
+        text-align: justify;
       }
 
       .section h2 {
-        color: #10b36f;
-        font-size: 2rem;
-        margin-bottom: 2vh;
+        text-align: center;
       }
 
       .section p {
-        max-width: 65%;
-        margin: auto;
-        font-size: large;
-      }
-
-      .light {
-        background: #ffffff;
+        max-width: 100%;
+        font-size: 1rem;
       }
 
       .features {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 20px;
-        margin-top: 4vh;
+        gap: 2vh;
       }
 
       .card {
-        background: white;
-        padding: 2vh 0;
-        border-radius: 10px;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.315);
-        transition: 0.3s;
+        padding: 2vh 4vw;
+        transform: none;
+        border-top: none;
+        border-left: 5px solid var(--green2);
       }
 
-      .card:hover {
-        transform: translateY(-5px);
-      }
-
-      .card h3 {
-        color: #fb0058;
-        margin-bottom: 2vh;
+      .card:nth-child(even) {
+        border-top: none;
+        border-left: 5px solid var(--red2);
       }
 
       .list {
-        list-style: none;
-        max-width: 50%;
-        margin: auto;
-        text-align: center;
+        max-width: 100%;
       }
 
       .list li {
-        padding: 1vh 0;
-        border-bottom: 1px solid #afafaf;
+        padding: 1.5vh 0;
       }
+    }
+  </style>
+</head>
 
-      .contact p {
-        font-size: 1.1rem;
-        margin: 5px 0;
-      }
+<body>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>About CampusHub</h1>
+    <p>
+      CampusHub is a modern student portal designed to simplify campus
+      management and improve communication between students, teachers, and
+      administrators.
+    </p>
+  </section>
 
-      footer {
-        text-align: center;
-        padding: 2vh;
-        background: #1b4332;
-        color: white;
-        margin-top: 1vh;
-      }
-      .home-btn {
-        position: fixed;
-        bottom: 7vh;
-        left: 5vw;
-        background: #fff700;
-        color: rgb(0, 0, 0);
-        border: none;
-        border-radius: 25%;
-        width: 4rem;
-        height: 4rem;
-        font-size: 22px;
-        cursor: pointer;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.748);
-        transition: 0.3s;
-      }
-      
-      .home-btn:hover {
-        color: #fff700;
-        background: #000;
-        transform: scale(1.1);
-        box-shadow: 0 5px 15px rgb(0, 0, 0);
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Hero Section -->
-    <section class="hero">
-      <h1>About CampusHub</h1>
-      <p>
-        CampusHub is a modern student portal designed to simplify campus
-        management and improve communication between students, teachers, and
-        administrators.
-      </p>
-    </section>
+  <!-- Mission -->
+  <section class="section">
+    <h2>Our Mission</h2>
+    <p>
+      Our mission is to make campus management simple, organised, and
+      accessible. CampusHub reduces manual work by providing a digital
+      platform where students and faculty can efficiently manage academic
+      activities and records. The system supports essential functions such as
+      attendance tracking, student information management, semester updates,
+      and attendance calculation. By digitising these processes, CampusHub
+      helps improve coordination and efficiency for both students and faculty
+      at the Management Institute of Durgapur, making everyday academic
+      administration faster, clearer, and more organised.
+    </p>
+  </section>
 
-    <!-- Mission -->
-    <section class="section">
-      <h2>Our Mission</h2>
-      <p>
-        <!-- Our mission is to make campus management simple, organized, and
-        accessible. CampusHub reduces manual work and provides a digital
-        platform where students and faculty can  -->
-        Our mission is to make campus management simple, organised, and
-        accessible. CampusHub reduces manual work by providing a digital
-        platform where students and faculty can efficiently manage academic
-        activities and records. The system supports essential functions such as
-        attendance tracking, student information management, semester updates,
-        and attendance calculation. By digitising these processes, CampusHub
-        helps improve coordination and efficiency for both students and faculty
-        at the Management Institute of Durgapur, making everyday academic
-        administration faster, clearer, and more organised.
-      </p>
-    </section>
+  <!-- What We Do -->
+  <section class="section">
+    <h2>What We Do</h2>
 
-    <!-- What We Do -->
-    <section class="section">
-      <h2>What We Do</h2>
-
-      <div class="features">
-        <div class="card">
-          <h3>Student Management</h3>
-          <p>Store and manage student information securely.</p>
-        </div>
-
-        <div class="card">
-          <h3>Academic Records</h3>
-          <p>
-            Access student data, semester details, and academic records easily.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Department Control</h3>
-          <p>
-            Manage departments, semesters, and campus activities efficiently.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Secure System</h3>
-          <p>Firebase authentication and secure database storage.</p>
-        </div>
+    <div class="features">
+      <div class="card">
+        <h3>Student Management</h3>
+        <p>Store and manage student information securely.</p>
       </div>
-    </section>
 
-    <!-- Why CampusHub -->
-    <section class="section light">
-      <h2>Why CampusHub</h2>
+      <div class="card">
+        <h3>Academic Records</h3>
+        <p>
+          Access student data, semester details, and academic records easily.
+        </p>
+      </div>
 
-      <ul class="list">
-        <li>User-friendly interface</li>
-        <li>Fast and responsive system</li>
-        <li>Organized student data management</li>
-        <li>Secure authentication</li>
-        <li>Easy access for teachers and students</li>
-      </ul>
-    </section>
+      <div class="card">
+        <h3>Department Control</h3>
+        <p>
+          Manage departments, semesters, and campus activities efficiently.
+        </p>
+      </div>
 
-    <!-- Vision -->
-    <!-- <section class="section">
-      <h2>Our Vision</h2>
-      <p>
-        We envision a future where educational institutions operate with smart
-        digital systems that reduce paperwork, save time, and improve
-        collaboration across campuses. CampusHub aims to create a smarter
-        academic environment.
-      </p>
-    </section> -->
+      <div class="card">
+        <h3>Secure System</h3>
+        <p>Firebase authentication and secure database storage.</p>
+      </div>
+    </div>
+  </section>
 
-    <!-- Developer -->
-    <!-- <section class="section light">
-      <h2>Developer</h2>
-      <p>
-        CampusHub is developed by passionate developers dedicated to building
-        digital solutions for modern educational institutions.
-      </p>
-    </section> -->
+  <!-- Why CampusHub -->
+  <section class="section light">
+    <h2>Why CampusHub</h2>
 
-    <!-- Contact -->
-    <!-- <section class="section contact">
-      <h2>Contact Us</h2>
-      <p>Email: campushub007@gmail.com</p>
-      <p>Website: www.campushub.com</p>
-    </section> -->
+    <ul class="list">
+      <li>User-friendly interface</li>
+      <li>Fast and responsive system</li>
+      <li>Organized student data management</li>
+      <li>Secure authentication</li>
+      <li>Easy access for teachers and students</li>
+    </ul>
+  </section>
 
-    <footer>© 2026 CampusHub</footer>
-    <button class="home-btn" onclick="goHome()">
-      <i class="fa-solid fa-house"></i>
-    </button>
-    <script>
-      // const cards = document.querySelectorAll(".card");
+  <footer>© 2026 CampusHub</footer>
+  <button class="home-btn" onclick="goHome()">
+    <i class="fa-solid fa-house"></i>
+  </button>
+  <script>
+    function goHome() {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
 
-      // window.addEventListener("scroll", () => {
-      //   const trigger = window.innerHeight * 0.85;
-
-      //   cards.forEach((card) => {
-      //     const top = card.getBoundingClientRect().top;
-
-      //     if (top < trigger) {
-      //       card.style.opacity = "1";
-      //       card.style.transform = "translateY(0)";
-      //     }
-      //   });
-      // });
-
-      // cards.forEach((card) => {
-      //   card.style.opacity = "0";
-      //   card.style.transform = "translateY(30px)";
-      //   card.style.transition = "0.5s";
-      // });
-
-      function goHome() {
-        window.location.href = "index.html";
-      }
-    </script>
-  </body>
 </html>

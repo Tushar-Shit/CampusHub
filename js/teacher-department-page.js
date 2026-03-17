@@ -109,6 +109,7 @@ function resetOptionButton() {
 }
 
 async function extractData(department, semester, button) {
+    const pageLoader = rightBottomLoader();
 
     if (button.trim() === "Student List") {
         const q = query(
@@ -133,18 +134,25 @@ async function extractData(department, semester, button) {
     }
 
     const querySnapshot = await getDocs(q);
-    generatePDF(querySnapshot.docs.map(d => d.data()), semester);
+    generatePDF(querySnapshot.docs.map(d => d.data()), semester, pageLoader);
 }
 
 async function studentList(q) {
+    const pageLoader = rightBottomLoader();
+
     if (unsubscribe) unsubscribe();
 
     unsubscribe = onSnapshot(q, (snapshot) => {
 
+        if (snapshot.empty) {
+            noDataMessage(pageLoader);
+            return;
+        }
+
         rightBottom.innerHTML = "";
         snapshot.forEach((docSnap) => {
-
             const data = docSnap.data();
+
             const row = document.createElement("div");
             row.className = "student-list-appear";
 
@@ -157,7 +165,8 @@ async function studentList(q) {
             `;
 
             rightBottom.appendChild(row);
-            const passData = [row, data.collegeRoll, data.universityRoll, data.admissionYear,
+
+            const passData = [row, data.collegeRoll, data.universityRoll,
                 docSnap.id, data.admissionYear, data.semester, data.department];
             editStudentDetails(passData);
         });
@@ -165,7 +174,7 @@ async function studentList(q) {
 }
 
 async function editStudentDetails(passData) {
-    const [row, clgdata, unidata, admissiondata, userId, admyear, semester, department] = passData;
+    const [row, clgdata, unidata, userId, admyear, semester, department] = passData;
     const editBtn = row.querySelector("#std-edit-by-tea");
     const stdEditpopup = document.querySelector("#std-edit-con");
 
@@ -234,20 +243,19 @@ async function editStudentDetails(passData) {
 
 }
 
-
-
-
-
 function pendingApproval(q) {
-
+    const pageLoader = rightBottomLoader();
     if (unsubscribe) unsubscribe();
 
     unsubscribe = onSnapshot(q, (snapshot) => {
 
+        if (snapshot.empty) {
+            noDataMessage(pageLoader);
+            return;
+        }
+
         rightBottom.innerHTML = "";
-
         snapshot.forEach((docSnap) => {
-
             const data = docSnap.data();
 
             const row = document.createElement("div");
@@ -292,7 +300,11 @@ function pendingApproval(q) {
     });
 }
 
-function generatePDF(data, semester) {
+function generatePDF(data, semester, pageLoader) {
+    if (data.length === 0) {
+        noDataMessage(pageLoader);
+        return;
+    }
 
     const { jsPDF } = window.jspdf;
     const pdf = new jsPDF();
@@ -330,4 +342,22 @@ function generatePDF(data, semester) {
     });
 
     pdf.save(`${stream} ${semester} SEMESTER .pdf`);
+    pageLoader.style.display = "none";
+}
+
+function rightBottomLoader() {
+    rightBottom.innerHTML = `
+    <div id="pageLoader">
+        <div class="spinner"></div>
+    </div>`;
+
+    const pageLoader = document.getElementById("pageLoader");
+    pageLoader.style.display = "flex";
+    return pageLoader;
+}
+
+function noDataMessage(pageLoader) {
+    rightBottom.innerHTML = `<p>No records available</p>`;
+    pageLoader.style.display = "none";
+    return;
 }

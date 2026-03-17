@@ -4,11 +4,13 @@
   box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
 body {
   background: #f8faf9;
   color: #1b4332;
   overflow: hidden;
 }
+
 #nav-mobile {
   display: none;
 }
@@ -41,6 +43,16 @@ body {
   text-align: center;
   align-content: center;
   letter-spacing: 1.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo img {
+  margin-right: 7px;
+  height: 2.7rem;
+  box-shadow: 0 0 10px white;
+  border-radius: 50%;
 }
 
 .teacher-profile {
@@ -69,33 +81,12 @@ body {
   margin-bottom: 0.2rem;
   margin-right: 1vw;
 }
-/* #xfvdg{
-  position: relative;
-} */
-/* #edit-name-details {
-  justify-self: center;
-  min-width: 80px;
-  max-width: fit-content;
-  margin-bottom: 2vh;
-  display: flex;
-  justify-content: right;
-  border-bottom: 2px solid #666;
-}
-
-#edit-name-details div {
-  justify-content: center;
-  width: fit-content;
-}
-
-#edit-name-details i {
-  margin-left: 5%;
-  align-self: center;
-} */
 
 #profile-edit-icon,
 #cross-btn {
   font-size: 1.3rem;
 }
+
 #profile-edit-icon:hover,
 #cross-btn:hover {
   cursor: pointer;
@@ -133,6 +124,7 @@ body {
 .state-hide {
   display: none !important;
 }
+
 .state-show {
   display: block !important;
 }
@@ -151,6 +143,7 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+
 #form-heading {
   font-size: 1.7rem;
   margin: 0.7rem 0 0.6rem;
@@ -161,6 +154,7 @@ body {
   color: #666;
   font-size: 1.8rem;
 }
+
 #cross-btn:hover {
   color: #ff4d4d;
 }
@@ -205,10 +199,12 @@ body {
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   border-radius: 5px;
   background: #b9b9b9;
 }
+
 ::-webkit-scrollbar-thumb {
   border-radius: 5px;
   background: #fb0058;
@@ -269,6 +265,7 @@ body {
   top: 6vh;
   right: 3.2vw;
 }
+
 #logout {
   width: 90%;
 }
@@ -350,18 +347,21 @@ header h1 span {
   margin-top: 4vh;
   margin-bottom: 1vh;
 }
+
 #extra-fea-con {
   height: auto;
   width: 100%;
   padding: 1rem;
   display: flex;
 }
+
 .sub-con {
   margin-right: 2vw;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .ex-fea-btn {
   justify-self: center;
   height: 5vw;
@@ -379,6 +379,7 @@ header h1 span {
   font-size: 2.5rem;
   cursor: pointer;
 }
+
 .ex-fea-btn-txt {
   font-size: 1.1rem;
 }
@@ -438,6 +439,7 @@ header h1 span {
   font-size: 1.2rem;
   justify-self: center;
 }
+
 #below-text span {
   color: red;
   cursor: pointer;
@@ -483,6 +485,7 @@ header h1 span {
   justify-content: center;
   align-items: center;
 }
+
 .interface {
   position: absolute;
   top: 36vh;
@@ -503,11 +506,13 @@ header h1 span {
   align-items: baseline;
   position: relative;
 }
+
 #refgs span {
   color: rgb(54, 54, 54);
   font-weight: bold;
   color: #fb0058;
 }
+
 .tyui {
   font-size: 1.5rem;
   position: absolute;
@@ -515,15 +520,18 @@ header h1 span {
   right: -0.5rem;
   cursor: pointer;
 }
+
 .tyui:hover {
   color: #fb0058;
 }
+
 #notice-txt,
 .ojbsjnxs {
   font-size: 1.1rem;
   text-align: justify;
   margin-bottom: 1vh;
 }
+
 .tehewwhb {
   width: 40%;
   padding: 1vh;
@@ -535,33 +543,40 @@ header h1 span {
   color: white;
   cursor: pointer;
 }
+
 .tehewwhb:hover {
   transition: 0.2s ease;
   padding: 0.5vh;
   font-size: 1.2rem;
   background-color: #fb0058;
 }
+
 .checkbox-block {
   width: 100%;
   display: flex;
   justify-content: space-around;
   margin-top: 2vh;
 }
+
 .last {
   margin-bottom: 3vh;
 }
+
 .checkbox-block label {
   cursor: pointer;
   font-size: 1.4rem;
 }
+
 .checkbox-block input[type="checkbox"] {
   width: 1rem;
   height: 1rem;
   cursor: pointer;
 }
+
 #tsgsvfd {
   display: inline;
 }
+
 .y-n-c {
   width: 80%;
   margin-top: 9vh;
@@ -569,6 +584,7 @@ header h1 span {
   display: flex;
   justify-content: space-around;
 }
+
 .last-confirm-btn {
   width: 40%;
   padding: 1vh;
@@ -580,6 +596,7 @@ header h1 span {
   font-size: 1rem;
   box-shadow: 0 0 5px black;
 }
+
 .last-confirm-btn:hover {
   transition: 0.2s ease;
   padding: 0;
@@ -587,9 +604,11 @@ header h1 span {
   background-color: #fb0058;
   box-shadow: 0 0 10px black;
 }
+
 p {
   width: 100%;
 }
+
 .tdgsbdh {
   width: 90%;
   margin-top: 8vh;
@@ -597,4 +616,193 @@ p {
   font-size: 1.2rem;
   font-weight: 600;
   text-align: justify;
+}
+
+
+@media (max-width: 768px) {
+  body {
+    overflow: auto;
+  }
+
+  .dashboard-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .sidebar {
+    width: 100vw;
+    padding: 0;
+    border-right: none;
+    border-bottom: 2px solid #9aa99b;
+  }
+
+  .logo {
+    width: 100%;
+    height: 60px;
+    left: 0;
+    margin: 0;
+    font-size: 1.3rem;
+  }
+
+  .teacher-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .profile-avatar {
+    width: 65px;
+    height: 65px;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  #edit-name-details {
+    display: flex;
+    align-items: center;
+    border: none;
+    margin: 10px;
+  }
+
+  #xfvdg {
+    margin-right: 2vw;
+  }
+
+  .teacher-name {
+    margin: 0;
+    font-size: 1.6rem;
+  }
+
+  .teacher-role {
+    justify-self: left;
+  }
+
+  .blank {
+    display: none;
+  }
+
+  .detail-item {
+    width: 80%;
+    justify-self: center;
+    border-right: 4px solid #2d6a4f;
+  }
+
+  .detail-item:hover {
+    border-left: 4px solid #2d6a4f;
+    transform: translateX(0rem);
+    transition: 0.2s;
+  }
+
+  #main-edit-container {
+    width: 80vw;
+  }
+
+  .sidebar-footer {
+    display: flex;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .add-dept-btn,
+  #logout,
+  #add-teacher {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.95rem;
+    position: static;
+  }
+
+  .main-content {
+    width: 100%;
+    padding: 1.5rem 1rem;
+  }
+
+  header h1,
+  header h1 #right-head-name {
+    font-size: 1.4rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .course-card {
+    height: 120px;
+    font-size: 1.2rem;
+  }
+
+  .course-card:hover {
+    height: 120px;
+    font-size: 1.2rem;
+  }
+
+  #profile-edit-icon {
+    font-size: 1rem;
+    position: relative;
+    top: 0;
+    right: 0;
+  }
+
+  .faah {
+    display: none;
+  }
+
+  #extra-fea-con {
+    justify-content: space-around;
+  }
+
+  .ex-fea-btn-txt {
+    margin-top: 1vh;
+    font-size: 1rem;
+  }
+
+  #back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.544);
+  }
+
+  .interface {
+    position: absolute;
+    top: 34%;
+    left: 5%;
+    width: 90%;
+    height: auto;
+    padding: 3.5vh 5vw;
+  }
+
+  .tyui {
+    top: -2vh;
+    right: -0.5rem;
+    font-size: 1.9rem;
+  }
+
+  #tsgsvfd {
+    display: inline;
+  }
+
+  .y-n-c {
+    width: 90%;
+    margin-top: 3vh;
+  }
+
+  .last-confirm-btn {
+    width: 35%;
+  }
+
+  .tdgsbdh {
+    margin-top: 0vh;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #0f7638;
+    font-weight: bold;
+  }
 }

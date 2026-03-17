@@ -7,7 +7,8 @@ import {
     where,
     getDocs,
     doc,
-    getDoc
+    getDoc,
+    onSnapshot
 } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
 import {
@@ -16,11 +17,12 @@ import {
 
 let userSemester = "";
 
-document.querySelector("body").style.display = "none";
+const pageLoader = document.getElementById("pageLoader");
+document.querySelector("#examForm").style.display = "none";
+pageLoader.style.display = "flex";
 
 
 const form = document.getElementById("examForm");
-
 const box = document.getElementById("statusBox");
 
 function queryUid(uid) {
@@ -53,45 +55,51 @@ onAuthStateChanged(auth, async (user) => {
         return;
     }
     else {
-        document.querySelector("body").style.display = "flex";
+        document.querySelector("#examForm").style.display = "block";
+        pageLoader.style.display = "none";
     }
 
     try {
         const q = queryUid(user.uid);
-        const snapshot = await getDocs(q);
 
-        snapshot.forEach((doc) => {
+        onSnapshot(q, (snapshot) => {
 
-            const data = doc.data();
-            const div = document.createElement("div");
+            box.innerHTML = ""; // clear old data
 
-            div.style.border = "1px solid black";
-            div.style.borderRadius = "10px";
-            div.style.padding = "10px";
-            div.style.margin = "10px";
+            snapshot.forEach((docSnap) => {
 
-            div.innerHTML = `
-                    Name: ${data.fullName}<br>
-                    Department: ${data.department}<br>
-                    Semester: ${data.semester}<br>
-                    Status: <span class="checkStatus">${data.status}</span>
-                     `;
+                const data = docSnap.data();
+                const div = document.createElement("div");
 
-            const checkStatus = div.querySelector(".checkStatus");
+                div.style.border = "1px solid black";
+                div.style.borderRadius = "10px";
+                div.style.padding = "10px";
+                div.style.margin = "10px";
 
-            if (data.status === "Approved") {
-                checkStatus.style.color = "#90ee90";
-            }
-            else if (data.status === "Rejected") {
-                checkStatus.style.color = "#f50000";
-            }
-            else {
-                checkStatus.style.color = "black";
-            }
+                div.innerHTML = `
+        Name: ${data.fullName}<br>
+        Department: ${data.department}<br>
+        Semester: ${data.semester}<br>
+        Status: <span class="checkStatus">${data.status}</span>
+        `;
 
-            box.appendChild(div);
+                const checkStatus = div.querySelector(".checkStatus");
+
+                if (data.status === "Approved") {
+                    checkStatus.style.color = "#2e7d32";
+                }
+                else if (data.status === "Rejected") {
+                    checkStatus.style.color = "#f50000";
+                }
+                else {
+                    checkStatus.style.color = "black";
+                }
+
+                box.appendChild(div);
+
+            });
+
         });
-
     } catch (error) {
         console.error("Error fetching data:", error);
     }
@@ -130,7 +138,7 @@ form.addEventListener("submit", async (e) => {
     const snapshot = await getDocs(q);
 
     if (userSemester !== semester) {
-        alert(`Current semester is ${userSemester}.\nYou cannot apply for semester ${semester}.`);
+        alert(`You are from ${userSemester}.\nYou cannot apply for ${semester} semester.`);
         return;
     }
 
@@ -165,19 +173,19 @@ form.addEventListener("submit", async (e) => {
 
 
 
-let agcvbh = JSON.parse(sessionStorage.getItem("data"));
+let userData = JSON.parse(sessionStorage.getItem("data"));
 const formName = document.querySelector("#fullName");
 const formSemester = document.querySelector("#semester");
-const formRadio = document.querySelector(`input[name='department'][value=${agcvbh.department}]`);
+const formRadio = document.querySelector(`input[name='department'][value=${userData.department}]`);
 const formCollegeRoll = document.querySelector("#clgRoll");
 const formUniRoll = document.querySelector("#uniRoll");
 const formMobileNumber = document.querySelector("#mobileNumber");
 
-formName.value = agcvbh.name;
-formUniRoll.value = agcvbh.universityRoll;
-formCollegeRoll.value = agcvbh.collegeRoll;
-formMobileNumber.value = agcvbh.mobile;
-formSemester.value = agcvbh.semester;
+formName.value = userData.name;
+formUniRoll.value = userData.universityRoll;
+formCollegeRoll.value = userData.collegeRoll;
+formMobileNumber.value = userData.mobile;
+formSemester.value = userData.semester;
 if (formRadio) {
     formRadio.checked = true;
 }
@@ -189,14 +197,15 @@ const examForm = document.getElementById("examForm");
 
 statusBtn.addEventListener("click", () => {
 
-    if (statusBox.style.display === "none") {
-        statusBox.style.display = "flex";
-        statusBtn.textContent = "Hide Status";
-        examForm.style.display = "none";
-    } else {
+    if (statusBox.style.display === "flex") {
         statusBox.style.display = "none";
         examForm.style.display = "block";
         statusBtn.textContent = "Check Status";
+    }
+    else {
+        statusBox.style.display = "flex";
+        statusBtn.textContent = "Hide Status";
+        examForm.style.display = "none";
     }
 
 });

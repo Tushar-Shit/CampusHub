@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>CampusHub</title>
     <link rel="stylesheet" href="./css/index.css">
     <link rel="icon" type="image/png" href="./image/websiteLogo.png">
-    <script src="https://unpkg.com/tesseract.js@v5.0.0/dist/tesseract.min.js"></script>
+    <script defer src="https://unpkg.com/tesseract.js@v5.0.0/dist/tesseract.min.js"></script>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Betania+Patmos+In&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Playwrite+AT:ital,wght@0,100..400;1,100..400&family=Playwrite+NZ+Basic:wght@100..400&family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap');
@@ -24,8 +25,8 @@
                 <span id="collegeName">CampusHub</span>
             </div>
             <div id="navMiddle">
-                <a href="about.html" id="about">About</a>
-                <a href="#" id="contact">Contact</a>
+                <a href="./about.html" id="about">About</a>
+                <a href="contact.html" id="contact">Contact</a>
             </div>
             <div id="navRight">
                 <svg width="25" height="30" viewBox="0 0 24 24" fill="white" id="menuButton">
@@ -52,8 +53,8 @@
             </svg>
             <h1 id="loginHeading"></h1>
             <div class="input-fields">
-                <input type="email" id="loginEmail" placeholder="Email" required>
-                <input type="password" id="loginPassword" placeholder="Password" minlength="6" required>
+                <input type="email" id="loginEmail" placeholder="Email" autocomplete="email" required>
+                <input type="password" id="loginPassword" placeholder="Password" minlength="6" autocomplete="current-password" required>
                 <div class="showpass">
                     <input type="checkbox" id="ShowPassword" style="cursor: pointer;">
                     <label for="ShowPassword" style="cursor: pointer;">Show Password</label>
@@ -69,7 +70,7 @@
     </div>
 
     <div id="signupContainer">
-        <form id="signupForm">
+        <form id="signupForm" autocomplete="off">
             <svg width="25" height="25" viewBox="0 0 24 24" id="signupCloseButton">
                 <line x1="4" y1="4" x2="20" y2="20" stroke="white" stroke-width="2" />
                 <line x1="20" y1="4" x2="4" y2="20" stroke="white" stroke-width="2" />
@@ -93,31 +94,29 @@
                 <label><input type="radio" name="dept" value="BHM" id="deptBHM"> BHM</label>
                 <label><input type="radio" name="dept" value="BMLT" id="deptBMLT"> BMLT</label>
             </div>
-            <select id="semester" name="semester">
+            <select id="semester" required>
                 <option value="">-- Select Semester --</option>
                 <option value="I">1st Semester</option>
                 <option value="II">2nd Semester</option>
                 <option value="III">3rd Semester</option>
                 <option value="IV">4th Semester</option>
-                <option value="v">5th Semester</option>
+                <option value="V">5th Semester</option>
                 <option value="VI">6th Semester</option>
                 <option value="VII">7th Semester</option>
                 <option value="VIII">8th Semester</option>
             </select>
-            <input type="text" id="clgRoll" placeholder="College Roll... Eg. 01" autocomplete="off" maxlength="2"
-                minlength="2" required>
-            <input type="text" id="universityRoll" placeholder="University Roll" maxlength="11" minlength="11"
-                autocomplete="off">
-            <input type="text" id="admissionYear" placeholder="Admission Year" autocomplete="off" minlength="2"
-                maxlength="4" required>
+            <input type="tel" id="clgRoll" placeholder="College Roll... Eg. 01" autocomplete="off" maxlength="2" minlength="2" required>
 
-            <input type="email" id="email" placeholder="Email" autocomplete="off" required>
+            <input type="tel" id="universityRoll" placeholder="University Roll" maxlength="11" minlength="11" autocomplete="off">
 
-            <input type="tel" id="mobile" pattern="^[0-9]{10}$" placeholder="Mobile Number" autocomplete="off"
-                minlength="10" maxlength="10" required>
+            <input type="tel" id="admissionYear" placeholder="Admission Year" autocomplete="off" minlength="2" maxlength="4" required>
 
-            <input type="password" id="password" minlength="6" placeholder="Password" required>
-            <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+            <input type="email" id="email" placeholder="Email" autocomplete="email" required>
+
+            <input type="tel" id="mobile" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" placeholder="Mobile Number" required>
+
+            <input type="password" id="password" minlength="6" placeholder="Password" autocomplete="new-password" required>
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" autocomplete="new-password" required>
 
             <button type="submit" id="createAccount">Create Account</button>
         </form>
@@ -130,8 +129,13 @@
             <span id="otp-email"></span>
             <hr>
             <span>Enter the 6-digit</span>
-            <input type="text" id="otpInput" placeholder="Enter OTP" minlength="6" autocomplete="off" required>
+            <input type="tel" id="otpInput" maxlength="6" pattern="[0-9]{6}" inputmode="numeric" placeholder="Enter OTP"
+                autofocus required>
             <button onclick="verifyOTP()" id="verifyOTP">Verify OTP</button>
+
+            <hr>
+            <p id="timer">Resend OTP in 30s</p>
+            <button id="resendBtn" disabled>Resend OTP</button>
         </div>
     </div>
 

@@ -25,6 +25,7 @@
 
   .teacher-profile {
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 10px;
     padding: 12px;
@@ -34,6 +35,7 @@
     width: 65px;
     height: 65px;
     margin: 0;
+    cursor: pointer;
   }
 
   #edit-name-details {
@@ -42,9 +44,11 @@
     border: none;
     margin: 10px;
   }
+
   #xfvdg {
     margin-right: 2vw;
   }
+
   .teacher-name {
     margin: 0;
     font-size: 1.6rem;
@@ -53,12 +57,24 @@
   .teacher-role {
     justify-self: left;
   }
-  .teacher-details {
+
+  .blank {
     display: none;
+  }
+  .detail-item {
+    width: 80%;
+    justify-self: center;
+    border-right: 4px solid #2d6a4f;
+  }
+  .detail-item:hover {
+    border-left: 4px solid #2d6a4f;
+    transform: translateX(0rem);
+    transition: 0.2s;
   }
   #main-edit-container {
     width: 80vw;
   }
+
   .sidebar-footer {
     display: flex;
     gap: 10px;
@@ -79,9 +95,11 @@
     padding: 1.5rem 1rem;
   }
 
-  header h1 {
-    font-size: 1.8rem;
+  header h1,
+  header h1 #right-head-name {
+    font-size: 1.4rem;
   }
+
   .subtitle {
     font-size: 0.95rem;
   }
@@ -95,12 +113,19 @@
     height: 120px;
     font-size: 1.2rem;
   }
+
+  .course-card:hover {
+    height: 120px;
+    font-size: 1.2rem;
+  }
+
   #profile-edit-icon {
     font-size: 1rem;
     position: relative;
     top: 0;
     right: 0;
   }
+
   .faah {
     display: none;
   }
@@ -108,6 +133,7 @@
   #extra-fea-con {
     justify-content: space-around;
   }
+
   .ex-fea-btn-txt {
     margin-top: 1vh;
     font-size: 1rem;
@@ -128,6 +154,7 @@
     height: auto;
     padding: 3.5vh 5vw;
   }
+
   .tyui {
     top: -2vh;
     right: -0.5rem;
@@ -137,13 +164,16 @@
   #tsgsvfd {
     display: inline;
   }
+
   .y-n-c {
     width: 90%;
     margin-top: 3vh;
   }
+
   .last-confirm-btn {
     width: 35%;
   }
+
   .tdgsbdh {
     margin-top: 0vh;
     font-size: 1.2rem;

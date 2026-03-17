@@ -1,5 +1,6 @@
-const websiteName = "campusHub";
 let loginType = ["student"];
+let timeLeft = 30;
+let countdown;
 const loginHeading = document.getElementById("loginHeading");
 const teacherButton = document.getElementById("teacherButton");
 const studentButton = document.getElementById("studentButton");
@@ -19,6 +20,8 @@ const continue2Signup = document.getElementById("continue2Signup");
 const slipVerify = document.getElementById("slipVerify");
 const slipverifyButton = document.getElementById("slipverifyButton");
 const otpVerifyContainer = document.getElementById("otpVerifyContainer");
+const timerText = document.getElementById("timer");
+const resendBtn = document.getElementById("resendBtn");
 
 if (sessionStorage.getItem("slipVerified") === "true") {
     signupContainer.style.display = "flex";
@@ -101,6 +104,10 @@ teacherButton.onclick = () => {
     signupTextOnLogin.style.display = "none";
 };
 
+studentButton.onclick = () => {
+    studentLoginPopup();
+};
+
 function studentLoginPopup() {
     loginType = ["student"];
     loginHeading.innerText = "Student Login";
@@ -108,13 +115,11 @@ function studentLoginPopup() {
     signupTextOnLogin.style.display = "block";
 }
 
-studentButton.onclick = () => {
-    studentLoginPopup();
-};
 
 closeButton.onclick = () => {
     loginContainer.style.display = "none";
 };
+
 slipverifyButton.onclick = () => {
     slipVerify.style.display = "none";
 };

@@ -9,9 +9,11 @@
   width: 100vw;
   display: flex;
 }
+
 .state-hide {
   display: none !important;
 }
+
 /* LEFT SIDE */
 
 .main-left {
@@ -124,6 +126,7 @@
   background: #15c676;
   color: #fff;
 }
+
 .after-clicked {
   background: #fb0058;
   color: #fff;
@@ -143,6 +146,7 @@
 .change-bg-to-green {
   background: #9eeda9;
 }
+
 .change-bg-to-red {
   background: #ff6666;
 }
@@ -203,6 +207,7 @@
   color: #1b4332;
   font-style: cursive;
 }
+
 .std-edit-by-tea {
   height: auto;
   padding: 0 1vw;
@@ -212,6 +217,7 @@
   background-color: pink;
   cursor: pointer;
 }
+
 /* .std-edit-by-tea{
   background-color: rgb(222, 39, 70);
   transform: scale(1.1);
@@ -256,6 +262,7 @@
 #approve-btn {
   background: #00ff00;
 }
+
 #reject-btn {
   background: #ff0000;
   color: #fff;
@@ -264,6 +271,7 @@
 .cursive {
   font-family: "Merienda", cursive;
 }
+
 /* uyfyuehbjdhbjdwdwqibudqwbhqwbjhiqdwiuqdwubidqwbhiwqd */
 /* uyfyuehbjdhbjdwdwqibudqwbhqwbjhiqdwiuqdwubidqwbhiwqd */
 /* uyfyuehbjdhbjdwdwqibudqwbhqwbjhiqdwiuqdwubidqwbhiwqd */
@@ -293,21 +301,26 @@
   padding: 1rem 2.2rem 0rem 2.2rem;
   border-radius: 0.8rem;
 }
-.refd{
+
+.refd {
   display: flex;
   justify-content: space-between;
 }
-.refd h2{
+
+.refd h2 {
   color: rgb(255, 61, 122) !important;
 }
+
 .tyui {
-  font-size:1.8rem;
+  font-size: 1.8rem;
   cursor: pointer;
   color: #7c7c7c;
 }
+
 .tyui:hover {
   color: #fb0058;
 }
+
 #std-edit-subcon h2 {
   font-size: 1.5rem;
   color: #1b4332;
@@ -333,6 +346,7 @@
 #std-edit-subcon select:focus {
   border-color: #ff0088;
 }
+
 .radio-options {
   display: flex;
   align-items: center;
@@ -361,6 +375,7 @@
   transition: 0.2s;
   cursor: pointer;
 }
+
 #jhifg:hover {
   transform: translateY(-2px);
   background: #1b4332;
@@ -431,6 +446,7 @@
     background: red;
     border-radius: 10px;
   }
+
   .sem-btn {
     min-width: 110px;
     padding: 10px 10px;
@@ -549,5 +565,44 @@
 
   #add-fea {
     display: none;
+  }
+}
+
+
+#pageLoader {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid white;
+  border-top: 6px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes popup {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
   }
 }

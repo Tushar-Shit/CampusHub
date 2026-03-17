@@ -2,25 +2,17 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebas
 import { db, auth } from "./firebase.js";
 import {
     createUserWithEmailAndPassword,
-    onAuthStateChanged,
-    signOut,
-    getAuth,
-    updateEmail,
+    onAuthStateChanged, signOut,
+    getAuth, updateEmail,
     EmailAuthProvider,
     reauthenticateWithCredential,
 
 } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
 
 import {
-    onSnapshot,
-    doc,
-    updateDoc,
-    getDoc,
-    setDoc,
-    collection,
-    query,
-    where,
-    getDocs
+    onSnapshot, doc, updateDoc,
+    getDoc, setDoc, collection,
+    query, where, getDocs
 } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
 
@@ -30,11 +22,6 @@ const pageLoader = document.getElementById("pageLoader");
 pageLoader.style.display = "flex";
 document.querySelector(".dashboard-container").style.display = "none";
 
-let currentUser;
-let currentData = {};
-let person;
-let editDetails = {};
-
 const tname = document.querySelector("#teacher-name");
 const designation = document.querySelector("#teacher-role");
 const email = document.querySelector("#teacher-email");
@@ -43,39 +30,31 @@ const dept = document.querySelector("#teacher-dept");
 const rightHeadName = document.querySelector("#right-head-name");
 const addTeacher = document.querySelector("#add-teacher");
 const logoutBtn = document.querySelector("#logout");
-
 const editBtn = document.querySelector("#edit-name-details");
 const crossBtn = document.querySelector("#cross-btn");
 const editPopup = document.querySelector("#edit-popup");
 const formHeading = document.querySelector("#form-heading");
 const editSaveBtn = document.querySelector("#edit-save");
+const depts = document.querySelectorAll(".course-card");
 
 let editedName = document.querySelector("#edit-name");
 let editDesignation = document.querySelector("#edit-designation");
 let editEmail = document.querySelector("#edit-email");
 let editPhNo = document.querySelector("#edit-ph-no");
 let editPassword = document.querySelector("#edit-password");
+let currentUser, person, currentData = {}, editDetails = {};
 
-const depts = document.querySelectorAll(".course-card");
 
 onAuthStateChanged(auth, async user => {
-    if (!user) {
-        window.location.href = "../index.html";
-        return;
-    }
-
+    // if (!user) {window.location.href = "../index.html"; return;}
     const userDoc = await getDoc(doc(db, "users", user.uid));
-
     if (!userDoc.exists()) {
         window.location.href = "../index.html";
         return;
     }
-
     const role = userDoc.data().role;
-
     if (role !== "teacher" && role !== "admin") {
         await signOut(auth);
-        alert("Access denied");
         window.location.href = "../index.html";
     }
 
@@ -260,6 +239,48 @@ async function changeEmail(newEmail) {
 
 };
 
+
+
+
+const profile = document.querySelector("#name-short");
+const detailsContainer = document.querySelector("#detailsContainer")
+const media = window.matchMedia("(max-width:768px)");
+function handleScreen(e) {
+    if (!e.matches) {
+        return;
+    }
+    profile.addEventListener("click", () => {
+        detailsContainer.classList.toggle("blank");
+    })
+}
+
+handleScreen(media);
+media.addEventListener("change", handleScreen);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const featureBtn = document.querySelectorAll(".ex-fea-btn");
 const back = document.querySelector("#back");
 const featureCrossButton = document.querySelectorAll("#fea-cross-btn");
@@ -387,6 +408,6 @@ async function semesterUpgrade(checkedValues) {
     }
 }
 
-document.addEventListener("contextmenu", (e) => {
-    e.preventDefault();
-})
+// document.addEventListener("contextmenu", (e) => {
+//     e.preventDefault();
+// })
