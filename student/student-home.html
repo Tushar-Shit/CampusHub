@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal | StudySquare</title>
+    <link rel="stylesheet" href="/css/student-home.css">
+    <link rel="stylesheet" href="/css/student-home-mobile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <div class="nav">
+        <hr id="partition">
+        <hr id="partition-left">
+        <div id="navLeft">
+            <img src="/image/websiteLogo.png" alt="College Logo" id="collegeLogo" />
+            <span id="collegeName">CampusHub</span>
+        </div>
+        <button class="logout-btn" id="logout">LOGOUT <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+    </div>
+
+    <div class="shortProfile">
+        <div class="inner">
+            <span id="avatar"></span>
+            <span id="name"></span>
+        </div>
+    </div>
+
+    <div class="profile-container">
+        <div class="user-info-grid">
+            <div class="info-item">
+                <span class="info-label">Uni. Roll No.</span>
+                <span class="info-value" id="universityRoll"></span>
+                <i class="fa-regular fa-pen-to-square editIcon"></i>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Coll. Roll No.</span>
+                <span class="info-value" id="collegeRoll"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Department</span>
+                <span class="info-value" id="department"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Semester</span>
+                <span class="info-value" id="semester"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Session</span>
+                <span class="info-value" id="session"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Gender</span>
+                <span class="info-value" id="gender"></span>
+            </div>
+            <div class="info-item" style="grid-column: span 2;">
+                <span class="info-label">Mobile Number</span>
+                <span class="info-value" id="mobileNo"></span>
+                <i class="fa-regular fa-pen-to-square editIcon"></i>
+            </div>
+            <div class="info-item" style="grid-column: span 2;">
+                <span class="info-label">Email Address</span>
+                <span class="info-value" id="UserEmail"></span>
+                <i class="fa-regular fa-pen-to-square editIcon"></i>
+            </div>
+        </div>
+        <button class="changePassword-btn"><i class="fa-solid fa-key"></i> Change Password</button>
+
+    </div>
+
+    <div class="section-title firstsectiontitle">Academic Accessories </div>
+    <div class="action-row">
+        <div class="action-card" id="exmForm">
+            <i class="fa-solid fa-square-pen AAIcons"></i>
+            <p class="featureBtnText">Exam Form</p>
+        </div>
+        <div class="action-card" id="feesStructure">
+            <i class="fa-solid fa-skull-crossbones AAIcons"></i>
+            <p class="featureBtnText">Fees Structure</p>
+        </div>
+    </div>
+
+    <div class="section-title secondsectiontitle">Recent Updates</div>
+    <div id="recent-updates">
+        <div class="activity-card">
+            <div class="status-row">
+                <div>
+                    <span style="display: block; font-weight: 600;">Semester 4 Exam Form</span>
+                    <small style="color: #9aa99b;">Last applied: Mar 18, 2026</small>
+                </div>
+                <span class="status-pill">Pending</span>
+            </div>
+        </div>
+        <div class="activity-card">
+            <div class="status-row">
+                <div>
+                    <span style="display: block; font-weight: 600;">Semester 4 Exam Form</span>
+                    <small style="color: #9aa99b;">Last applied: Mar 18, 2026</small>
+                </div>
+                <span class="status-pill">Pending</span>
+            </div>
+        </div>
+        <div class="activity-card">
+            <div class="status-row">
+                <div>
+                    <span style="display: block; font-weight: 600;">Semester 4 Exam Form</span>
+                    <small style="color: #9aa99b;">Last applied: Mar 18, 2026</small>
+                </div>
+                <span class="status-pill">Pending</span>
+            </div>
+        </div>
+        <div class="activity-card">
+            <div class="status-row">
+                <div>
+                    <span style="display: block; font-weight: 600;">Semester 4 Exam Form</span>
+                    <small style="color: #9aa99b;">Last applied: Mar 18, 2026</small>
+                </div>
+                <span class="status-pill">Pending</span>
+            </div>
+        </div>
+        <div class="activity-card">
+            <div class="status-row">
+                <div>
+                    <span style="display: block; font-weight: 600;">Semester 4 Exam Form</span>
+                    <small style="color: #9aa99b;">Last applied: Mar 18, 2026</small>
+                </div>
+                <span class="status-pill">Pending</span>
+            </div>
+        </div>
+        <div class="activity-card">
+            <div class="status-row">
+                <div>
+                    <span style="display: block; font-weight: 600;">Semester 4 Exam Form</span>
+                    <small style="color: #9aa99b;">Last applied: Mar 18, 2026</small>
+                </div>
+                <span class="status-pill">Pending</span>
+            </div>
+        </div>
+        <div class="activity-card">
+            <div class="status-row">
+                <div>
+                    <span style="display: block; font-weight: 600;">Semester 4 Exam Form</span>
+                    <small style="color: #9aa99b;">Last applied: Mar 18, 2026</small>
+                </div>
+                <span class="status-pill">Pending</span>
+            </div>
+        </div>
+        <div class="activity-card">
+            <div class="status-row">
+                <div>
+                    <span style="display: block; font-weight: 600;">Semester 4 Exam Form</span>
+                    <small style="color: #9aa99b;">Last applied: Mar 18, 2026</small>
+                </div>
+                <span class="status-pill">Pending</span>
+            </div>
+        </div>
+        <div class="activity-card">
+            <div class="status-row">
+                <div>
+                    <span style="display: block; font-weight: 600;">Semester 4 Exam Form</span>
+                    <small style="color: #9aa99b;">Last applied: Mar 18, 2026</small>
+                </div>
+                <span class="status-pill">Pending</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- popups start here -->
+    <div id="studentModal" class="modal blackout">
+        <div class="modal-content">
+            <span class="close-btn" id="crossBtn">&times;</span>
+            <h2>Exam Apply Form</h2>
+
+            <form id="studentForm">
+                <label>Student Name</label>
+                <input type="text" id="formName" required>
+
+                <label>College Roll</label>
+                <input type="text" id="formClgRoll" required>
+
+                <label>University Roll</label>
+                <input type="text" pattern="" id="formUniRoll" required>
+
+                <label>Department</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="bca" name="dept" value="BCA" checked>
+                        <label for="cs" style="margin-bottom:0">BCA</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="bba" name="dept" value="BBA">
+                        <label for="it" style="margin-bottom:0">BBA</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="bhm" name="dept" value="BHM">
+                        <label for="ece" style="margin-bottom:0">BHM</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="bmlt" name="dept" value="BMLT">
+                        <label for="ece" style="margin-bottom:0">BMLT</label>
+                    </div>
+                </div>
+
+                <label>Semester</label>
+                <select name="semester" id="formSemester">
+                    <option value="I">1st Semester</option>
+                    <option value="II">2nd Semester</option>
+                    <option value="III">3rd Semester</option>
+                    <option value="IV">4th Semester</option>
+                    <option value="V">5th Semester</option>
+                    <option value="VI">6th Semester</option>
+                    <option value="VII">7th Semester</option>
+                    <option value="VIII">8th Semester</option>
+                </select>
+
+                <label>Mobile Number</label>
+                <input type="tel" placeholder="+91 123 456 7890" id="formMobile" required>
+
+                <button type="submit" class="submit-btn">Register Student</button>
+            </form>
+        </div>
+    </div>
+  <footer>© 2026 CampusHub</footer>
+
+    <script type="module" src="/js/student-home.js"></script>
+</body>
+
+</html>
