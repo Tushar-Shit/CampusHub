@@ -389,13 +389,12 @@ async function semesterUpgrade(checkedValues) {
     }
 }
 
-// document.addEventListener("contextmenu", (e) => {
-//     e.preventDefault();
-// })
-
-
-
 const removeDuplicate = document.querySelector("#rvm-dp");
 removeDuplicate.addEventListener("click", () => {
     alert("Work in progress");
 })
+
+const attendance = document.querySelector("#attendance");
+attendance.addEventListener("click", () => {
+    window.location.href = "attendance.html";
+});

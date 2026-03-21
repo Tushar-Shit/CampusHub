@@ -35,7 +35,7 @@ onAuthStateChanged(auth, async user => {
     if (role === "teacher" || role === "admin")
         window.location.href = "./teacher/teacher-home.html";
     else
-        window.location.href = "./student/student-home.html";
+        window.location.href = "./student/Student-Home.html";
 });
 
 signupForm.addEventListener("submit", async e => {
@@ -177,7 +177,7 @@ window.verifyOTP = async function () {
             signupContainer.style.display = "none";
 
             setTimeout(() => {
-                window.location.href = "./student/student-home.html";
+                window.location.href = "./student/Student-Home.html";
             }, 4500);
         }
         catch (err) {
@@ -226,7 +226,7 @@ loginForm.addEventListener("submit", async e => {
 
             else {
                 localStorage.setItem("Password", passwordInput.value.trim());
-                window.location.href = "./student/student-home.html";
+                window.location.href = "./student/Student-Home.html";
             }
         }
     } catch (error) {

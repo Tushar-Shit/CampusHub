@@ -7,6 +7,7 @@ import {
     updateDoc,
     query,
     where,
+    orderBy,
     getDocs,
     getDoc
 } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
@@ -137,7 +138,8 @@ async function extractData(department, semester, button) {
             collection(db, "users"),
             where("department", "==", department),
             where("semester", "==", semester),
-            where("role", "==", "student")
+            where("role", "==", "student"),
+            orderBy("rollNumber", "asc")
         );
         studentList(q);
         return;

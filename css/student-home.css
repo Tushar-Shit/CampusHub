@@ -12,7 +12,8 @@
 
 body {
     font-family: 'Segoe UI', sans-serif;
-    background-color: #f8faf9;
+
+    background: linear-gradient(150deg, #d4f9e6 30%, #ffcfd8 100%);
     margin: 0;
     color: #1b4332;
 }
@@ -31,7 +32,7 @@ body {
     align-items: center;
     font-size: 1.1rem;
     font-weight: bold;
-    color: #fff;
+    color: white;
 }
 
 #navLeft img {
@@ -81,9 +82,10 @@ body {
     font-size: 1.7rem;
     box-shadow: 0 2px 13px rgb(255, 0, 0);
     border-radius: 50%;
+    background-color: white;
 }
 
-#name {
+#fullName {
     font-size: 1.4rem;
     font-weight: bold;
     color: #fb0058;
@@ -244,12 +246,25 @@ body {
 }
 
 .status-pill {
-    background: #fb0058;
-    color: white;
     padding: 5px 12px;
     border-radius: 20px;
     font-size: 0.7rem;
     font-weight: bold;
+}
+
+.status-pending {
+    background: #3e3e3e;
+    color: white;
+}
+
+.status-approved {
+    background-color: #48ff00;
+    color: black;
+}
+
+.status-rejected {
+    background: #fb0058;
+    color: white;
 }
 
 footer {
@@ -275,7 +290,7 @@ footer {
     background-color: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(4px);
     animation: fadeIn 0.3s ease;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
 }
@@ -314,8 +329,8 @@ label {
 }
 
 
-input,
-select {
+#studentModal input,
+#studentModal select {
     width: 90%;
     padding: 1vh;
     margin-bottom: 1vh;
@@ -381,9 +396,232 @@ select:focus {
     }
 }
 
-.blackout {
+
+.changeDataContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    backdrop-filter: blur(5px);
+    z-index: 999;
+}
+
+.lllllll {
+    display: flex;
+}
+
+.changeDataBox {
+    width: 80%;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    position: relative;
+
+    animation: pop 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    text-align: center;
+    color: black;
+    max-width: 360px;
+}
+
+.liuyghj {
+    text-align: unset;
+}
+
+@keyframes pop {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.changeDataBox h2 {
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+/* floating input */
+
+.inputGroup {
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+    display: block;
+}
+
+.inputGroup input,
+.email-change-form input,
+.profile-change-form input {
+    width: 95%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+
+    box-sizing: border-box;
+    background-color: #f5f7fa;
+}
+
+.email-change-form,
+.profile-change-form {
+    padding: 20px;
+    gap: 20px;
+    flex-direction: column;
     display: none;
 }
+
+.profile-change-form {
+    display: block;
+}
+
+.email-change-form input,
+.profile-change-form input {
+    width: 100%;
+}
+
+#editFieldMessage {
+    margin-bottom: 20px;
+}
+
+
+/* label floating */
+.inputGroup label {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 13px;
+    color: #666;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+.inputGroup input:focus+label,
+.inputGroup input:valid+label {
+    top: -10px;
+    font-size: 11px;
+    color: #000000;
+}
+
+.togglePass {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.changeDataBox button {
+    width: 50%;
+    padding: 12px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #6a5cff, #8b5cf6);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.form-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.changeDataBox button:hover {
+    transform: translateY(-2px);
+}
+
+.close-button {
+    position: absolute;
+    right: 20px;
+    top: 5px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+#passError {
+    color: black;
+    font-size: 13px;
+    margin-top: 10px;
+    display: none;
+}
+
+#forgotPass {
+    background: none;
+    border: none;
+    color: #3e3e3e;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+    width: max-content;
+}
+
+#forgotPass:hover {
+    color: #0056b3;
+}
+
+
+
+#pageLoader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid white;
+    border-top: 6px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 @media (max-width:768px) {
     .nav {
@@ -393,6 +631,10 @@ select:focus {
         background: #fff;
         border-top: 3px solid rgba(66, 66, 66, 0.54);
         box-shadow: 0 0 10px black;
+    }
+
+    #navLeft {
+        color: black;
     }
 
     #navLeft img {
@@ -461,6 +703,7 @@ select:focus {
     .editIcon {
         top: 1.5vh;
         right: 5vw;
+        cursor: pointer;
     }
 
     .changePassword-btn {
@@ -496,7 +739,7 @@ select:focus {
         left: 0;
         margin-top: 2vh;
         width: 100%;
-        height: 30vh;
+        height: 240px;
         padding: 1vh 0;
         overflow-y: scroll;
         background-color: rgb(233, 233, 233);

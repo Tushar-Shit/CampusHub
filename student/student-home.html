@@ -4,21 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Portal | StudySquare</title>
-    <link rel="stylesheet" href="/css/student-home.css">
-    <link rel="stylesheet" href="/css/student-home-mobile.css">
+    <title>Student Portal</title>
+    <link rel="stylesheet" href="../css/student-home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="icon" type="image/png" href="../image/websiteLogo.png">
 </head>
 
 <body>
-
     <div class="nav">
         <hr id="partition">
         <hr id="partition-left">
         <div id="navLeft">
-            <img src="/image/websiteLogo.png" alt="College Logo" id="collegeLogo" />
+            <img src="../image/websiteLogo.png" alt="College Logo" id="collegeLogo" />
             <span id="collegeName">CampusHub</span>
         </div>
         <button class="logout-btn" id="logout">LOGOUT <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
@@ -27,50 +26,57 @@
     <div class="shortProfile">
         <div class="inner">
             <span id="avatar"></span>
-            <span id="name"></span>
+            <span id="fullName"></span>
         </div>
     </div>
 
     <div class="profile-container">
         <div class="user-info-grid">
-            <div class="info-item">
-                <span class="info-label">Uni. Roll No.</span>
+            <div class="info-item" id="uniuUpdate">
+                <span class="info-label">University Roll</span>
                 <span class="info-value" id="universityRoll"></span>
-                <i class="fa-regular fa-pen-to-square editIcon"></i>
             </div>
+
             <div class="info-item">
-                <span class="info-label">Coll. Roll No.</span>
+                <span class="info-label">College Roll</span>
                 <span class="info-value" id="collegeRoll"></span>
             </div>
+
             <div class="info-item">
                 <span class="info-label">Department</span>
                 <span class="info-value" id="department"></span>
             </div>
+
             <div class="info-item">
                 <span class="info-label">Semester</span>
                 <span class="info-value" id="semester"></span>
             </div>
+
             <div class="info-item">
                 <span class="info-label">Session</span>
                 <span class="info-value" id="session"></span>
             </div>
+
             <div class="info-item">
                 <span class="info-label">Gender</span>
                 <span class="info-value" id="gender"></span>
             </div>
+
             <div class="info-item" style="grid-column: span 2;">
                 <span class="info-label">Mobile Number</span>
                 <span class="info-value" id="mobileNo"></span>
-                <i class="fa-regular fa-pen-to-square editIcon"></i>
+                <i class="fa-regular fa-pen-to-square editIcon" data-field="mobile"></i>
             </div>
+
             <div class="info-item" style="grid-column: span 2;">
                 <span class="info-label">Email Address</span>
                 <span class="info-value" id="UserEmail"></span>
-                <i class="fa-regular fa-pen-to-square editIcon"></i>
+                <i class="fa-regular fa-pen-to-square editIcon" data-field="email"></i>
             </div>
         </div>
-        <button class="changePassword-btn"><i class="fa-solid fa-key"></i> Change Password</button>
-
+        <button class="changePassword-btn" id="ChangePasswordButton">
+            <i class="fa-solid fa-key"></i> Change Password
+        </button>
     </div>
 
     <div class="section-title firstsectiontitle">Academic Accessories </div>
@@ -87,87 +93,7 @@
 
     <div class="section-title secondsectiontitle">Recent Updates</div>
     <div id="recent-updates">
-        <div class="activity-card">
-            <div class="status-row">
-                <div>
-                    <span style="display: block; font-weight: 600;">Semester 4 Exam Form</span>
-                    <small style="color: #9aa99b;">Last applied: Mar 18, 2026</small>
-                </div>
-                <span class="status-pill">Pending</span>
-            </div>
-        </div>
-        <div class="activity-card">
-            <div class="status-row">
-                <div>
-                    <span style="display: block; font-weight: 600;">Semester 4 Exam Form</span>
-                    <small style="color: #9aa99b;">Last applied: Mar 18, 2026</small>
-                </div>
-                <span class="status-pill">Pending</span>
-            </div>
-        </div>
-        <div class="activity-card">
-            <div class="status-row">
-                <div>
-                    <span style="display: block; font-weight: 600;">Semester 4 Exam Form</span>
-                    <small style="color: #9aa99b;">Last applied: Mar 18, 2026</small>
-                </div>
-                <span class="status-pill">Pending</span>
-            </div>
-        </div>
-        <div class="activity-card">
-            <div class="status-row">
-                <div>
-                    <span style="display: block; font-weight: 600;">Semester 4 Exam Form</span>
-                    <small style="color: #9aa99b;">Last applied: Mar 18, 2026</small>
-                </div>
-                <span class="status-pill">Pending</span>
-            </div>
-        </div>
-        <div class="activity-card">
-            <div class="status-row">
-                <div>
-                    <span style="display: block; font-weight: 600;">Semester 4 Exam Form</span>
-                    <small style="color: #9aa99b;">Last applied: Mar 18, 2026</small>
-                </div>
-                <span class="status-pill">Pending</span>
-            </div>
-        </div>
-        <div class="activity-card">
-            <div class="status-row">
-                <div>
-                    <span style="display: block; font-weight: 600;">Semester 4 Exam Form</span>
-                    <small style="color: #9aa99b;">Last applied: Mar 18, 2026</small>
-                </div>
-                <span class="status-pill">Pending</span>
-            </div>
-        </div>
-        <div class="activity-card">
-            <div class="status-row">
-                <div>
-                    <span style="display: block; font-weight: 600;">Semester 4 Exam Form</span>
-                    <small style="color: #9aa99b;">Last applied: Mar 18, 2026</small>
-                </div>
-                <span class="status-pill">Pending</span>
-            </div>
-        </div>
-        <div class="activity-card">
-            <div class="status-row">
-                <div>
-                    <span style="display: block; font-weight: 600;">Semester 4 Exam Form</span>
-                    <small style="color: #9aa99b;">Last applied: Mar 18, 2026</small>
-                </div>
-                <span class="status-pill">Pending</span>
-            </div>
-        </div>
-        <div class="activity-card">
-            <div class="status-row">
-                <div>
-                    <span style="display: block; font-weight: 600;">Semester 4 Exam Form</span>
-                    <small style="color: #9aa99b;">Last applied: Mar 18, 2026</small>
-                </div>
-                <span class="status-pill">Pending</span>
-            </div>
-        </div>
+        <p style="display: flex; justify-self: center;">No exam data</p>
     </div>
 
 
@@ -178,32 +104,32 @@
             <h2>Exam Apply Form</h2>
 
             <form id="studentForm">
-                <label>Student Name</label>
+                <label for="formName">Student Name</label>
                 <input type="text" id="formName" required>
 
-                <label>College Roll</label>
+                <label for="formClgRoll">College Roll</label>
                 <input type="text" id="formClgRoll" required>
 
-                <label>University Roll</label>
-                <input type="text" pattern="" id="formUniRoll" required>
+                <label for="formUniRoll">University Roll</label>
+                <input type="tel" id="formUniRoll" minlength="11" maxlength="11" pattern="[0-9]*" required>
 
                 <label>Department</label>
                 <div class="radio-group">
                     <div class="radio-item">
-                        <input type="radio" id="bca" name="dept" value="BCA" checked>
-                        <label for="cs" style="margin-bottom:0">BCA</label>
+                        <input type="radio" id="bca" name="dept" value="BCA" required>
+                        <label for="bca" style="margin-bottom:0">BCA</label>
                     </div>
                     <div class="radio-item">
                         <input type="radio" id="bba" name="dept" value="BBA">
-                        <label for="it" style="margin-bottom:0">BBA</label>
+                        <label for="bba" style="margin-bottom:0">BBA</label>
                     </div>
                     <div class="radio-item">
                         <input type="radio" id="bhm" name="dept" value="BHM">
-                        <label for="ece" style="margin-bottom:0">BHM</label>
+                        <label for="bhm" style="margin-bottom:0">BHM</label>
                     </div>
                     <div class="radio-item">
                         <input type="radio" id="bmlt" name="dept" value="BMLT">
-                        <label for="ece" style="margin-bottom:0">BMLT</label>
+                        <label for="bmlt" style="margin-bottom:0">BMLT</label>
                     </div>
                 </div>
 
@@ -219,16 +145,114 @@
                     <option value="VIII">8th Semester</option>
                 </select>
 
-                <label>Mobile Number</label>
-                <input type="tel" placeholder="+91 123 456 7890" id="formMobile" required>
+                <label for="formMobile">Mobile Number</label>
+                <input type="tel" id="formMobile" required>
 
-                <button type="submit" class="submit-btn">Register Student</button>
+                <button type="submit" class="submit-btn">Apply</button>
             </form>
         </div>
     </div>
-  <footer>© 2026 CampusHub</footer>
 
-    <script type="module" src="/js/student-home.js"></script>
+    <div id="changePassContainer" class="changeDataContainer">
+
+        <div class="changeDataBox">
+
+            <span class="close-button" data-field="changePass">&times;</span>
+
+            <h2>Change Password</h2>
+
+            <form id="changePassForm">
+                <div class="inputGroup">
+                    <input type="password" id="currentPass" minlength="6" required>
+                    <label>Current Password</label>
+                    <span class="togglePass" data-target="currentPass">👁</span>
+                </div>
+
+                <div class="inputGroup">
+                    <input type="password" id="newPass" minlength="6" required>
+                    <label>New Password</label>
+                    <span class="togglePass" data-target="newPass">👁</span>
+                </div>
+
+                <div class="inputGroup">
+                    <input type="password" id="confirmPass" minlength="6" required>
+                    <label>Confirm Password</label>
+                    <span class="togglePass" data-target="confirmPass">👁</span>
+                </div>
+
+                <button type="submit">Update Password</button>
+            </form>
+            <div style="display: flex; width: 100%;justify-content: center;">
+                <button id="forgotPass" type="button">Forgot your Password?</button>
+            </div>
+            <p id="passError"></p>
+        </div>
+
+    </div>
+
+    <div class="changeDataContainer" id="changeEmailContainer">
+        <div class="changeDataBox liuyghj">
+            <div id="emailChangeContainer">
+                <span class="close-button" data-field="changeEmail">&times;</span>
+
+                <h2 style="text-align: center;">Change Email</h2>
+                <form id="emailChange" class="email-change-form">
+                    <div>
+                        <label for="gmailChangeEmail">New Email Address</label>
+                        <input type="email" id="gmailChangeEmail" name="gmailChangeEmail" placeholder="Enter new email"
+                            required>
+                    </div>
+
+                    <div>
+                        <label for="gmailChangePassword">Current Password</label>
+                        <input type="password" name="gmailChangePassword" id="gmailChangePassword"
+                            placeholder="Enter your password" minlength="6">
+                    </div>
+
+                    <div class="form-btn">
+                        <button type="submit">Sent OTP</button>
+                    </div>
+                </form>
+
+                <form id="otpVerify" class="email-change-form">
+                    <div>
+                        <label for="otpInput">Enter OTP</label>
+                        <input type="text" id="otpInput" name="otp" inputmode="numeric" pattern="[0-9]*" maxlength="6"
+                            placeholder="Enter 6-digit OTP" required>
+                    </div>
+
+                    <div class="form-btn">
+                        <button type="submit">Update Email</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="profileEdit">
+                <span class="close-button" data-field="changeProfileData">&times;</span>
+
+                <h3 id="profileEditHeading" style="text-align: center;"></h3>
+
+                <form id="updateProfileform" class="profile-change-form">
+                    <input type="text" id="updateProfileInput">
+                    <div class="form-btn" style="margin-top: 20px;">
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="form-btn" style="text-align: center;">
+                <span id="editFieldMessage"></span>
+            </div>
+        </div>
+    </div>
+
+    <div id="pageLoader">
+        <div class="spinner"></div>
+    </div>
+
+    <footer>© 2026 CampusHub</footer>
+
+    <script type="module" src="../js/studenthome.js"></script>
 </body>
 
 </html>

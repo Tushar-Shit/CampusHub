@@ -1,257 +1,225 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Teacher Appear</title>
-    <link rel="icon" type="image/png" href="../image/websiteLogo.png" />
-    <link rel="stylesheet" href="../css/teacher-home.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=edit_square"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-  </head>
 
-  <body>
-    <div class="dashboard-container">
-      <aside class="sidebar">
-        <!-- for mobile purpose -->
-        <div class="logo">
-          <img src="../image/websiteLogo.png" alt="CampusHub-Logo">
-          <span>CampusHub</span>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teacher Appear</title>
+  <link rel="icon" type="image/png" href="../image/websiteLogo.png" />
+  <link rel="stylesheet" href="../css/teacher-home.css" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=edit_square" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="../js/common.js"></script>
+</head>
 
-        <div class="teacher-profile">
-          <div class="profile-avatar" id="name-short"></div>
-          <div id="edit-name-details">
-            <div id="xfvdg">
-              <h2 class="teacher-name" id="teacher-name"></h2>
-              <i
-                class="fa-solid fa-pen-to-square faah"
-                id="profile-edit-icon"
-              ></i>
-              <p class="teacher-role" id="teacher-role"></p>
-            </div>
+<body>
+  <div class="dashboard-container">
+    <aside class="sidebar">
+      <!-- for mobile purpose -->
+      <div class="logo">
+        <img src="../image/websiteLogo.png" alt="CampusHub-Logo">
+        <span>CampusHub</span>
+      </div>
+
+      <div class="teacher-profile">
+        <div class="profile-avatar" id="name-short"></div>
+        <div id="edit-name-details">
+          <div id="xfvdg">
+            <h2 class="teacher-name" id="teacher-name"></h2>
+            <i class="fa-solid fa-pen-to-square faah" id="profile-edit-icon"></i>
+            <p class="teacher-role" id="teacher-role"></p>
           </div>
-        </div>
-        <!-- profile edit popup -->
-        <form id="edit-popup" class="state-hide">
-          <div id="main-edit-container">
-            <div id="heading-part">
-              <h2 id="form-heading"></h2>
-              <i class="fa-solid fa-xmark" id="cross-btn"></i>
-            </div>
-
-            <div class="field-container">
-              <label for="edit-name">Name</label>
-              <input type="text" id="edit-name" />
-            </div>
-            <div class="field-container">
-              <label for="edit-designation">Designation</label>
-              <input type="text" id="edit-designation" />
-            </div>
-            <div class="field-container">
-              <label for="edit-email">E-mail</label>
-              <input type="email" id="edit-email" />
-            </div>
-            <div class="field-container">
-              <label for="edit-password">Password</label>
-              <input type="password" id="edit-password" />
-            </div>
-            <div class="field-container">
-              <label for="edit-ph-no">Mobile No.</label>
-              <input type="text" id="edit-ph-no" />
-            </div>
-            <div class="field-container">
-              <label>Department</label>
-              <div class="radio-options">
-                <input
-                  type="radio"
-                  name="edit-dept"
-                  id="dept-bca"
-                  value="Bachelor Of Computer Application (BCA)"
-                  required
-                />
-                <label for="dept-bca">BCA</label>
-
-                <input
-                  type="radio"
-                  name="edit-dept"
-                  id="dept-bba"
-                  value="Bachelor Of Business Administration(BBA)"
-                />
-                <label for="dept-bba">BBA</label>
-
-                <input
-                  type="radio"
-                  name="edit-dept"
-                  id="dept-bhm"
-                  value="Bachelor Of Hospital Management(BHM)"
-                />
-                <label for="dept-bhm">BHM</label>
-
-                <input
-                  type="radio"
-                  name="edit-dept"
-                  value="Bachelor Of Medical Laboratory Technology(BMLT)"
-                  id="dept-bmlt"
-                  required
-                />
-                <label for="dept-bmlt">BMLT</label>
-              </div>
-            </div>
-            <input type="submit" id="edit-save" />
-          </div>
-        </form>
-
-        <div class="teacher-details blank" id="detailsContainer">
-          <div class="detail-item">
-            <label>Email</label>
-            <p id="teacher-email"></p>
-          </div>
-          <div class="detail-item">
-            <label>Phone</label>
-            <p id="teacher-phone"></p>
-          </div>
-          <div class="detail-item">
-            <label>Department </label>
-            <p id="teacher-dept"></p>
-          </div>
-          <!-- <div class="detail-item">
-            <label>Employee ID</label>
-            <p></p>
-          </div> -->
-        </div>
-
-        <div class="sidebar-footer" id="ure-ja">
-          <button class="add-dept-btn" id="add-teacher">Add Teacher</button>
-          <button class="add-dept-btn" id="logout">Logout</button>
-        </div>
-      </aside>
-
-      <main class="main-content">
-        <header>
-          <h1>Welcome back, <span id="right-head-name"></span></h1>
-          <hr />
-          <p class="subtitle">Select a department to manage tasks...</p>
-        </header>
-
-        <section class="card-grid">
-          <div class="course-card">BCA</div>
-          <div class="course-card">BBA</div>
-          <div class="course-card">BHM</div>
-          <div class="course-card">BMLT</div>
-        </section>
-        <hr id="secondhr" />
-        <section id="extra-fea-con">
-          <div class="sub-con">
-            <div class="ex-fea-btn">
-              <!-- <i class="fa-solid fa-bullhorn"></i> -->
-              <!-- <i class="fa-solid fa-address-book"></i> -->
-              <i class="fa-solid fa-arrow-trend-up" id="sem-up"></i>
-            </div>
-            <p class="ex-fea-btn-txt">Semester upgradation</p>
-          </div>
-          <div class="sub-con">
-            <div class="ex-fea-btn">
-              <i class="fa-solid fa-triangle-exclamation" id="rvm-dp"></i>
-            </div>
-            <p class="ex-fea-btn-txt">Remove Duplicates</p>
-          </div>
-        </section>
-      </main>
-
-      <!-- after clicking Semester upgradation button  -->
-      <div id="back" class="state-hide">
-        
-        <div id="fore" class="interface">
-          <!-- first interface  -->
-          <div id="refgs">
-            <span id="headBar">Alert: Semester upgradation</span>
-            <i class="fa-solid fa-xmark tyui" id="fea-cross-btn"></i>
-          </div>
-          <p id="notice-txt">
-            Before clicking <b>Proceed</b>, please note that this action will
-            upgrade a <b>specific semester of all departments by one</b>. For
-            example,
-            <b
-              >Semester 1 will become Semester 2, Semester 2 will become
-              Semester 3</b
-            >, and so on. Please confirm only if you want to proceed with
-            upgrading all department's semesters.
-          </p>  
-
-          <!-- second interface  -->
-            <div id="fore1" class="state-hide">
-            <!-- <h2 id="thavags" class="tdgdh"></h2> -->
-            <div class="checkbox-block">
-              <label>
-                <input type="checkbox" name="semester" value="I" />Semester 1</label
-              >
-              <label>
-                <input type="checkbox" name="semester" value="V" />Semester 5</label
-              >
-            </div>
-            <div class="checkbox-block">
-              <label>
-                <input type="checkbox" name="semester" value="II" /> Semester 2</label
-              >
-              <label>
-                <input type="checkbox" name="semester" value="VI" /> Semester 6</label
-              >
-            </div>
-            <div class="checkbox-block">
-              <label>
-                <input type="checkbox" name="semester" value="III" /> Semester 3</label
-              >
-              <label>
-                <input type="checkbox" name="semester" value="VII" /> Semester 7</label
-              >
-            </div>
-            <div class="checkbox-block last">
-              <label>
-                <input type="checkbox" name="semester" value="IV" /> Semester 4</label
-              >
-              <label>
-                <input type="checkbox" name="semester" value="VIII" /> Semester 8</label
-              >
-            </div>
-          </div>  
-          
-          <!-- third interface  -->
-          <div id="lst_con" class="state-hide">
-            <!-- <h2 id="thavags" class="tdgdh">Last Time Confirmation</h2> -->
-            <p id="last-message" class="ojbsjnxs">Your selected semester :-<br> <br>
-              <span id="tsgsvfd"></span>
-              <p class="ojbsjnxs">To upgrade click <B>'Yes'</b> otherwise <b>'No'</b>.</p>
-            </p>
-            <div class="y-n-c">
-              <button id="fea-cross-btn" class="last-confirm-btn ">No</button>
-              <button id="yes" class="last-confirm-btn ">Yes</button>
-            </div>
-          </div> 
-          <button id="notice-confirm" class="tehewwhb">Proceed</button>
-          <button id="notice-confirm1" class="tehewwhb state-hide">Okay</button>
-       
-          <!-- fourth interface after upgradation message -->
-           <p id="suc-mess" class="tdgsbdh state-hide">Upgradation process completed !<br>
-          you can check it on department's semester section. Just click the Department option 
-          then select specified semester. Click the cross icon to proceed.</p>
-        
         </div>
       </div>
-    </div>
+      <!-- profile edit popup -->
+      <form id="edit-popup" class="state-hide">
+        <div id="main-edit-container">
+          <div id="heading-part">
+            <h2 id="form-heading"></h2>
+            <i class="fa-solid fa-xmark" id="cross-btn"></i>
+          </div>
 
-    <div id="pageLoader">
-      <div class="spinner"></div>
+          <div class="field-container">
+            <label for="edit-name">Name</label>
+            <input type="text" id="edit-name" />
+          </div>
+          <div class="field-container">
+            <label for="edit-designation">Designation</label>
+            <input type="text" id="edit-designation" />
+          </div>
+          <div class="field-container">
+            <label for="edit-email">E-mail</label>
+            <input type="email" id="edit-email" />
+          </div>
+          <div class="field-container">
+            <label for="edit-password">Password</label>
+            <input type="password" id="edit-password" />
+          </div>
+          <div class="field-container">
+            <label for="edit-ph-no">Mobile No.</label>
+            <input type="text" id="edit-ph-no" />
+          </div>
+          <div class="field-container">
+            <label>Department</label>
+            <div class="radio-options">
+              <input type="radio" name="edit-dept" id="dept-bca" value="Bachelor Of Computer Application (BCA)"
+                required />
+              <label for="dept-bca">BCA</label>
+
+              <input type="radio" name="edit-dept" id="dept-bba" value="Bachelor Of Business Administration(BBA)" />
+              <label for="dept-bba">BBA</label>
+
+              <input type="radio" name="edit-dept" id="dept-bhm" value="Bachelor Of Hospital Management(BHM)" />
+              <label for="dept-bhm">BHM</label>
+
+              <input type="radio" name="edit-dept" value="Bachelor Of Medical Laboratory Technology(BMLT)"
+                id="dept-bmlt" required />
+              <label for="dept-bmlt">BMLT</label>
+            </div>
+          </div>
+          <input type="submit" id="edit-save" />
+        </div>
+      </form>
+
+      <div class="teacher-details blank" id="detailsContainer">
+        <div class="detail-item">
+          <label>Email</label>
+          <p id="teacher-email"></p>
+        </div>
+        <div class="detail-item">
+          <label>Phone</label>
+          <p id="teacher-phone"></p>
+        </div>
+        <div class="detail-item">
+          <label>Department </label>
+          <p id="teacher-dept"></p>
+        </div>
+      </div>
+
+      <div class="sidebar-footer" id="ure-ja">
+        <button class="add-dept-btn" id="add-teacher">Add Teacher</button>
+        <button class="add-dept-btn" id="logout">Logout</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header>
+        <h1>Welcome back, <span id="right-head-name"></span></h1>
+        <hr />
+        <p class="subtitle">Select a department to manage tasks...</p>
+      </header>
+
+      <section class="card-grid">
+        <div class="course-card">BCA</div>
+        <div class="course-card">BBA</div>
+        <div class="course-card">BHM</div>
+        <div class="course-card">BMLT</div>
+      </section>
+      <hr id="secondhr" />
+      <section id="extra-fea-con">
+
+        <div class="sub-con">
+          <div class="ex-fea-btn">
+            <i class="fa-solid fa-arrow-trend-up" id="sem-up"></i>
+          </div>
+          <p class="ex-fea-btn-txt">Semester upgradation</p>
+        </div>
+
+        <div class="sub-con">
+          <div class="ex-fea-btn">
+            <i class="fa-solid fa-triangle-exclamation" id="rvm-dp"></i>
+          </div>
+          <p class="ex-fea-btn-txt">Remove Duplicates</p>
+        </div>
+        <!-- new text -->
+        <div class="sub-con">
+          <div class="ex-fea-btn">
+            <i class="fa-solid fa-clipboard-user" id="attendance"></i>
+          </div>
+          <p class="ex-fea-btn-txt">Attendance</p>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- after clicking Semester upgradation button  -->
+    <div id="back" class="state-hide">
+
+      <div id="fore" class="interface">
+        <!-- first interface  -->
+        <div id="refgs">
+          <span id="headBar">Alert: Semester upgradation</span>
+          <i class="fa-solid fa-xmark tyui" id="fea-cross-btn"></i>
+        </div>
+        <p id="notice-txt">
+          Before clicking <b>Proceed</b>, please note that this action will
+          upgrade a <b>specific semester of all departments by one</b>. For
+          example,
+          <b>Semester 1 will become Semester 2, Semester 2 will become
+            Semester 3</b>, and so on. Please confirm only if you want to proceed with
+          upgrading all department's semesters.
+        </p>
+
+        <!-- second interface  -->
+        <div id="fore1" class="state-hide">
+          <!-- <h2 id="thavags" class="tdgdh"></h2> -->
+          <div class="checkbox-block">
+            <label>
+              <input type="checkbox" name="semester" value="I" />Semester 1</label>
+            <label>
+              <input type="checkbox" name="semester" value="V" />Semester 5</label>
+          </div>
+          <div class="checkbox-block">
+            <label>
+              <input type="checkbox" name="semester" value="II" /> Semester 2</label>
+            <label>
+              <input type="checkbox" name="semester" value="VI" /> Semester 6</label>
+          </div>
+          <div class="checkbox-block">
+            <label>
+              <input type="checkbox" name="semester" value="III" /> Semester 3</label>
+            <label>
+              <input type="checkbox" name="semester" value="VII" /> Semester 7</label>
+          </div>
+          <div class="checkbox-block last">
+            <label>
+              <input type="checkbox" name="semester" value="IV" /> Semester 4</label>
+            <label>
+              <input type="checkbox" name="semester" value="VIII" /> Semester 8</label>
+          </div>
+        </div>
+
+        <!-- third interface  -->
+        <div id="lst_con" class="state-hide">
+          <!-- <h2 id="thavags" class="tdgdh">Last Time Confirmation</h2> -->
+          <p id="last-message" class="ojbsjnxs">Your selected semester :-<br> <br>
+            <span id="tsgsvfd"></span>
+          <p class="ojbsjnxs">To upgrade click <B>'Yes'</b> otherwise <b>'No'</b>.</p>
+          </p>
+          <div class="y-n-c">
+            <button id="fea-cross-btn" class="last-confirm-btn ">No</button>
+            <button id="yes" class="last-confirm-btn ">Yes</button>
+          </div>
+        </div>
+        <button id="notice-confirm" class="tehewwhb">Proceed</button>
+        <button id="notice-confirm1" class="tehewwhb state-hide">Okay</button>
+
+        <!-- fourth interface after upgradation message -->
+        <p id="suc-mess" class="tdgsbdh state-hide">Upgradation process completed !<br>
+          you can check it on department's semester section. Just click the Department option
+          then select specified semester. Click the cross icon to proceed.</p>
+
+      </div>
     </div>
-    <script type="module" src="../js/teacher-home.js"></script>
-  </body>
+  </div>
+
+  <div id="pageLoader">
+    <div class="spinner"></div>
+  </div>
+  <script type="module" src="../js/teacher-home.js"></script>
+</body>
+
 </html>
