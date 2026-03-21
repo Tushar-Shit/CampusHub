@@ -1,7 +1,7 @@
 import {
     auth,
     db
-} from "./firebase.js";
+} from "../js/firebase.js";
 
 import {
     onAuthStateChanged,
@@ -118,6 +118,7 @@ onAuthStateChanged(auth, async user => {
 
         userDataGlobal = userDoc.data();
         sessionStorage.setItem("data", JSON.stringify(userDataGlobal));
+        
 
         //Account Deelete logic
         if (userDataGlobal.status === "Deleted" && !deleting) {
@@ -186,6 +187,9 @@ crossBtn.addEventListener("click", () => {
 feesStructure.addEventListener("click", () => {
     alert("Work in Progress...")
 });
+attendance.addEventListener("click",()=>{
+    window.location.href = "../student/attendanceStatus.html"
+})
 
 function formDataInput(userData) {
     formName.value = userData.name;

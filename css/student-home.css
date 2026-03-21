@@ -12,7 +12,7 @@
 
 body {
     font-family: 'Segoe UI', sans-serif;
-
+    min-height: 100vh;
     background: linear-gradient(150deg, #d4f9e6 30%, #ffcfd8 100%);
     margin: 0;
     color: #1b4332;
@@ -227,7 +227,7 @@ body {
     height: 60%;
     padding: 10px 0;
     overflow-y: scroll;
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(255, 14, 14);
 }
 
 .activity-card {

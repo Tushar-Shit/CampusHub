@@ -90,7 +90,8 @@ signupForm.addEventListener("submit", async e => {
         admissionYear,
         mobile,
         email,
-        password
+        password,
+        collRoll
     }));
 
     localStorage.setItem("Password", password.trim());
@@ -119,7 +120,8 @@ window.verifyOTP = async function () {
         admissionYear,
         mobile,
         email,
-        password
+        password,
+        collRoll
     } = signupData;
 
     const inputOTP = document.getElementById("otpInput").value;
@@ -164,11 +166,12 @@ window.verifyOTP = async function () {
                 department: dept,
                 collegeRoll: clgRoll,
                 semester,
-                universityRoll,
-                admissionYear,
+                universityRoll: Number(universityRoll),
+                admissionYear: Number(admissionYear),
                 mobile,
                 email,
                 createdAt: new Date(),
+                rollNumber: Number(collRoll),
                 status: "Active"
             });
 

@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-import { db, auth } from "./firebase.js";
+import { db, auth, rtdb } from "./firebase.js";
+import { ref, set, getDatabase, remove } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-database.js";
 import {
     createUserWithEmailAndPassword,
     onAuthStateChanged,
@@ -37,6 +38,7 @@ const phNo = document.querySelector("#teacher-phone");
 const dept = document.querySelector("#teacher-dept");
 const rightHeadName = document.querySelector("#right-head-name");
 const addTeacher = document.querySelector("#add-teacher");
+const semUpgradationBtn = document.querySelector("#sem-up");
 const logoutBtn = document.querySelector("#logout");
 const editBtn = document.querySelector("#edit-name-details");
 const crossBtn = document.querySelector("#cross-btn");
@@ -91,7 +93,10 @@ onAuthStateChanged(auth, async user => {
         if (person.trim() !== "admin") {
             addTeacher.innerHTML = "";
             addTeacher.style.display = "none";
+            semUpgradationBtn.parentElement.parentElement.innerHTML = "";
+            semUpgradationBtn.parentElement.parentElement.style.display = "none";
         }
+
         pageLoader.style.display = "none";
         document.querySelector(".dashboard-container").style.display = "flex";
 
@@ -134,7 +139,6 @@ editSaveBtn.addEventListener("click", async function (e) {
         if (editedName.value.trim() !== "") editDetails["name"] = editedName.value;
         if (editDesignation.value.trim() !== "") editDetails["designation"] = editDesignation.value;
         if (editEmail.value.trim() !== "" && editEmail.value.trim() !== currentData.email) {
-            console.log("process start");
             changeEmail(editEmail.value.trim());
         }
         if (editPhNo.value.trim() !== "") editDetails["mobile"] = editPhNo.value;
@@ -159,8 +163,10 @@ editSaveBtn.addEventListener("click", async function (e) {
             editEmail.value.trim() === "" ||
             editPhNo.value.trim() === "" ||
             editPassword.value.trim() === ""
-        )
-            alert("please fill the form accrodingly.");
+        ) {
+            alert("please fill the form accrodingly. try again");
+            return;
+        }
         else {
             editDetails["name"] = editedName.value;
             editDetails["designation"] = editDesignation.value;
@@ -188,11 +194,41 @@ editSaveBtn.addEventListener("click", async function (e) {
         const secondaryAuth = getAuth(secondaryApp);
 
         try {
+            alert("Click OK to start assigning teachers. This may take up to 30 seconds. Please do not close or refresh the page.");
+            pageLoader.style.display = "flex";
             const userCred = await createUserWithEmailAndPassword(secondaryAuth, editEmail.value, editPassword.value);
             await setDoc(doc(db, "users", userCred.user.uid), editDetails);
-        } catch (error) { console.log("fail to add teacher", error); }
+
+            const querySnapshot = await getDocs(collection(db, "users"));
+
+            querySnapshot.forEach((doc) => {
+                const usersData = doc.data();
+                if (usersData.role === "admin" || usersData.role === "teacher") {
+                    addUser(doc.id, usersData.name, usersData.role);
+                }
+            });
+        }
+        catch (error) {
+            console.log("fail to add teacher", error);
+            pageLoader.style.display = "none";
+        }
     }
 });
+
+async function addUser(uid, name, role) {
+    try {
+        await set(ref(rtdb, "users/" + uid), {
+            name: name,
+            role: role
+        });
+
+        console.log("✅ User added successfully");
+    } catch (error) {
+        console.error("❌ Error:", error.message);
+    }
+    pageLoader.style.display = "none";
+    alert("Teacher has been added successfully.");
+}
 
 logoutBtn.addEventListener("click", async () => {
     try {
@@ -323,15 +359,19 @@ checkboxes.forEach(cb => {
 
 featureBtn.forEach(btn => {
     btn.addEventListener("click", e => {
-        if (e.target.id === "sem-up") {
+        if (e.target.id === "sem-up" && person.trim() === "admin") {
             toggle(back, true);
+            document.body.style.overflow = "hidden";
         }
     });
 });
 
 //close button logic
 featureCrossButton.forEach(btn => {
-    btn.addEventListener("click", resetUI);
+    btn.addEventListener("click", () => {
+        document.body.style.overflow = "auto";
+        resetUI();
+    });
 });
 
 //proceed button
@@ -359,22 +399,44 @@ okayBtn.addEventListener("click", () => {
 yesBtn.addEventListener("click", async () => {
     headBar.innerText = "";
 
+    pageLoader.style.display = "flex";
+
+    await semesterUpgrade(checkedValues);
     toggle(message_succ, true);
     toggle(thirdInterface, false);
 
-    await semesterUpgrade(checkedValues);
+    pageLoader.style.display = "none";
 });
 
 //update semester in DB
 async function semesterUpgrade(checkedValues) {
+
     const q = query(
         collection(db, "users"),
         where("semester", "in", checkedValues)
     );
 
     const snap = await getDocs(q);
+
+    const databasess = getDatabase();
+    const departments = ["BCA", "BBA", "BHM", "BMLT"];
+
+    try {
+        for (let sem of checkedValues) {
+            for (let dept of departments) {
+                const semRef = ref(databasess, `attendance/${dept}/${sem}`);
+                await remove(semRef);
+                console.log(`✅ ${dept} ${sem} deleted`);
+            }
+        }
+        console.log("Selected semesters deleted successfully");
+    } catch (error) {
+        console.error("Error deleting attendance:");
+    }
+
     for (const user of snap.docs) {
         const semester = user.data().semester;
+
         if (semester === "VIII") {
             await updateDoc(doc(db, "users", user.id), {
                 semester: null,
@@ -384,11 +446,9 @@ async function semesterUpgrade(checkedValues) {
             await updateDoc(doc(db, "users", user.id), {
                 semester: semesterMap[semester]
             });
-
         }
     }
 }
-
 const removeDuplicate = document.querySelector("#rvm-dp");
 removeDuplicate.addEventListener("click", () => {
     alert("Work in progress");
