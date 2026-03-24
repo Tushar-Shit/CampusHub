@@ -127,6 +127,7 @@ window.verifyOTP = async function () {
     const inputOTP = document.getElementById("otpInput").value;
     const ref = doc(db, "otp", email);
     const snap = await getDoc(ref);
+    sessionStorage.setItem()
 
     if (!snap.exists()) {
         alert("OTP not found");
@@ -204,6 +205,7 @@ window.verifyOTP = async function () {
 loginForm.addEventListener("submit", async e => {
     e.preventDefault();
 
+    localStorage.setItem("Password", passwordInput.value.trim());
     pageLoader.style.display = "flex";
 
     try {
@@ -228,7 +230,6 @@ loginForm.addEventListener("submit", async e => {
             }
 
             else {
-                localStorage.setItem("Password", passwordInput.value.trim());
                 window.location.href = "./student/Student-Home.html";
             }
         }
@@ -264,8 +265,7 @@ forgotPass.addEventListener("click", async () => {
 });
 
 showPassword.addEventListener("change", () => {
-    passwordInput.type =
-        showPassword.checked ? "text" : "password";
+    passwordInput.type = showPassword.checked ? "text" : "password";
 });
 
 function startTimer() {

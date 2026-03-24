@@ -8,7 +8,7 @@
     <title>CampusHub</title>
     <link rel="stylesheet" href="./css/index.css">
     <link rel="icon" type="image/png" href="./image/websiteLogo.png">
-    <script defer src="https://unpkg.com/tesseract.js@v5.0.0/dist/tesseract.min.js"></script>
+    <script src="https://unpkg.com/tesseract.js@v5.0.0/dist/tesseract.min.js"></script>
 
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Betania+Patmos+In&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Playwrite+AT:ital,wght@0,100..400;1,100..400&family=Playwrite+NZ+Basic:wght@100..400&family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap");
@@ -26,8 +26,10 @@
                 <span id="collegeName">CampusHub</span>
             </div>
             <div id="navRight">
-                <a href="./about.html" id="about" class="state-hide">About</a>
-                <a href="./contact.html" id="contact" class="state-hide">Contact</a>
+                <div class="jjk">
+                    <a href="./about.html" id="about" class="state-hide">About</a>
+                    <a href="./contact.html" id="contact" class="state-hide">Contact</a>
+                </div>
                 <svg width="25" height="30" viewBox="0 0 24 24" fill="white" id="menuButton">
                     <rect y="4" width="24" height="2"></rect>
                     <rect y="11" width="24" height="2"></rect>
@@ -35,12 +37,17 @@
                 </svg>
             </div>
         </div>
-        <button id="teacherButton" class="enterButtons">Teacher Login</button>
-        <button id="studentButton" class="enterButtons">Student Login</button>
-
+        <div class="loginbtncontainer">
+            <button id="teacherButton" class="enterButtons">Teacher Login</button>
+            <button id="studentButton" class="enterButtons">Student Login</button>
+        </div>
         <div id="heroSection">
             <h1 id="WelcomeText">Welcome to CampusHub</h1>
             <h2 id="secondWelcomeMessage">Manage Academics with Digital touch</h2>
+            <div class="signupText">
+                <span>New to CampusHub?</span>
+                <span id="signupBTN">Sign up</span>
+            </div>
         </div>
     </div>
 

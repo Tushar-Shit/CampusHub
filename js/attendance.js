@@ -14,7 +14,7 @@ import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
 
-import { ref, update, get} from "https://www.gstatic.com/firebasejs/12.9.0/firebase-database.js";
+import { ref, update, get } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-database.js";
 
 const heading = document.querySelector("#heading");
 const date = document.querySelector("#current-date");
@@ -213,7 +213,6 @@ const editBtn = document.querySelector("#btn-edit");
 
 editBtn.addEventListener("click", async () => {
     try {
-        // ✅ Validate selection
         if (!courseValue || !sem) {
             alert("Please select course and semester first");
             return;
@@ -221,7 +220,6 @@ editBtn.addEventListener("click", async () => {
 
         const date = new Date().toLocaleDateString('en-CA');;
 
-        // ✅ 1. Fetch attendance
         const attendanceRef = ref(rtdb, `attendance/${courseValue}/${sem}/${date}`);
         const snapshot = await get(attendanceRef);
 
@@ -232,7 +230,6 @@ editBtn.addEventListener("click", async () => {
 
         const attendanceData = snapshot.val();
 
-        // ✅ 2. Fetch students
         const q = query(
             collection(db, "users"),
             where("department", "==", courseValue),
@@ -243,10 +240,8 @@ editBtn.addEventListener("click", async () => {
 
         const querySnapshot = await getDocs(q);
 
-        // ✅ 3. Clear table
         tableBody.innerHTML = "";
 
-        // ✅ 4. Render + apply attendance
         querySnapshot.forEach((docSnap) => {
             const data = docSnap.data();
             const roll = String(data.rollNumber).trim();
@@ -269,7 +264,6 @@ editBtn.addEventListener("click", async () => {
             tableBody.appendChild(row);
         });
 
-        // ✅ Close popup
         back.classList.add("state-hide");
 
     } catch (error) {
@@ -277,3 +271,22 @@ editBtn.addEventListener("click", async () => {
         alert("Something went wrong");
     }
 });
+
+
+async function fetchAttendance(course, sem, date) {
+    try {
+        const attendanceRef = ref(rtdb, `attendance/${course}/${sem}/${date}`);
+        const snapshot = await get(attendanceRef);
+
+        if (snapshot.exists()) {
+            const data = snapshot.val();
+            console.log("Attendance:", data);
+            return data;
+        } else {
+            console.log("No data found");
+            return null;
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}

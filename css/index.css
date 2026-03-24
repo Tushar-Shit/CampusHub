@@ -101,7 +101,7 @@ button {
     background: #2563EB;
     position: absolute;
     top: 2.5vh;
-    right: 35vw;
+    right: 35vw !important;
 }
 
 #teacherButton:hover {
@@ -134,7 +134,7 @@ button {
 }
 
 #WelcomeText {
-    font-size: 70px;
+    font-size: 4.5rem;
     font-family: "Playwrite AT";
 }
 
@@ -257,6 +257,34 @@ select {
 
 #signupTextOnLogin {
     align-self: center;
+}
+
+.signupText {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px 25px;
+    border-radius: 15px;
+    align-items: center;
+    display: inline-flex;
+    gap: 10px;
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    font-family: "SN Pro";
+}
+
+.jjk {
+    display: flex;
+    gap: 15px;
+}
+
+#signupBTN {
+    background: linear-gradient(45deg, #ff7a18, #ffb347);
+    border: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
 }
 
 #forgotPass,
@@ -469,20 +497,25 @@ select {
         right: 2vh;
     }
 
-    #teacherButton {
+    .enterButtons {
+        width: 35%;
         position: absolute;
+    }
+
+    .signupText {
+        position: absolute;
+        margin-top: 25rem;
+
+    }
+
+    #teacherButton {
         top: 55%;
-        left: 33%;
-        translate: -50% -50%;
-        width: max-content;
+        left: 12%;
     }
 
     #studentButton {
-        position: absolute;
         top: 55%;
-        right: 0;
-        translate: -50% -50%;
-        width: max-content;
+        right: 12%;
     }
 
     #menuButton {
@@ -490,7 +523,7 @@ select {
     }
 
 
-    #WelcomeText {
+     #WelcomeText {
         position: relative;
         top: -8vh;
         font-size: 40px;

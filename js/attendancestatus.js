@@ -38,10 +38,7 @@ const today = new Date().toLocaleDateString('en-US', {
 });
 
 
-const aaatoday = new Date();
-
-
-const todayKey = aaatoday.toLocaleDateString('en-CA');
+const todayKey = new Date().toLocaleDateString('en-CA');
 
 todayDate.innerHTML = today;
 
@@ -92,6 +89,9 @@ async function fetchAttendance(course, sem, date, roll) {
                 const status = data[roll];
                 showTodayAttendance(status);
             }
+        }
+        else{
+           mainCard.style.display = "none"; 
         }
     } catch (error) {
         console.error("Error fetching attendance:", error);

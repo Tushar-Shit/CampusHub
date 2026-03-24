@@ -188,7 +188,7 @@ feesStructure.addEventListener("click", () => {
     alert("Work in Progress...")
 });
 attendance.addEventListener("click",()=>{
-    window.location.href = "../student/attendanceStatus.html"
+    window.location.href = "../student/attendancestatus.html"
 })
 
 function formDataInput(userData) {
@@ -548,7 +548,7 @@ updateProfileform.addEventListener("submit", async (e) => {
                 mobile: value
             });
 
-            editFieldMessage.innerText = "Mobile updated ✅";
+            editFieldMessage.innerText = "Mobile updated";
         }
 
         else if (profileEditHeading.innerText === "Update Your University Roll") {
@@ -564,18 +564,18 @@ updateProfileform.addEventListener("submit", async (e) => {
                     universityRoll: value
                 });
 
-                editFieldMessage.innerText = "University Roll Updated ✅";
+                editFieldMessage.innerText = "University Roll Updated";
                 setTimeout(() => {
                     location.reload();
                 }, 1500);
             } else {
-                editFieldMessage.innerText = "Invalid Roll ❌";
+                editFieldMessage.innerText = "Invalid Roll";
             }
         }
 
     } catch (error) {
         console.error(error);
-        editFieldMessage.innerText = "Update failed ❌";
+        editFieldMessage.innerText = "Update failed";
     } finally {
         pageLoader.style.display = "none";
         updateProfileform.reset();
@@ -595,7 +595,7 @@ emailChange.addEventListener("submit", async function (e) {
     const gmailChangePassword = document.getElementById("gmailChangePassword").value.trim();
     newEmailGlobal = gmailChangeEmail;
     if (gmailChangeEmail === userDataGlobal.email) {
-        editFieldMessage.innerHTML = "⚠️ You are already using this email address";
+        editFieldMessage.innerHTML = "You are already using this email address";
         pageLoader.style.display = "none";
         return;
     }
@@ -698,25 +698,25 @@ otpVerify.addEventListener("submit", async function (e) {
         const storedOtp = data.otp;
 
         if (Date.now() > data.expire) {
-            editFieldMessage.innerHTML = `OTP expired ⏰`;
+            editFieldMessage.innerHTML = `OTP expired`;
             await deleteDoc(ref);
             return;
         }
 
         if (data.attempts >= 3) {
-            editFieldMessage.innerHTML = `Too many attempts ❌`;
+            editFieldMessage.innerHTML = `Too many attempts`;
             await deleteDoc(ref);
             return;
         }
 
         if (Number(otpInput) === storedOtp) {
-            editFieldMessage.innerHTML = `OTP Verified ✅`;
+            editFieldMessage.innerHTML = `OTP Verified`;
             await deleteDoc(ref);
 
             await updateUserEmail(newEmailGlobal);
             otpVerify.reset();
         } else {
-            editFieldMessage.innerHTML = `Wrong OTP ❌`;
+            editFieldMessage.innerHTML = `Wrong OTP`;
             await updateDoc(ref, {
                 attempts: data.attempts + 1
             });
@@ -744,17 +744,17 @@ async function updateUserEmail(pendingEmail) {
     catch (error) {
 
         if (error.code === "auth/email-already-in-use") {
-            editFieldMessage.innerHTML = "❌ This email is already in use";
+            editFieldMessage.innerHTML = "This email is already in use";
             editFieldMessage.style.color = "red";
         }
         else if (error.code === "auth/invalid-email") {
-            editFieldMessage.innerHTML = "❌ Invalid email format";
+            editFieldMessage.innerHTML = "Invalid email format";
         }
         else if (error.code === "auth/requires-recent-login") {
-            editFieldMessage.innerHTML = "⚠️ Session expired. Please login again";
+            editFieldMessage.innerHTML = "Session expired. Please login again";
         }
         else {
-            editFieldMessage.innerHTML = "❌ Failed to update email";
+            editFieldMessage.innerHTML = "Failed to update email";
         }
     }
     finally {

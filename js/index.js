@@ -22,6 +22,11 @@ const slipverifyButton = document.getElementById("slipverifyButton");
 const otpVerifyContainer = document.getElementById("otpVerifyContainer");
 const timerText = document.getElementById("timer");
 const resendBtn = document.getElementById("resendBtn");
+const signupBTN = document.getElementById("signupBTN");
+const todayDate = document.getElementById("todayDate");
+
+todayDate.innerText = new Date().toLocaleDateString('en-CA');
+
 
 if (sessionStorage.getItem("slipVerified") === "true") {
     signupContainer.style.display = "flex";
@@ -73,7 +78,7 @@ input.addEventListener("change", async function () {
             detectedText.includes("voucher");
 
         if (hasInstitute && hasReceipt) {
-            result.innerText = "✅ Verified Receipt Voucher";
+            result.innerText = "Verified Receipt Voucher";
             result.style.color = "#00ff99";
             continue2Signup.style.display = "flex";
             sessionStorage.setItem("slipVerified", "true");
@@ -82,15 +87,19 @@ input.addEventListener("change", async function () {
                 location.reload(true);
             };
         } else {
-            result.innerText = "❌ Invalid Slip";
+            result.innerText = "Invalid Slip";
             result.style.color = "#ff4d4d";
             sessionStorage.setItem("slipVerified", "false");
+            setTimeout(() => {
+                sessionStorage.clear();
+                location.reload();
+            }, 2000);
         }
 
         progressText.innerText = "Completed";
 
     } catch (error) {
-        result.innerText = "❌ Error processing slip";
+        result.innerText = "Error processing slip";
         result.style.color = "#ff4d4d";
         progressText.innerText = "Failed";
     }
@@ -122,17 +131,25 @@ closeButton.onclick = () => {
 
 slipverifyButton.onclick = () => {
     slipVerify.style.display = "none";
+    sessionStorage.clear();
+    location.reload();
 };
 
 signupCloseButton.onclick = () => {
     signupContainer.style.display = "none";
-    sessionStorage.removeItem("slipVerified");
+    sessionStorage.clear();
+    location.reload();
 };
 
 signupButton.onclick = () => {
     loginContainer.style.display = "none";
     slipVerify.style.display = "flex";
 };
+
+signupBTN.onclick = () => {
+    loginContainer.style.display = "none";
+    slipVerify.style.display = "flex";
+}
 
 const menuBtn = document.querySelector("#menuButton");
 const abtBtn = document.querySelector("#about");

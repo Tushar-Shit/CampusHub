@@ -12,10 +12,11 @@
 
 body {
     font-family: 'Segoe UI', sans-serif;
-    min-height: 100vh;
+
     background: linear-gradient(150deg, #d4f9e6 30%, #ffcfd8 100%);
     margin: 0;
     color: #1b4332;
+    min-height: 100vh;
 }
 
 
@@ -94,7 +95,6 @@ body {
 .profile-container {
     width: 20%;
     padding: 1vh 0vw;
-    background-color: #45b749;
 }
 
 .user-info-grid {
@@ -102,7 +102,7 @@ body {
     padding: 1vh;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 10px;  
     overflow-y: scroll;
 }
 
@@ -126,7 +126,6 @@ body {
     font-weight: 600;
     display: block;
     margin-top: 2px;
-    padding-left: 1vw;
 }
 
 .editIcon {
@@ -188,7 +187,7 @@ body {
 .action-row {
     position: absolute;
     top: 22vh;
-    left: 20vw;
+    left: 20.4vw;
     width: 35%;
     padding: 1vh;
     display: flex;
@@ -227,7 +226,7 @@ body {
     height: 60%;
     padding: 10px 0;
     overflow-y: scroll;
-    background-color: rgb(255, 14, 14);
+    /* background-color: rgb(240, 240, 240); */
 }
 
 .activity-card {
