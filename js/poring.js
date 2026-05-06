@@ -41,11 +41,11 @@ onAuthStateChanged(auth, async user => {
 signupForm.addEventListener("submit", async e => {
     e.preventDefault();
 
-    if (sessionStorage.getItem("slipVerified") !== "true") {
-        alert("Verify payment receipt first");
-        location.reload(true);
-        return;
-    }
+    // if (sessionStorage.getItem("slipVerified") !== "true") {
+    //     alert("Verify payment receipt first");
+    //     location.reload(true);
+    //    loginEmail return;
+    // }
 
     pageLoader.style.display = "flex";
 
@@ -127,13 +127,13 @@ window.verifyOTP = async function () {
     const inputOTP = document.getElementById("otpInput").value;
     const ref = doc(db, "otp", email);
     const snap = await getDoc(ref);
-    sessionStorage.setItem()
 
     if (!snap.exists()) {
         alert("OTP not found");
         pageLoader.style.display = "none";
         return;
     }
+
     const data = snap.data();
 
     if (Date.now() > data.expire) {
@@ -169,7 +169,7 @@ window.verifyOTP = async function () {
                 semester,
                 universityRoll: Number(universityRoll),
                 admissionYear: Number(admissionYear),
-                mobile,
+                mobile: Number(mobile),
                 email,
                 createdAt: new Date(),
                 rollNumber: Number(collRoll),

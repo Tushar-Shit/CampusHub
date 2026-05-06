@@ -48,34 +48,53 @@
             </div>
         </section>
 
-        <div class="table-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Roll No.</th>
-                        <th>Student Name</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
+        <section class="extra-data">
+            <div>Attendance was taken by <b>
+                    <p id="teacher" style="display:inline-block; color: rgb(0, 0, 218);"></p>
+                </b></div>
+            <div>Average attendance of this class <b>
+                    <p id="clsavg" style="display:inline-block"></p>
+                </b></div>
+        </section>
+        <div id="table-con">
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="center">Roll No.</th>
+                            <th>Student Name</th>
+                            <th class="center">Percentage</th>
+                            <th class="center">Present</th>
+                            <th class="center">Absent</th>
+                            <th class="center">Status</th>
+                        </tr>
+                    </thead>
 
-                <tbody id="tableBody"></tbody>
-            </table>
-        </div>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
 
-        <div id="saveBtnContainer">
-            <button class="btn-save" id="btn-save">Save Attendance</button>
-            <button class="btn-save" id="btn-edit">Edit Attendance</button>
+            <div id="saveBtnContainer">
+                <button class="btn-save" id="btn-save">Save Attendance</button>
+            </div>
         </div>
+        <div id="alt-table-con"></div>
     </div>
 
     <div id="back" class="state-hide">
         <div id="pop-container">
+            <!-- <a href="/teacher/teacher-home.html"> <i class="fa-solid fa-xmark" id="fea-cross-btn"></i></a> -->
             <i class="fa-solid fa-xmark" id="fea-cross-btn"></i>
             <p id="date">Attendance for <b>21.03.2026</b></p>
             <p id="teacher-name">Taken by <b>Tushar Shit</b></p>
             <p id="present">Total present 30</p>
             <p id="absent">Total absent 30</p>
         </div>
+    </div>
+
+
+    <div id="pageLoader">
+        <div class="spinner"></div>
     </div>
     <script type="module" src="../js/attendance.js"></script>
 </body>

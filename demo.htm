@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            --bg-green: #f0f9f4;
+            /* Very light mint background */
+            --accent-green: #059669;
+            /* Rich emerald for highlights */
+            --border-green: #d1fae5;
+            /* Soft border color */
+            --text-dark: #064e3b;
+            /* Deep forest green for text */
+            --text-muted: #6b7280;
+        }
+
+        .student-card-horizontal {
+            display: grid;
+            grid-template-columns: 200px 1fr 100px;
+            align-items: center;
+            background-color: #d2ffe6;
+            border-radius: 12px;
+            padding: 16px 24px;
+            gap: 20px;
+            max-width: 1000px;
+        }
+
+        /* Section 1: Identity */
+        .profile-section {
+            position: relative;
+            display: flex;
+            gap: 1.4vw;
+            align-items: center;
+            border-right: 2px solid black;
+        }
+
+        .roll-tag {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #059669;
+            text-transform: uppercase;
+        }
+
+        #std-name {
+            margin: 4px 0;
+            font-size: 1.5rem;
+        }
+
+        #des {
+            margin: 0;
+            font-size: 1rem;
+            color: #868686;
+            font-weight: 550;
+        }
+
+        /* Section 2: The Grid */
+        .details-section {
+            display: grid;
+            grid-template-columns: 135px 160px 1fr 60px;
+            gap: 15px;
+        }
+
+
+        .value {
+            height: 100%;
+            font-size: 1.2rem;
+            font-weight: 500;
+            border-right: 2px solid black;
+            color: #555555;
+        }
+
+
+        .percent {
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #059669;
+        }
+
+        .edit-btn {
+            background-color: #059669;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .edit-btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="student-card-horizontal">
+        <div class="profile-section">
+            <div class="roll-tag">#1</div>
+            <div>
+                <h2 id="std-name">Tushar Shit</h2>
+                <p id="des">Batch of 2024</p>
+            </div>
+        </div>
+
+        <div class="details-section">
+            <span class="value">32642724056</span>
+            <span class="value">+91 8145716559</span>
+            <span class="value" style="padding-right: 10px;">shittushar2006@gmail.com</span>
+            <span class="value percent" style="border: none;">68.03%</span>
+        </div>
+        <button class="edit-btn">Edit</button>
+
+    </div>
+</body>
+
+</html>

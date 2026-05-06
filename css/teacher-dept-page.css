@@ -94,6 +94,7 @@
 }
 
 #right-heading {
+  height: 10%;
   padding-top: 1%;
   text-align: center;
   font-size: 2.5rem;
@@ -102,7 +103,6 @@
 }
 
 #right-top {
-  height: 10%;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -135,7 +135,7 @@
 /* RIGHT BOTTOM */
 
 #right-bottom {
-  height: 80%;
+  height: 90%;
   font-size: xx-large;
   text-align: center;
   align-content: center;
@@ -177,43 +177,78 @@
 }
 
 /* STUDENT LIST */
-
-.student-list-appear {
-  width: 99%;
-  margin-bottom: 1.2rem;
-  padding: 0.8rem;
-  display: flex;
-  justify-content: space-evenly;
-  background: #fff;
-  border-radius: 12px;
-  border-top: 2px solid #2d6a4f;
-  border-bottom: 2px solid #2d6a4f;
-  border-left: 8px solid #2d6a4f;
-  border-right: 8px solid #2d6a4f;
-  box-shadow: 2px 0 5px #4a5568;
+.student-card-horizontal {
+  display: grid;
+  grid-template-columns: 50px 1.3fr 3fr 0.5fr;
+  align-items: center;
+  background-color: #f9fafb;
+  border: 1px solid #c0c3c8;
+  /* background: linear-gradient(150deg, #d4f2f9 30%, #ffcfd8 100%); */
+  border-radius: 10px;
+  padding: 16px 0;
+  margin: 10px 5px;
 }
 
-.student-list-appear:hover {
-  border-left: 8px solid #fb0058;
-  border-right: 8px solid #fb0058;
-  transition: 0.2s;
-  background: #dde5ff;
-  box-shadow: 2px 0 10px #8494b0;
+.roll-tag {
+  text-align: right;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #bc0042;
+  text-transform: uppercase;
 }
 
-.student-list-appear span {
-  color: #1b4332;
-  font-style: cursive;
+.dcon {
+  padding-left: 7%;
+  text-align: left;
 }
 
-.std-edit-by-tea {
-  height: auto;
-  padding: 0 1vw;
+#std-name {
+  margin: 4px 0;
+  font-size: 1.5rem;
+  color: #111827;
+}
+
+#des {
+  margin: 0;
   font-size: 1rem;
+  color: #797f8b;
+  font-weight: 550;
+}
+
+.minor {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr 1fr;
+}
+
+.value {
+  height: 100%;
+  font-size: 1.3rem;
+  font-weight: 500;
+  border-right: 2px solid black;
+  color: #9ca3af;
+  padding: 0 10px;
+}
+
+.percent {
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: #059669;
+}
+
+.edit-btn {
+  background-color: #059669;
+  color: white;
   border: none;
-  box-shadow: -3px 0 5px rgba(50, 50, 50, 0.701);
-  background-color: pink;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
   cursor: pointer;
+  transition: opacity 0.2s;
+  margin-right: 3vw;
+}
+
+.edit-btn:hover {
+  opacity: 0.9;
 }
 
 /* PENDING APPROVAL */

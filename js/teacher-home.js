@@ -265,6 +265,7 @@ depts.forEach(item => {
 async function changeEmail(newEmail) {
 
     const password = prompt("Enter your password to update your Email");
+    pageLoader.style.display="flex";
     const user = auth.currentUser;
     try {
         const credential = EmailAuthProvider.credential(
@@ -276,11 +277,12 @@ async function changeEmail(newEmail) {
         await updateDoc(doc(db, "users", user.uid), {
             email: newEmail
         });
+
         alert("Email updated successfully");
     } catch (error) {
-        alert("Must Have to Enter Your Password");
+        alert("Invalid Password");
     }
-
+ pageLoader.style.display="none";
 };
 
 const profile = document.querySelector("#name-short");

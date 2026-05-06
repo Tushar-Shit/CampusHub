@@ -31,8 +31,8 @@ onAuthStateChanged(auth, async (user) => {
 });
 
 
-const mainHeading = document.querySelector("#heading");
 const stream = localStorage.getItem("stream");
+const mainHeading = document.querySelector("#heading");
 mainHeading.innerText = `${stream} SEMESTERS`;
 
 //stream object
@@ -56,11 +56,19 @@ const featureCrossButton = document.querySelector("#fea-cross-btn");
 let currentClick = null;
 let whichBtn = null;
 
+//initial state set
+// rightSide.style.display = "none";
+// altRightSide.style.display = "block";
+// rightBottom.style.display = "none";
+// altRightBottom.style.display = "block";
+
+
 rightSide.style.display = "none";
 altRightSide.style.display = "block";
 rightBottom.style.display = "none";
 altRightBottom.style.display = "block";
 
+//semester selection logic
 container.addEventListener("click", (e) => {
     if (e.target.nodeName !== "BUTTON") return;
 
@@ -71,9 +79,11 @@ container.addEventListener("click", (e) => {
 
     if (currentClick) resetSemester();
 
+    //e.target.innerText
     selectSemester(e.target);
 });
 
+//reset semester buttons
 function resetSemester() {
     currentClick.classList.remove("clicked-bgcolor");
     currentClick.classList.add("pre-bgcolor", "forhover");
@@ -84,6 +94,7 @@ function resetSemester() {
     if (whichBtn) resetOptionButton();
 }
 
+//select semester buttons
 function selectSemester(btn) {
     btn.classList.remove("pre-bgcolor", "forhover");
     btn.classList.add("clicked-bgcolor");
@@ -91,72 +102,135 @@ function selectSemester(btn) {
     altRightSide.style.display = "none";
     rightSide.style.display = "block";
 
+    altRightBottom.style.display = "none";
+    rightBottom.style.display = "block";
+
     rightHeading.innerText = `${stream} ${btn.innerText}`;
     currentClick = btn;
+    // console.log(currentClick.value);
+    studentList(currentClick.value);
 }
 
-spBtnContainer.addEventListener("click", (e) => {
-    if (e.target.nodeName !== "BUTTON" || !currentClick) return;
 
-    if (whichBtn === e.target) {
-        resetOptionButton();
-        return;
-    }
 
-    if (whichBtn) resetOptionButton();
 
-    activateOptionButton(e.target);
-    extractData(stream, currentClick.value, e.target.innerText);
-});
 
-function activateOptionButton(btn) {
-    btn.classList.remove("before-clicked", "forhover");
-    btn.classList.add("after-clicked");
 
-    rightBottom.style.display = "block";
-    altRightBottom.style.display = "none";
-
-    whichBtn = btn;
-}
-
-function resetOptionButton() {
-    whichBtn.classList.remove("after-clicked");
-    whichBtn.classList.add("before-clicked", "forhover");
-
-    rightBottom.style.display = "none";
-    altRightBottom.style.display = "block";
-
-    whichBtn = null;
-}
-
-async function extractData(department, semester, button) {
-    const pageLoader = rightBottomLoader();
-
-    if (button.trim() === "Student List") {
-        const q = query(
-            collection(db, "users"),
-            where("department", "==", department),
-            where("semester", "==", semester),
-            where("role", "==", "student")
-        );
-        studentList(q);
-        return;
-    }
-
+async function studentList(sem) {
     const q = query(
-        collection(db, "examApplications"),
-        where("department", "==", department),
-        where("semester", "==", semester)
+        collection(db, "users"),
+        where("department", "==", stream),
+        where("semester", "==", sem),
+        where("role", "==", "student")
     );
 
-    if (button.trim() === "Pending Approval") {
-        pendingApproval(q);
-        return;
-    }
+    const pageLoader = rightBottomLoader();
 
-    const querySnapshot = await getDocs(q);
-    generatePDF(querySnapshot.docs.map(d => d.data()), semester, pageLoader);
+    if (unsubscribe) unsubscribe();
+
+    unsubscribe = onSnapshot(q, (snapshot) => {
+
+        if (snapshot.empty) {
+            // noDataMessage(pageLoader);
+            return;
+        }
+
+        rightBottom.innerHTML = "";
+        snapshot.forEach((docSnap) => {
+            const data = docSnap.data();
+
+            const row = document.createElement("div");
+            row.className = "student-list-appear";
+
+            row.innerHTML = `
+                <span>${data.name}</span>
+                <span>${data.collegeRoll}</span>
+                <span>${data.universityRoll}</span>
+                <span>+91 ${data.mobile}</span>
+                <span>yfdgdbhudjhcd</span>
+                <button id="std-edit-by-tea" class="std-edit-by-tea">Edit</button>
+            `;
+
+            rightBottom.appendChild(row);
+
+            // const passData = [row, data.collegeRoll, data.universityRoll,
+            //     docSnap.id, data.admissionYear, data.semester, data.department, data.name];
+            // editStudentDetails(passData);
+        });
+    });
 }
+
+
+
+
+
+
+
+
+//option button logic
+// spBtnContainer.addEventListener("click", (e) => {
+//     if (e.target.nodeName !== "BUTTON" || !currentClick) return;
+
+//     if (whichBtn === e.target) {
+//         resetOptionButton();
+//         return;
+//     }
+
+//     if (whichBtn) resetOptionButton();
+
+//     activateOptionButton(e.target);
+//     extractData(stream, currentClick.value, e.target.innerText);
+// });
+
+//option button logic
+// function activateOptionButton(btn) {
+//     btn.classList.remove("before-clicked", "forhover");
+//     btn.classList.add("after-clicked");
+
+//     rightBottom.style.display = "block";
+//     altRightBottom.style.display = "none";
+
+//     whichBtn = btn;
+// }
+
+// function resetOptionButton() {
+//     whichBtn.classList.remove("after-clicked");
+//     whichBtn.classList.add("before-clicked", "forhover");
+
+//     rightBottom.style.display = "none";
+//     altRightBottom.style.display = "block";
+
+//     whichBtn = null;
+// }
+
+// async function extractData(department, semester, button) {
+//     const pageLoader = rightBottomLoader();
+
+//     if (button.trim() === "Student List") {
+//         const q = query(
+//             collection(db, "users"),
+//             where("department", "==", department),//stream
+//             where("semester", "==", semester),//curruntclick.value
+//             where("role", "==", "student")
+//         );
+//         studentList(q);
+//         return;
+//     }
+
+//     const q = query(
+//         collection(db, "examApplications"),
+//         where("department", "==", department),
+//         where("semester", "==", semester)
+//     );
+
+//     if (button.trim() === "Pending Approval") {
+//         pendingApproval(q);
+//         return;
+//     }
+
+//     const querySnapshot = await getDocs(q);
+//     generatePDF(querySnapshot.docs.map(d => d.data()), semester, pageLoader);
+// }
 
 async function studentList(q) {
     const pageLoader = rightBottomLoader();
@@ -175,16 +249,26 @@ async function studentList(q) {
             const data = docSnap.data();
 
             const row = document.createElement("div");
-            row.className = "student-list-appear";
+            row.className = "student-card-horizontal";
+            console.log("ttttttttttttttttt");
 
             row.innerHTML = `
-                <span>${data.name}</span>
-                <span>${data.collegeRoll}</span>
-                <span>${data.universityRoll}</span>
-                <span>+91 ${data.mobile}</span>
-                <button id="std-edit-by-tea" class="std-edit-by-tea">Edit</button>
+            <div class="profile-section">
+                <div class="roll-tag">${data.rollNumber}</div>
+                <div>
+                    <h2 id="std-name">${data.name}</h2>
+                    <p id="des">Batch of ${data.admissionYear}</p>
+                </div>
+            </div>
+            <div class="details-section">
+                <span class="value">${data.universityRoll}</span>
+                <span class="value">${data.mobile}</span>
+                <span class="value" style="padding-right: 10px;">${data.email}</span>
+                <span class="value percent" style="border: none;">68.03%</span>
+            </div>
+            <button class="edit-btn">Edit</button>  
             `;
-
+            console.log("ttttttttttttttttt");
             rightBottom.appendChild(row);
 
             const passData = [row, data.collegeRoll, data.universityRoll,
@@ -264,107 +348,107 @@ async function editStudentDetails(passData) {
 
 }
 
-function pendingApproval(q) {
-    const pageLoader = rightBottomLoader();
-    if (unsubscribe) unsubscribe();
+// function pendingApproval(q) {
+//     const pageLoader = rightBottomLoader();
+//     if (unsubscribe) unsubscribe();
 
-    unsubscribe = onSnapshot(q, (snapshot) => {
+//     unsubscribe = onSnapshot(q, (snapshot) => {
 
-        if (snapshot.empty) {
-            noDataMessage(pageLoader);
-            return;
-        }
+//         if (snapshot.empty) {
+//             noDataMessage(pageLoader);
+//             return;
+//         }
 
-        rightBottom.innerHTML = "";
-        snapshot.forEach((docSnap) => {
-            const data = docSnap.data();
+//         rightBottom.innerHTML = "";
+//         snapshot.forEach((docSnap) => {
+//             const data = docSnap.data();
 
-            const row = document.createElement("div");
-            row.className = "pending-approval-list";
+//             const row = document.createElement("div");
+//             row.className = "pending-approval-list";
 
-            row.innerHTML = `
-            <div id="details_con">
-                <span>${data.fullName}</span>
-                <span>${data.clgRoll}</span>
-                <span>${data.uniRoll}</span>
-                <span>${data.status}</span>
-            </div>
-            <div id="buttons_con">
-                <button class="approve">Approve</button>
-                <button class="reject">Reject</button>
-            </div>
-            `;
+//             row.innerHTML = `
+//             <div id="details_con">
+//                 <span>${data.fullName}</span>
+//                 <span>${data.clgRoll}</span>
+//                 <span>${data.uniRoll}</span>
+//                 <span>${data.status}</span>
+//             </div>
+//             <div id="buttons_con">
+//                 <button class="approve">Approve</button>
+//                 <button class="reject">Reject</button>
+//             </div>
+//             `;
 
-            rightBottom.appendChild(row);
+//             rightBottom.appendChild(row);
 
-            const approve = row.querySelector(".approve");
-            const reject = row.querySelector(".reject");
+//             const approve = row.querySelector(".approve");
+//             const reject = row.querySelector(".reject");
 
-            approve.onclick = async () => {
-                await updateDoc(doc(db, "examApplications", docSnap.id), { status: "Approved" });
-            };
+//             approve.onclick = async () => {
+//                 await updateDoc(doc(db, "examApplications", docSnap.id), { status: "Approved" });
+//             };
 
-            reject.onclick = async () => {
-                await updateDoc(doc(db, "examApplications", docSnap.id), { status: "Rejected" });
-            };
+//             reject.onclick = async () => {
+//                 await updateDoc(doc(db, "examApplications", docSnap.id), { status: "Rejected" });
+//             };
 
-            if (data.status.trim() === "Approved") {
-                row.classList.add("change-bg-to-green");
-                approve.style.display = "none";
-            }
+//             if (data.status.trim() === "Approved") {
+//                 row.classList.add("change-bg-to-green");
+//                 approve.style.display = "none";
+//             }
 
-            if (data.status.trim() === "Rejected") {
-                row.classList.add("change-bg-to-red");
-                reject.style.display = "none";
-            }
-        });
-    });
-}
+//             if (data.status.trim() === "Rejected") {
+//                 row.classList.add("change-bg-to-red");
+//                 reject.style.display = "none";
+//             }
+//         });
+//     });
+// }
 
-function generatePDF(data, semester, pageLoader) {
-    if (data.length === 0) {
-        noDataMessage(pageLoader);
-        return;
-    }
+// function generatePDF(data, semester, pageLoader) {
+//     if (data.length === 0) {
+//         noDataMessage(pageLoader);
+//         return;
+//     }
 
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF();
+//     const { jsPDF } = window.jspdf;
+//     const pdf = new jsPDF();
 
-    pdf.setFontSize(16);
-    pdf.text(`BCA ${semester} SEMESTER`, 105, 10, { align: "center" });
-    pdf.text("Exam Application Status", 105, 20, { align: "center" });
+//     pdf.setFontSize(16);
+//     pdf.text(`BCA ${semester} SEMESTER`, 105, 10, { align: "center" });
+//     pdf.text("Exam Application Status", 105, 20, { align: "center" });
 
-    pdf.setFontSize(12);
+//     pdf.setFontSize(12);
 
-    let y = 40;
+//     let y = 40;
 
-    pdf.text("Sl No", 15, y);
-    pdf.text("Student Name", 40, y);
-    pdf.text("College Roll", 85, y);
-    pdf.text("University Roll", 120, y);
-    pdf.text("Status", 165, y);
+//     pdf.text("Sl No", 15, y);
+//     pdf.text("Student Name", 40, y);
+//     pdf.text("College Roll", 85, y);
+//     pdf.text("University Roll", 120, y);
+//     pdf.text("Status", 165, y);
 
-    y += 10;
+//     y += 10;
 
-    data.forEach((d, i) => {
+//     data.forEach((d, i) => {
 
-        if (y > 280) {
-            pdf.addPage();
-            y = 40;
-        }
+//         if (y > 280) {
+//             pdf.addPage();
+//             y = 40;
+//         }
 
-        pdf.text(String(i + 1), 15, y);
-        pdf.text(d.fullName, 40, y);
-        pdf.text(d.clgRoll, 85, y);
-        pdf.text(d.uniRoll, 120, y);
-        pdf.text(d.status, 165, y);
+//         pdf.text(String(i + 1), 15, y);
+//         pdf.text(d.fullName, 40, y);
+//         pdf.text(d.clgRoll, 85, y);
+//         pdf.text(d.uniRoll, 120, y);
+//         pdf.text(d.status, 165, y);
 
-        y += 10;
-    });
+//         y += 10;
+//     });
 
-    pdf.save(`${stream} ${semester} SEMESTER .pdf`);
-    pageLoader.style.display = "none";
-}
+//     pdf.save(`${stream} ${semester} SEMESTER .pdf`);
+//     pageLoader.style.display = "none";
+// }
 
 function rightBottomLoader() {
     rightBottom.innerHTML = `

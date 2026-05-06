@@ -97,8 +97,42 @@ body {
     margin-bottom: 30px;
 }
 
+/* NEW STYLES FOR SUMMARY HEADER AND DROPDOWN */
+.summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    max-width: 900px;
+    margin: 40px auto 20px auto;
+    padding: 0 10px;
+}
+
+.summary-header .heading {
+    margin: 0;
+    font-size: 30px;
+}
+
+#summary-filter {
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #E2E8F0;
+    background-color: white;
+    font-size: 16px;
+    font-weight: 600;
+    color: #334155;
+    cursor: pointer;
+    outline: none;
+    filter: drop-shadow(0 0 6px #c6c6c6);
+    transition: all 0.2s;
+}
+
+#summary-filter:hover {
+    background-color: #f8fafc;
+}
+
 .card-contents {
-    margin-top: 30px;
+    margin-top: 10px;
     display: flex;
     align-items: center;
     background-color: white;
@@ -138,6 +172,13 @@ body {
     font-weight: bold;
 }
 
+.bar-graph {
+    display: flex;
+    justify-content: center;
+    height: auto;
+    width: 100%;
+}
+
 #pageLoader {
     position: fixed;
     top: 0;
@@ -146,7 +187,7 @@ body {
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(5px);
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
@@ -206,5 +247,9 @@ body {
 
     .cards {
         flex-direction: row;
+    }
+
+    .summary-header .heading {
+        font-size: 40px;
     }
 }

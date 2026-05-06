@@ -24,86 +24,87 @@ const timerText = document.getElementById("timer");
 const resendBtn = document.getElementById("resendBtn");
 const signupBTN = document.getElementById("signupBTN");
 const todayDate = document.getElementById("todayDate");
+const loginEmail = document.querySelector("#loginEmail");
 
 todayDate.innerText = new Date().toLocaleDateString('en-CA');
 
 
-if (sessionStorage.getItem("slipVerified") === "true") {
-    signupContainer.style.display = "flex";
-}
+// if (sessionStorage.getItem("slipVerified") === "true") {
+//     signupContainer.style.display = "flex";
+// }
 
-input.addEventListener("change", async function () {
+// input.addEventListener("change", async function () {
 
-    const file = input.files[0];
-    if (!file) return;
+//     const file = input.files[0];
+//     if (!file) return;
 
-    preview.style.marginBottom = "15px";
-    preview.style.border = "3px solid rgba(255,255,255,0.5)";
-    preview.src = URL.createObjectURL(file);
+//     preview.style.marginBottom = "15px";
+//     preview.style.border = "3px solid rgba(255,255,255,0.5)";
+//     preview.src = URL.createObjectURL(file);
 
-    progressBar.value = 0;
-    progressText.style.display = "block";
-    result.style.display = "block";
-    continue2Signup.style.display = "none";
+//     progressBar.value = 0;
+//     progressText.style.display = "block";
+//     result.style.display = "block";
+//     continue2Signup.style.display = "none";
 
-    result.innerText = "Checking slip...";
-    progressText.innerText = "Starting...";
+//     result.innerText = "Checking slip...";
+//     progressText.innerText = "Starting...";
 
-    try {
+//     try {
 
-        const {
-            data: { text } }
-            = await Tesseract.recognize(file, "eng", {
-                logger: m => {
-                    if (m.status === "recognizing text") {
-                        let percent = Math.floor(m.progress * 100);
-                        progressBar.value = percent;
-                        progressText.innerText = `Processing ${percent}%`;
-                    }
-                }
-            });
+//         const {
+//             data: { text } }
+//             = await Tesseract.recognize(file, "eng", {
+//                 logger: m => {
+//                     if (m.status === "recognizing text") {
+//                         let percent = Math.floor(m.progress * 100);
+//                         progressBar.value = percent;
+//                         progressText.innerText = `Processing ${percent}%`;
+//                     }
+//                 }
+//             });
 
-        let detectedText = text.toLowerCase();
+//         let detectedText = text.toLowerCase();
 
-        let hasInstitute =
-            detectedText.includes("management") &&
-            detectedText.includes("institute") &&
-            detectedText.includes("of") &&
-            detectedText.includes("durgapur") &&
-            detectedText.includes("amount");
+//         let hasInstitute =
+//             detectedText.includes("management") &&
+//             detectedText.includes("institute") &&
+//             detectedText.includes("of") &&
+//             detectedText.includes("durgapur") &&
+//             detectedText.includes("amount");
 
-        let hasReceipt =
-            detectedText.includes("rajbandh") &&
-            detectedText.includes("receipt") &&
-            detectedText.includes("voucher");
+//         let hasReceipt =
+//             detectedText.includes("rajbandh") &&
+//             detectedText.includes("receipt") &&
+//             detectedText.includes("voucher");
 
-        if (hasInstitute && hasReceipt) {
-            result.innerText = "Verified Receipt Voucher";
-            result.style.color = "#00ff99";
-            continue2Signup.style.display = "flex";
-            sessionStorage.setItem("slipVerified", "true");
+//         if (hasInstitute && hasReceipt) {
+//             result.innerText = "Verified Receipt Voucher";
+//             result.style.color = "#00ff99";
+//             continue2Signup.style.display = "flex";
+//             sessionStorage.setItem("slipVerified", "true");
 
-            continue2Signup.onclick = () => {
-                location.reload(true);
-            };
-        } else {
-            result.innerText = "Invalid Slip";
-            result.style.color = "#ff4d4d";
-            sessionStorage.setItem("slipVerified", "false");
-            setTimeout(() => {
-                sessionStorage.clear();
-                location.reload();
-            }, 2000);
-        }
+//             continue2Signup.onclick = () => {
+//                 location.reload(true);
+//             };
+//         } else {
+//             result.innerText = "Invalid Slip";
+//             result.style.color = "#ff4d4d";
+//             sessionStorage.setItem("slipVerified", "false");
+//             setTimeout(() => {
+//                 sessionStorage.clear();
+//                 location.reload();
+//             }, 2000);
+//         }
 
-        progressText.innerText = "Completed";
+//         progressText.innerText = "Completed";
 
-    } catch (error) {
-        result.innerText = "Error processing slip";
-        result.style.color = "#ff4d4d";
-        progressText.innerText = "Failed";
-    }
-});
+//     } catch (error) {
+//         result.innerText = "Error processing slip";
+//         result.style.color = "#ff4d4d";
+//         progressText.innerText = "Failed";
+//     }
+// });
 
 
 teacherButton.onclick = () => {
@@ -127,13 +128,14 @@ function studentLoginPopup() {
 
 closeButton.onclick = () => {
     loginContainer.style.display = "none";
+    loginEmail.value = "";
 };
 
-slipverifyButton.onclick = () => {
-    slipVerify.style.display = "none";
-    sessionStorage.clear();
-    location.reload();
-};
+// slipverifyButton.onclick = () => {
+//     slipVerify.style.display = "none";
+//     sessionStorage.clear();
+//     location.reload();
+// };
 
 signupCloseButton.onclick = () => {
     signupContainer.style.display = "none";
@@ -141,20 +143,32 @@ signupCloseButton.onclick = () => {
     location.reload();
 };
 
-signupButton.onclick = () => {
-    loginContainer.style.display = "none";
-    slipVerify.style.display = "flex";
-};
+// signupButton.onclick = () => {
+//     loginContainer.style.display = "none";
+//     slipVerify.style.display = "flex";
+// };
 
-signupBTN.onclick = () => {
-    loginContainer.style.display = "none";
-    slipVerify.style.display = "flex";
-}
+// signupBTN.onclick = () => {
+//     loginContainer.style.display = "none";
+//     slipVerify.style.display = "flex";
+// }
 
-const menuBtn = document.querySelector("#menuButton");
-const abtBtn = document.querySelector("#about");
-const cntctBtn = document.querySelector("#contact");
-menuBtn.addEventListener("click", () => {
-    abtBtn.classList.toggle("state-hide");
-    cntctBtn.classList.toggle("state-hide");
+// const menuBtn = document.querySelector("#menuButton");
+// const abtBtn = document.querySelector("#about");
+// const cntctBtn = document.querySelector("#contact");
+// menuBtn.addEventListener("click", () => {
+//     abtBtn.classList.toggle("state-hide");
+//     cntctBtn.classList.toggle("state-hide");
+// });
+
+
+
+
+
+signupBTN.addEventListener("click", () => {
+    signupContainer.style.display = "flex";
+});
+
+signupButton.addEventListener("click", () => {
+    signupContainer.style.display = "flex";
 })

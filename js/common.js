@@ -1,5 +1,5 @@
 // document.addEventListener("selectstart", function (e) {
-//     e.preventDefault();
+//   e.preventDefault();
 // });
 
 // document.addEventListener("contextmenu", (e) => {
@@ -23,8 +23,8 @@
 // });
 
 // setInterval(() => {
-//   const devtoolsOpen = window.outerWidth - window.innerWidth > 160 || 
-//                        window.outerHeight - window.innerHeight > 160;
+//   const devtoolsOpen = window.outerWidth - window.innerWidth > 160 ||
+//     window.outerHeight - window.innerHeight > 160;
 
 //   if (devtoolsOpen) {
 //     document.body.innerHTML = "";

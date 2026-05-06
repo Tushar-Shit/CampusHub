@@ -29,6 +29,7 @@ const ihgdtyh = document.getElementById("ihgdtyh");
 const totalPresent = document.getElementById("totalPresent");
 const totalAbsent = document.getElementById("totalAbsent");
 const present = document.getElementById("present");
+const summaryHeading = document.getElementById("summary-heading");
 
 const today = new Date().toLocaleDateString('en-US', {
     weekday: 'long',
@@ -59,11 +60,26 @@ onAuthStateChanged(auth, async (user) => {
 
                 await fetchAttendance(userData.department, userData.semester, todayKey, userData.rollNumber);
 
-
-                calculateAttendance(userData.department, userData.semester, userData.rollNumber);
+                await calculateAttendance(userData.department, userData.semester, userData.rollNumber);
+                await loadAttendanceChart(userData.department, userData.semester, userData.rollNumber);
 
                 pageLoader.style.display = "none";
                 ihgdtyh.style.display = "block";
+
+                const select = document.getElementById("summary-filter");
+
+                select.addEventListener("change", async function () {
+                    const selectedValue = this.value;
+
+                    if (selectedValue === "Semester Summary") {
+                        await calculateAttendance(userData.department, userData.semester, userData.rollNumber);
+                    }
+                    else {
+                        await calculateMonthlyAttendance(userData.department, userData.semester, userData.rollNumber);
+                    }
+                    summaryHeading.innerHTML = selectedValue;
+                });
+
             }
         } catch (error) {
             console.error("error..");
@@ -90,8 +106,8 @@ async function fetchAttendance(course, sem, date, roll) {
                 showTodayAttendance(status);
             }
         }
-        else{
-           mainCard.style.display = "none"; 
+        else {
+            mainCard.style.display = "none";
         }
     } catch (error) {
         console.error("Error fetching attendance:", error);
@@ -165,4 +181,125 @@ async function calculateAttendance(course, sem, roll) {
     } catch (error) {
         console.error("Error:", error);
     }
+}
+
+async function calculateMonthlyAttendance(course, sem, roll) {
+    try {
+        const attendanceRef = ref(rtdb, `attendance/${course}/${sem}`);
+        const snapshot = await get(attendanceRef);
+
+        if (!snapshot.exists()) return;
+
+        const data = snapshot.val();
+
+        let totalClasses = 0;
+        let presentCount = 0;
+
+        const now = new Date();
+        const currentMonth = now.getMonth();   // 0-11
+        const currentYear = now.getFullYear();
+
+        for (let date in data) {
+            const d = new Date(date);
+
+            if (d.getMonth() === currentMonth && d.getFullYear() === currentYear) {
+
+                totalClasses++;
+
+                if (data[date][roll]) {
+                    presentCount++;
+                }
+            }
+        }
+
+        const percentage = totalClasses > 0
+            ? ((presentCount / totalClasses) * 100).toFixed(2)
+            : 0;
+
+        console.log("Monthly Total:", totalClasses);
+        console.log("Present:", presentCount);
+        console.log("Percentage:", percentage);
+
+        totalPresent.innerText = `${presentCount} Days`;
+        totalAbsent.innerText = `${totalClasses - presentCount} Days`;
+        present.innerText = `${percentage}%`;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function getMonthlyAttendanceData(course, sem, roll) {
+    const attendanceRef = ref(rtdb, `attendance/${course}/${sem}`);
+    const snapshot = await get(attendanceRef);
+
+    if (!snapshot.exists()) return [];
+
+    const data = snapshot.val();
+
+    let monthlyTotal = Array(12).fill(0);
+    let monthlyPresent = Array(12).fill(0);
+
+    for (let date in data) {
+        const d = new Date(date);
+        const month = d.getMonth(); // 0-11
+
+        monthlyTotal[month]++;
+
+        if (data[date][roll]) {
+            monthlyPresent[month]++;
+        }
+    }
+
+    let monthlyPercentage = monthlyTotal.map((total, i) => {
+        return total > 0
+            ? ((monthlyPresent[i] / total) * 100).toFixed(2)
+            : 0;
+    });
+
+    return monthlyPercentage;
+}
+
+let attendanceChartInstance = null;
+
+async function loadAttendanceChart(course, sem, roll) {
+    const data = await getMonthlyAttendanceData(course, sem, roll);
+
+    const ctx = document.getElementById('attendanceChart');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+                label: 'Monthly Attendance %',
+                data: data,
+                borderWidth: 1,
+
+                backgroundColor: data.map(p => {
+                    if (p >= 75) return '#22C55E';
+                    if (p >= 50) return 'orange';
+                    return 'red';
+                }),
+
+                borderRadius: 10
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        font: {
+                            size: 18   // 🔥 change this value
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100
+                }
+            }
+        }
+    });
 }

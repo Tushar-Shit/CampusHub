@@ -1,7 +1,7 @@
 import { auth, db, rtdb } from "./firebase.js";
+
 import {
     collection,
-    onSnapshot,
     doc,
     query,
     where,
@@ -10,250 +10,202 @@ import {
     getDoc
 } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
-import {
-    onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
+import { onAuthStateChanged }
+    from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
 
-import { ref, update, get } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-database.js";
+import { ref, update, get }
+    from "https://www.gstatic.com/firebasejs/12.9.0/firebase-database.js";
 
+
+// DOM
 const heading = document.querySelector("#heading");
-const date = document.querySelector("#current-date");
+const dateEl = document.querySelector("#current-date");
 const course = document.querySelector("#course");
 const semester = document.querySelector("#semester");
+const tableContainer = document.querySelector("#table-con");
+const altTableContainer = document.querySelector("#alt-table-con");
 const tableBody = document.querySelector("#tableBody");
-let courseValue = null;
-let sem = null;
+const extrainfo = document.querySelector(".extra-data");
+const teachername = document.querySelector("#teacher");
+const avg = document.querySelector("#clsavg");
+const pageLoader = document.querySelector("#pageLoader");
+const body = document.querySelector("body");
 
-const months = {
-    Jan: "January",
-    Feb: "February",
-    Mar: "March",
-    Apr: "April",
-    May: "May",
-    Jun: "June",
-    Jul: "July",
-    Aug: "August",
-    Sep: "September",
-    Oct: "October",
-    Nov: "November",
-    Dec: "December"
-};
+// UI Init
+extrainfo.style.display = "none";
+tableContainer.style.display = "none";
+altTableContainer.style.display = "block";
 
-const today = new Date().toDateString().split(" ");
-date.innerText = `${today[0]}, ${months[today[1]]} ${today[2]}, ${today[3]}`;
+// Date
+const todayKey = new Date().toLocaleDateString("en-CA");
+dateEl.innerText = new Date().toDateString();
 
+// Track selection
+let prevCourse = null;
+let prevSem = null;
+//send percentage to another file
+let percentToBeSend;
+
+// ================= UPDATE =================
 function updateHeading() {
-    courseValue = course.value;
-    sem = semester.value;
+    const courseValue = course.value;
+    const semValue = semester.value;
+
     const semesterText = semester.options[semester.selectedIndex].text;
     heading.innerText = `${courseValue} - ${semesterText}`;
 
-    if (course.value !== null &&
-        course.value !== "Select Department" &&
-        semester.value !== null &&
-        semester.value !== "Select Semester") {
-        const q = query(
-            collection(db, "users"),
-            where("department", "==", course.value),
-            where("semester", "==", semester.value),
-            where("role", "==", "student"),
-            orderBy("rollNumber", "asc")
-        );
-        extractData(q);
-    }
+    // ✅ RESET extra data on change
+    extrainfo.style.display = "none";
+    teachername.innerText = "";
+
+    if (
+        courseValue === "Select Department" ||
+        semValue === "Select Semester"
+    ) return;
+
+    const q = query(
+        collection(db, "users"),
+        where("role", "==", "student"),
+        where("department", "==", courseValue),
+        where("semester", "==", semValue),
+        orderBy("rollNumber", "asc")
+    );
+
+    extractData(q, courseValue, semValue);
 }
 
 course.addEventListener("change", updateHeading);
 semester.addEventListener("change", updateHeading);
 
-//extract data from DB
-async function extractData(q) {
-    onSnapshot(q, (snapshot) => {
-        if (snapshot.empty) {
-            return;
-        }
-        tableBody.innerHTML = "";
-        snapshot.forEach((docSnap) => {
-            const data = docSnap.data();
 
-            const row = document.createElement("tr");
-            row.innerHTML = `<td class="stdRoll">${data.rollNumber}</td>
-                        <td">${data.name}</td>
-                        <td>
-                            <label class="switch">
-                                <input type="checkbox">
-                                <span class="slider"></span>
-                            </label>
-                        </td>
-            `;
+// ================= MAIN =================
+async function extractData(q, courseValue, semValue) {
 
-            tableBody.appendChild(row);
-        });
-    })
-}
+    if (prevCourse !== courseValue || prevSem !== semValue) {
 
-let teacherName = "";
-onAuthStateChanged(auth, async (user) => {
-    if (user) {
-        const userRef = doc(db, "users", user.uid);
-        const userSnap = await getDoc(userRef);
+        tableContainer.style.display = "none";
+        altTableContainer.style.display = "block";
+        altTableContainer.innerHTML = "";
 
-        if (userSnap.exists()) {
-            teacherName = userSnap.data().name;
-        }
-    }
-});
-
-//update in DB
-const saveBtn = document.querySelector("#btn-save");
-const back = document.querySelector("#back");
-const atDate = document.querySelector("#date");
-const teacher = document.querySelector("#teacher-name");
-const present = document.querySelector("#present");
-const absent = document.querySelector("#absent");
-let adate, stdpresent = 0, stdabsent = 0;
-saveBtn.addEventListener("click", async () => {
-    const rows = tableBody.querySelectorAll("tr");
-
-    if (rows.length === 0) {
-        alert("No data found");
-        return;
+        prevCourse = courseValue;
+        prevSem = semValue;
     }
 
-    let attendanceData = {};
-
-    rows.forEach((row) => {
-        const stdRoll = row.querySelector(".stdRoll").innerText;
-        const checkbox = row.querySelector("input[type='checkbox']");
-        const isPresent = checkbox.checked;
-        if (isPresent)
-            stdpresent++;
-        else
-            stdabsent++;
-
-        attendanceData[stdRoll] = isPresent;
-    });
-
-    attendanceData["Teacher"] = teacherName;
-    const today = new Date();
-    adate = today.toLocaleDateString('en-CA');
-    console.log(adate)
-    console.log(attendanceData);
-
-    atDate.innerHTML = `Attendance for <b>${adate}</b>`;
-    teacher.innerHTML = `Taken by <b>${teacherName}</b>`;
-    present.innerHTML = `Total present ${stdpresent}`;
-    absent.innerHTML = `Total absent ${stdabsent}`;
-
-    back.classList.toggle("state-hide");
-    await update(ref(rtdb, `attendance/${courseValue}/${sem}/${adate}`), attendanceData);
-    stdpresent = 0, stdabsent = 0;
-    reset();
-    // window.location.reload();
-});
-
-
-const crossBtn = document.querySelector("#fea-cross-btn");
-crossBtn.addEventListener("click", () => {
-    back.classList.toggle("state-hide");
-})
-
-function reset() {
-    back.classList.toggle("state-hide");
-    course.value = "";
-    semester.value = "";
-    tableBody.innerHTML = "";
-    heading.innerText = "";
-    present.innerText = "";
-    absent.innerText = "";
-    teacher.innerText = "";
-    atDate.innerText = "";
-}
-
-
-// const editBtn = document.querySelector("#btn-edit");
-// editBtn.addEventListener("click", async () => {
-
-//     const date = new Date().toISOString().split("T")[0];
-
-//     if (tableBody.children.length === 0) {
-//         alert("Load students first");
-//         return;
-//     }
-
-//     console.log("Fetching:", courseValue, sem, date);
-
-//     const attendanceRef = ref(rtdb, `attendance/${courseValue}/${sem}/${date}`);
-//     const snapshot = await get(attendanceRef);
-
-//     if (!snapshot.exists()) {
-//         alert("No attendance found");
-//         return;
-//     }
-
-//     const data = snapshot.val();
-//     console.log("Data:", data);
-
-//     const rows = tableBody.querySelectorAll("tr");
-
-//     rows.forEach((row) => {
-//         const roll = row.querySelector(".stdRoll").innerText.trim();
-//         const checkbox = row.querySelector("input[type='checkbox']");
-
-//         if (data[roll] !== undefined) {
-//             checkbox.checked = data[roll];
-//         }
-//     });
-
-//     back.classList.add("state-hide");
-// });
-
-
-const editBtn = document.querySelector("#btn-edit");
-
-editBtn.addEventListener("click", async () => {
     try {
-        if (!courseValue || !sem) {
-            alert("Please select course and semester first");
-            return;
-        }
-
-        const date = new Date().toLocaleDateString('en-CA');;
-
-        const attendanceRef = ref(rtdb, `attendance/${courseValue}/${sem}/${date}`);
-        const snapshot = await get(attendanceRef);
-
-        if (!snapshot.exists()) {
-            alert("No attendance found for today");
-            return;
-        }
-
-        const attendanceData = snapshot.val();
-
-        const q = query(
-            collection(db, "users"),
-            where("department", "==", courseValue),
-            where("semester", "==", sem),
-            where("role", "==", "student"),
-            orderBy("rollNumber", "asc")
+        showLoader();
+        const attendanceTodayRef = ref(
+            rtdb,
+            `attendance/${courseValue}/${semValue}/${todayKey}`
         );
 
-        const querySnapshot = await getDocs(q);
+        const attendanceAllRef = ref(
+            rtdb,
+            `attendance/${courseValue}/${semValue}`
+        );
 
-        tableBody.innerHTML = "";
+        const [todaySnap, allSnap, querySnapshot] = await Promise.all([
+            get(attendanceTodayRef),
+            get(attendanceAllRef),
+            getDocs(q)
+        ]);
+
+        altTableContainer.innerHTML = "";
+        pageLoader.style.display = "none";
+
+        if (querySnapshot.empty) {
+            altTableContainer.innerHTML = `<p>No students found</p>`;
+            return;
+        }
+
+        // ✅ FIXED: Attendance today + teacher logic
+        let attendanceToday = {};
+
+        if (todaySnap.exists()) {
+            attendanceToday = todaySnap.val();
+
+            const teacher = attendanceToday["Teacher"];
+
+            if (teacher) {
+                teachername.innerText = teacher;
+                extrainfo.style.display = "flex";
+            } else {
+                teachername.innerText = "";
+                extrainfo.style.display = "none";
+            }
+
+        } else {
+            teachername.innerText = "";
+            extrainfo.style.display = "none";
+        }
+
+        // All attendance (history)
+        let allAttendance = {};
+        if (allSnap.exists()) {
+            allAttendance = allSnap.val();
+        }
+
+        // ===== CALCULATIONS =====
+        const studentList = [];
+        let totalStudents = 0;
+        let totalClasses = 0;
+        let totalPresentAll = 0;
 
         querySnapshot.forEach((docSnap) => {
             const data = docSnap.data();
             const roll = String(data.rollNumber).trim();
 
-            const isPresent = attendanceData[roll] ?? false;
+            const { percentage, present, absent, classes } =
+                calculateDetails(roll, allAttendance);
+
+            totalStudents++;
+            totalClasses = classes;
+            totalPresentAll += present;
+
+            studentList.push({
+                roll,
+                name: data.name,
+                percentage,
+                present,
+                absent
+            });
+        });
+
+        // ===== CLASS AVERAGE =====
+        let average = 0;
+        if (totalStudents > 0 && totalClasses > 0) {
+            average = (
+                totalPresentAll / (totalStudents * totalClasses)
+            ) * 100;
+
+        }
+        const cdxss = average >= 75 ? "green" : average >= 50 ? "orange" : "red";
+        avg.innerText = `${average.toFixed(2)}%`;
+        avg.style.color = cdxss;
+
+        // ===== RENDER =====
+        altTableContainer.style.display = "none";
+        tableContainer.style.display = "block";
+        tableBody.innerHTML = "";
+
+        studentList.forEach((student) => {
+
+            const isPresent = attendanceToday[student.roll] ?? false;
 
             const row = document.createElement("tr");
 
+            let color = "red";
+            if (student.percentage >= 75) color = "green";
+            else if (student.percentage >= 50) color = "orange";
+
             row.innerHTML = `
-                <td class="stdRoll">${roll}</td>
-                <td>${data.name}</td>
-                <td>
+                <td class="stdRoll center">${student.roll}</td>
+                <td>${student.name}</td>
+                <td class="center" style="color:${color}">
+                    <b>${student.percentage}%</b>
+                </td>
+                <td class="center">${student.present}</td>
+                <td class="center">${student.absent}</td>
+                <td class="center">
                     <label class="switch">
                         <input type="checkbox" ${isPresent ? "checked" : ""}>
                         <span class="slider"></span>
@@ -264,29 +216,125 @@ editBtn.addEventListener("click", async () => {
             tableBody.appendChild(row);
         });
 
-        back.classList.add("state-hide");
+    } catch (err) {
+        console.error(err);
+        pageLoader.style.display = "none";
+        altTableContainer.innerHTML = `<p>Error loading data</p>`;
+    }
+}
 
-    } catch (error) {
-        console.error("Edit error:", error);
-        alert("Something went wrong");
+
+// ================= CALCULATE =================
+function calculateDetails(roll, allAttendance) {
+
+    let totalClasses = 0;
+    let presentCount = 0;
+
+    for (let date in allAttendance) {
+        const dayData = allAttendance[date];
+        totalClasses++;
+
+        if (dayData[roll]) {
+            presentCount++;
+        }
+    }
+
+    const percentage = totalClasses > 0
+        ? ((presentCount / totalClasses) * 100).toFixed(2)
+        : 0;
+    percentToBeSend = percentage;
+    const absent = totalClasses - presentCount;
+
+    return {
+        percentage,
+        present: presentCount,
+        absent,
+        classes: totalClasses
+    };
+}
+
+
+// ================= LOADER =================
+function showLoader() {
+    pageLoader.style.display = "flex";
+}
+
+
+// ================= AUTH =================
+let teacherName = "";
+
+onAuthStateChanged(auth, async (user) => {
+    if (!user) return;
+
+    const userSnap = await getDoc(doc(db, "users", user.uid));
+    if (userSnap.exists()) {
+        teacherName = userSnap.data().name;
     }
 });
 
 
-async function fetchAttendance(course, sem, date) {
-    try {
-        const attendanceRef = ref(rtdb, `attendance/${course}/${sem}/${date}`);
-        const snapshot = await get(attendanceRef);
+// ================= SAVE =================
+const saveBtn = document.querySelector("#btn-save");
+const back = document.querySelector("#back");
+const atDate = document.querySelector("#date");
+const teacher = document.querySelector("#teacher-name");
+const present = document.querySelector("#present");
+const absent = document.querySelector("#absent");
 
-        if (snapshot.exists()) {
-            const data = snapshot.val();
-            console.log("Attendance:", data);
-            return data;
-        } else {
-            console.log("No data found");
-            return null;
-        }
-    } catch (error) {
-        console.error(error);
+saveBtn.addEventListener("click", async () => {
+
+    const rows = tableBody.querySelectorAll("tr");
+
+    if (rows.length === 0) {
+        alert("No data found");
+        return;
     }
-}
+
+    const courseValue = course.value;
+    const semValue = semester.value;
+
+    let stdpresent = 0;
+    let stdabsent = 0;
+    let attendanceData = {};
+
+    rows.forEach((row) => {
+        const stdRoll = row.querySelector(".stdRoll").innerText;
+        const checkbox = row.querySelector("input[type='checkbox']");
+
+        const isPresent = checkbox.checked;
+
+        if (isPresent) stdpresent++;
+        else stdabsent++;
+
+        attendanceData[stdRoll] = isPresent;
+    });
+
+    attendanceData["Teacher"] = teacherName;
+
+    atDate.innerHTML = `Attendance for <b>${todayKey}</b>`;
+    teacher.innerHTML = `Taken by <b>${teacherName}</b>`;
+    present.innerHTML = `Total present ${stdpresent}`;
+    absent.innerHTML = `Total absent ${stdabsent}`;
+
+    try {
+        await update(
+            ref(rtdb, `attendance/${courseValue}/${semValue}/${todayKey}`),
+            attendanceData
+        );
+
+        back.classList.remove("state-hide");
+        body.style.overflow = "hidden";
+
+    } catch (err) {
+        console.error(err);
+        alert("Failed to save attendance");
+    }
+});
+
+
+// ================= BACK =================
+back.addEventListener("click", () => {
+    window.location.href = "/teacher/teacher-home.html";
+});
+
+export{percentToBeSend};

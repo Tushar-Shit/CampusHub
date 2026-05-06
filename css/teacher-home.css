@@ -16,6 +16,7 @@ body {
 }
 
 .dashboard-container {
+  position: relative;
   display: flex;
   height: 100vh;
   width: 100vw;
@@ -351,12 +352,11 @@ header h1 span {
 #extra-fea-con {
   height: auto;
   width: 100%;
-  padding: 1rem;
   display: flex;
+  gap: 2%;
 }
 
 .sub-con {
-  margin-right: 2vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -381,6 +381,7 @@ header h1 span {
 }
 
 .ex-fea-btn-txt {
+  text-align: center;
   font-size: 1.1rem;
 }
 
@@ -621,6 +622,7 @@ p {
 
 @media (max-width: 768px) {
   body {
+    position: relative;
     overflow: auto;
   }
 
@@ -755,7 +757,14 @@ p {
   }
 
   #extra-fea-con {
-    justify-content: space-around;
+    justify-content: space-evenly;
+    gap: 0;
+  }
+
+  .sub-con {
+    max-width: 33%;
+    min-width: 30%;
+    display: flex;
   }
 
   .ex-fea-btn-txt {

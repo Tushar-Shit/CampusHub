@@ -10,6 +10,7 @@ body {
     padding: 20px;
     display: flex;
     justify-content: center;
+    position: relative;
 }
 
 .container {
@@ -33,6 +34,11 @@ header {
     background: #f9f9f9;
     padding: 15px;
     border-radius: 8px;
+}
+
+.extra-data {
+    display: flex;
+    justify-content: space-around;
 }
 
 .select-group {
@@ -151,7 +157,7 @@ input:checked+.slider:before {
 }
 
 #back {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     height: 100%;
@@ -203,6 +209,7 @@ input:checked+.slider:before {
 
 .state-hide {
     display: none !important;
+    overflow-y: none !important;
 }
 
 /* Mobile Adjustments */
